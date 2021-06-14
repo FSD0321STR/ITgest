@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import "@fontsource/roboto";
 import Button from "@material-ui/core/Button";
-import Orders2 from "./components/dashboard";
+import Orders from "./components/dashboard";
 
 
 
@@ -11,8 +11,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Orders2>
-        </Orders2>
+        <Orders>
+        </Orders>
       </header>
     </div>
   );
