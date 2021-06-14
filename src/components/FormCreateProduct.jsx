@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import { Button } from '@material-ui/core';
 
 
 
@@ -75,7 +76,10 @@ export default function MultilineTextFields() {
         <TextField id="outlined-basic" label="Precio" type="number" variant="outlined" />
         <br/>
         <TextField id="outlined-basic" label="Stock Mínimo" type="number" variant="outlined" />
+
         </form>
+
+        <Button variant="contained" color="primary"> Guardar </Button>
 
         
 

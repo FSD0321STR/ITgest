@@ -82,7 +82,6 @@ export default function SimpleTabs() {
         onclick={MultilineTextField}
         > Crea producto 
         </Button>
-        <MultilineTextField/> 
         
 
       </TabPanel>
