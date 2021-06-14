@@ -4,6 +4,8 @@ import "./App.css";
 import "@fontsource/roboto";
 import Button from "@material-ui/core/Button";
 import Orders from "./components/dashboard";
+import Orders2 from "./components/dashboard2";
+
 
 
 function App() {
@@ -17,9 +19,17 @@ function App() {
           Hola
           
         </Button>
-        <Orders color= "red">
+        <Orders color= "green">
 
         </Orders>
+
+        <Orders2>
+
+        </Orders2>
+
+
+        
+        
         
       </header>
     </div>
