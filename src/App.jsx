@@ -16,22 +16,6 @@ function App() {
         <MenuAppBar></MenuAppBar>
         <SimpleTabs></SimpleTabs>
       </header>
-
-        {/* <div id="form">
-          <MultilineTextField></MultilineTextField>
-          <BasicTextFields></BasicTextFields>
-        </div>
-
-        <Button size="large" variant="contained" color="primary">Guardar</Button> */}
-
-       {/* <CollapsibleTable></CollapsibleTable> */}
-
-      <br/>
-
-      <div>
-
-      </div>
-
     </div>
     
   )
