@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./App.css";
 import "@fontsource/roboto";
+import MenuAppBar from './components/LogBar'
+import SimpleTabs from './components/TagBar'
 
-import Orders from "./components/dashboard";
+// import Orders from "./components/dashboard";
 
 
 
@@ -13,8 +15,11 @@ function App() {
       <header className="App-header">
       </header>
       <body>
-        <Orders>
-        </Orders>
+
+      <MenuAppBar />
+      <SimpleTabs />
+
+
         
       </body>
     </div>

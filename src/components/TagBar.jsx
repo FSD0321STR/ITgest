@@ -6,9 +6,10 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import MediaCard from './Product'
+// import MediaCard from './Product'
 import { Button } from '@material-ui/core';
-import MultilineTextField from './FormCreateProduct'
+// import MultilineTextField from './FormCreateProduct'
+import Orders from './dashboard'
 
 // import CollapsibleTable from 'TableStock';
 
@@ -71,25 +72,22 @@ export default function SimpleTabs() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-          
+        Stock
+
+        <Orders />
+
+
       </TabPanel>
       <TabPanel value={value} index={1}>
 
-        <Button 
-        size="large" 
-        variant="contained" 
-        color="primary" 
-        onclick={MultilineTextField}
-        > Crea producto 
-        </Button>
-        
+
 
       </TabPanel>
 
       <TabPanel value={value} index={2}>
-        Productos de tu App
+        {/* Productos de tu App
         
-        <MediaCard />
+        <MediaCard /> */}
       </TabPanel>
     </div>
   );
