@@ -12,9 +12,12 @@ const useStyles = makeStyles((theme) => ({
     form: {
         display: 'flex',
         flexDirection: 'column',
-        
+        marginRight: '20px'
+    },
+    item: {
+        marginTop: '20px' 
+    },
 
-    }
 }));
 
 
@@ -25,27 +28,30 @@ function userManager(){
     const [mail, setMail] = useState("");
     const [ password, setPassword] = useState("");
     const [role, setRole] = useState(roles.R1);
-    const [errorMessage, setErrorMessage] = useState("")
+    const [validEmail, setvalidEmail] = useState(true)
 
     const handleChange = (event) => {
         setRole(event.target.value);
     };
 // revisar
     function emailverification (email) {
-        useState("");
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         console.log(email)
+        console.log(re.test(email))
         if ( re.test(email) ) {
-            
           setMail(email)
         } else {
-            setErrorMessage("Email incorrecto")
+            setvalidEmail(false)
         };
     
     };
 
-    function UserCreator (){
 
+    function handleSubmit (event){
+        const newUser = {
+            name , surname, email, password, role
+        }
+        console.log(newUser);
     }
 
     const errorStyle = {
@@ -57,18 +63,18 @@ function userManager(){
     return(
         <div className={classes.root} >
             <div></div>
-            <form className= {classes.form} noValidate autoComplete="off" >
-                <TextField id="nameImput" label="Nombre" type="text" variant="outlined" value={(e)=>setName(event.target.value)} />
-                <TextField id="surnameImput" label="Apellidos" type="text" variant="outlined" value={(e)=>setSurname(e.target.value)} />
-                <TextField id="emailImput" label="Email" type="text" variant="outlined" onChange = {(e)=>emailverification(e.target.value)} />
-                <FormHelperText>Error</FormHelperText>
-                <TextField id="passwordImput" label="Contraseña" type="text" variant="outlined" value={(e)=>setPassword(e.target.value)} />
-                <Select  labelId="demo-simple-select-label" id="roleImput" variant="outlined" label="Rol" value={role} onChange={handleChange} helperText="Por favor, seleccione una categoría para el producto">
+            <form onSubmit={handleSubmit} className= {classes.form} noValidate autoComplete="off" >
+                <TextField className={classes.item} id="nameImput" label="Nombre" type="text" variant="outlined" onChange={(e)=>setName(event.target.value)} />
+                <TextField className={classes.item} id="surnameImput" label="Apellidos" type="text" variant="outlined" onChange={(e) => setSurname(e.target.value)} />
+                <TextField className={classes.item} id="emailImput" label="Email" type="text" variant="outlined" onChange = {(e)=>emailverification(e.target.value)} />
+                <FormHelperText error = {true} disabled = {true}>Debe ser un email</FormHelperText>
+                <TextField className={classes.item} id="passwordImput" label="Contraseña" type="text" variant="outlined" onChange={(e) => setPassword(e.target.value)} />
+                <Select className={classes.item} labelId="demo-simple-select-label" id="roleImput" variant="outlined" label="Rol" value={role} onChange={handleChange} helperText="Por favor, seleccione una categoría para el producto">
                     {Object.values(roles).map((rol) => (
                         <MenuItem  key={rol} value={rol}>{rol}</MenuItem>
                     ))} 
                 </Select>
-                <Button  variant="contained" color="primary">Crear Usuario</Button>
+                <Button type='submit' className={classes.item} variant="contained" color="primary">Crear Usuario</Button>
             </form>
         </div>
 );
