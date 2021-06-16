@@ -10,32 +10,44 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
 const columns = [
-  { id: 'ref', label: 'Referencia', minWidth: 100 },
-  { id: 'name', label: 'Nombre', minWidth: 170 },
+  {
+    id: 'ref', 
+    label: 'Referencia',
+    minWidth: 50 
+  },
+  { 
+    id: 'name',
+    label: 'Nombre',
+    minWidth: 170 
+  },
   {
     id: 'brand',
     label: 'Marca',
-    minWidth: 170,
+    minWidth: 100,
     align: 'left',
-    format: (value) => value.toLocaleString('en-US'),
+    
   },
   {
     id: 'provider',
     label: 'Proveedor',
-    minWidth: 170,
+    minWidth: 100,
     align: 'left',
-    format: (value) => value.toLocaleString('en-US'),
+    
   },
   {
     id: 'description',
     label: 'Descripción',
-    minWidth: 170,
+    minWidth: 250,
     align: 'left',
-    format: (value) => value.toFixed(2),
+    
   },
-  { id: 'price', label: 'Precio', minWidth: 170 },
-  { id: 'nStock', label: 'Stock', minWidth: 170 },
-  { id: 'nStockS', label: 'Stock Seguridad', minWidth: 170 },
+  {
+    id: 'price',
+    label: 'Precio',
+    minWidth: 50, 
+  },
+  { id: 'nStock', label: 'Stock', minWidth: 50 },
+  { id: 'nStockS', label: 'Stock Seguridad', minWidth: 50 },
 ];
 
 // function createData(name, code, population, size) {
@@ -47,25 +59,8 @@ function createData(ref, name, brand, provider, description, price, nStock, nSto
     return { ref, name, brand, provider, description, price, nStock, nStockS };
   }
 
-// const rows = [
-//   createData('India', 'IN', 1324171354, 3287263),
-//   createData('China', 'CN', 1403500365, 9596961),
-//   createData('Italy', 'IT', 60483973, 301340),
-//   createData('United States', 'US', 327167434, 9833520),
-//   createData('Canada', 'CA', 37602103, 9984670),
-//   createData('Australia', 'AU', 25475400, 7692024),
-//   createData('Germany', 'DE', 83019200, 357578),
-//   createData('Ireland', 'IE', 4857000, 70273),
-//   createData('Mexico', 'MX', 126577691, 1972550),
-//   createData('Japan', 'JP', 126317000, 377973),
-//   createData('France', 'FR', 67022000, 640679),
-//   createData('United Kingdom', 'GB', 67545757, 242495),
-//   createData('Russia', 'RU', 146793744, 17098246),
-//   createData('Nigeria', 'NG', 200962417, 923768),
-//   createData('Brazil', 'BR', 210147125, 8515767),
-// ];
 
-const rows = [
+  const rows = [
     createData(0, '980 SSD 1TB PCIe 30 NVMe M2', 'Samsung', 'pccomponentes',
      'La unidad Samsung 980 hereda el legado de la innovadora tecnología SSD de Samsung. Dispone de una fantástica fiabilidad, un impresionante rendimiento mejorado y una compatibilidad que contenta tanto a creadores de contenido, como a profesionales de TI, así como a usuarios habituales. El SSD interna Samsung se lo pone fácil a cualquier usuario de un ordenador de sobremesa o un portátil que sea compatible con una unidad en formato M.2. ',
      153,68, 26, 5),
