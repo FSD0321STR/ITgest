@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -6,7 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import MediaCard from './Product'
+// import MediaCard from './Product'
 import { Button } from '@material-ui/core';
 import MultilineTextFields from './FormCreateProduct'
 
@@ -56,13 +56,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SimpleTabs() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
 
+  const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-
+  const [close, setClose] = useState();
+  const handelClose = () => {
+    setClose
+  };
 
   return (
     <div className={classes.root}>
@@ -90,23 +93,22 @@ export default function SimpleTabs() {
       Productos de tu App
 
       <br />
+      <br />
+      <br />
 
-      <Button 
-        id="form"
-        size="large" 
-        variant="contained" 
-        color="primary"
-        onClick={<MultilineTextFields />}
-        > Crear producto 
-        </Button>
+      <Button value="close" size="large" variant="contained" color="primary" onChange={handelClose} >
+           Crear producto 
+      </Button>
+      <br />
+      <br />
 
-        {/* <MultilineTextFields /> */}
+      <div id="form">
+        <MultilineTextFields />
+      </div>
 
 
-        
-        {/* <MediaCard /> */}
+      
       </TabPanel>
     </div>
   );
 }
-console.log(Button)
