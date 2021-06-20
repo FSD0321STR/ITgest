@@ -10,6 +10,9 @@ import Box from '@material-ui/core/Box';
 import { Button } from '@material-ui/core';
 // import MultilineTextField from './FormCreateProduct'
 import Orders from './dashboard'
+//orders
+import DataTable from  './Orders'
+
 
 // import CollapsibleTable from 'TableStock';
 
@@ -73,17 +76,12 @@ export default function SimpleTabs() {
       </AppBar>
       <TabPanel value={value} index={0}>
         Stock
-
         <Orders />
-
-
       </TabPanel>
       <TabPanel value={value} index={1}>
-
-
-
+        Orders
+        <DataTable></DataTable>
       </TabPanel>
-
       <TabPanel value={value} index={2}>
         {/* Productos de tu App
         
