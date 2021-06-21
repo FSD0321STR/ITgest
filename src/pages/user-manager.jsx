@@ -11,7 +11,6 @@ import {
 import roles from "../contexts/roles";
 import UserList from "../components/UserList";
 import { useForm } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,10 +32,9 @@ function userManager() {
   const classes = useStyles();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
-  const [mail, setMail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState(roles.R1);
-  const [error, setError] = useState(false);
 
   const {
     register,
@@ -49,21 +47,24 @@ function userManager() {
     setRole(event.target.value);
   };
 
-  function emailValidaton(email) {
+  function emailValidator(email) {
     const re =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     console.log(email);
     console.log(re.test(email));
     if (re.test(email)) {
-      setMail(email);
+      setEmail(email);
+      console.log("hola");
+      console.log(email);
     } else {
+      return <FormHelperText> Inserte un email valido</FormHelperText>;
     }
   }
 
-  function onSubmit(event) {
-    const newUser = { name, surname, email, password, role };
+  const createUser = (event) => {
+    const newUser = { name, surname, password, role, email };
     console.log(newUser);
-  }
+  };
 
   return (
     <div className={classes.root}>
@@ -71,7 +72,7 @@ function userManager() {
         <UserList />
       </div>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(createUser)}
         className={classes.form}
         noValidate
         autoComplete="off"
@@ -100,8 +101,7 @@ function userManager() {
           label="Email"
           type="text"
           variant="outlined"
-          onChange={(e) => emailValidaton(e.target.value)}
-          error={errors.email}
+          onChange={(e) => emailValidator(e.target.value)}
         />
         <TextField
           className={classes.item}
@@ -110,9 +110,9 @@ function userManager() {
             minLength: 6,
           })}
           label="Contraseña"
-          type="text"
+          type="password"
           variant="outlined"
-          error={errors.password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <Select
           className={classes.item}
@@ -122,7 +122,6 @@ function userManager() {
           label="Rol"
           value={role}
           onChange={handleChange}
-          helperText="Por favor, seleccione una categoría para el producto"
         >
           {Object.values(roles).map((rol) => (
             <MenuItem key={rol} value={rol}>
