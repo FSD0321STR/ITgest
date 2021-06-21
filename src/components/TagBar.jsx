@@ -10,6 +10,7 @@ import Box from "@material-ui/core/Box";
 import { Button } from "@material-ui/core";
 // import MultilineTextField from './FormCreateProduct'
 import Orders from "./dashboard";
+import Products from "./products";
 
 // import CollapsibleTable from 'TableStock';
 
@@ -78,10 +79,14 @@ export default function SimpleTabs() {
         Stock
         <Orders />
       </TabPanel>
-      <TabPanel value={value} index={1}></TabPanel>
+      <TabPanel value={value} index={1}>
+        Pedidos
+      </TabPanel>
 
       <TabPanel value={value} index={2}>
-        {/* Productos de tu App
+        Productos
+        <Products />
+        {/* { Productos de tu App
         
         <MediaCard /> */}
       </TabPanel>
