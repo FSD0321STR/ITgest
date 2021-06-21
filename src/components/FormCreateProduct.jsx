@@ -25,12 +25,12 @@ const currencies = [
 ];
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-      width: "40ch",
-    },
-  },
+  // root: {
+  //   "& .MuiTextField-root": {
+  //     margin: theme.spacing(1),
+  //     width: "40ch",
+  //   },
+  // },
   box: {
     backgroundColor: "#F8F9F9",
   },
