@@ -27,8 +27,7 @@ function login() {
       marginTop: "20px",
     },
     rightimage: {
-      backgroundImage:
-        "url(https://cdn.pixabay.com/photo/2021/05/23/17/17/man-6276765_960_720.jpg)",
+      backgroundImage: "url(https://source.unsplash.com/random)",
     },
   }));
 
@@ -50,7 +49,7 @@ function login() {
             id="emailImput"
             {...register("email", { required: true })}
             label="Email"
-            type="text"
+            type="email"
             variant="outlined"
             onChange={(e) => setEmail(e.target.value)}
           />
