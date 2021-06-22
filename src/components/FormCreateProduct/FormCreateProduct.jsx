@@ -12,6 +12,7 @@ import "./StylesForm.css";
 
 
 const useStyles = makeStyles((theme) => ({
+<<<<<<< Updated upstream
     root: {
         margin: theme.spacing(0),
         width: "100%",
@@ -39,17 +40,55 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
   
+=======
+  root: {
+    margin: theme.spacing(0),
+    width: "100%",
+    padding: "5px",
+
+
+
+  },
+  box: {
+    backgroundColor: "#F6F9FF",
+    padding: "30px",
+    borderRadius: "10px",
+    margin: "40px",
+    height: "100%",
+    width: "50%",
+    position: "float",
+
+
+
+
+
+  },
+  btn: {
+    margin: "5px",
+  }
+}));
+
+>>>>>>> Stashed changes
 
 
 
 export const FormCreateProduct = () => {
 
+<<<<<<< Updated upstream
     const classes = useStyles();
 
     const [visible, setVisible] = useState(false);
     const view = () => {
         setVisible(!visible);
     };
+=======
+  const classes = useStyles();
+
+  const [visible, setVisible] = useState(false);
+  const view = () => {
+    setVisible(!visible);
+  };
+>>>>>>> Stashed changes
 
   return (
     <>
@@ -76,8 +115,13 @@ export const FormCreateProduct = () => {
               id="outlined-basic"
               label="Precio"
               type="number"
+<<<<<<< Updated upstream
               variant="outlined"/>
               <br />
+=======
+              variant="outlined" />
+            <br />
+>>>>>>> Stashed changes
             <TextField className={classes.root}
               id="outlined-basic"
               label="Stock Mínimo"
@@ -87,7 +131,11 @@ export const FormCreateProduct = () => {
             <br />
             <Button variant="contained" color="primary"> Guardar nuevo producto </Button>
 
+<<<<<<< Updated upstream
             </div>
+=======
+          </div>
+>>>>>>> Stashed changes
         </form>
       ) : null}
     </>
