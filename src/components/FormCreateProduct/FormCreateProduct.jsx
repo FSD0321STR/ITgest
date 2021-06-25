@@ -11,6 +11,7 @@ import Alert from '@material-ui/lab/Alert';
 
 
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         margin: theme.spacing(1),
@@ -124,13 +125,10 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
     
 
 
-    // const handleChange = selectedOption => {
-    //   setSelected(selectedOption)
-    // };
 
     const handleSubmit = (event) => {
       event.preventDefault();
-      if (!product) {
+      if (!product, !model, !brand, !supplier, !price, !stock) {
         setError(`Te faltaria agregar este campo`);
 
       } else {
@@ -139,10 +137,27 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
           board: selected.value,
         });
         setProduct("");
+        setModel("");
+        setBrand("");
+        setSupplier("");
+        handlePrice("");
+        handleStock("");
         setError("");
+
+        
       }
       ref.current.focus();
+      
     };
+
+    // const category = [
+      
+    // ]
+
+
+
+
+    console.log({setProduct});
 
   return (
     <>
@@ -163,11 +178,12 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
             
             <TextField 
             id="nameProduct"
+            // select={ category }
             value={ product }
             onChange={ handleProduct }
             className={ classes.root } 
             variant="outlined" 
-            label="Nombre Producto" 
+            label="Categorias" 
             />
             {error && <Alert severity="error">{error}</Alert>}
             {children}
@@ -175,6 +191,7 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
             <br />
 
             <TextField 
+            
             value={ model }
             onChange= { handleModel }
             className={ classes.root } 
@@ -243,9 +260,14 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
               Guardar nuevo producto 
             </Button>
             
+
+            
             </div>
+            
         </form>
       ) : null}
+      
+        
       
     </>
   );
