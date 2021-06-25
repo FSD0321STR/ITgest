@@ -11,6 +11,7 @@ import { Button } from '@material-ui/core';
 import MultilineTextFields from './FormCreateProduct'
 
 
+
 // import CollapsibleTable from 'TableStock';
 
 
@@ -104,6 +105,7 @@ export default function SimpleTabs() {
 
       <div id="form">
         <MultilineTextFields />
+        {/* <AppRouters /> */}
       </div>
 
 

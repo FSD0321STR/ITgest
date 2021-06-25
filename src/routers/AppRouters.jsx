@@ -5,6 +5,9 @@ import {
     Route,
 } from 'react-router-dom';
 
+import { FormCreateProduct } from '../components/FormCreateProduct/FormCreateProduct'
+import { ProductCreated } from '../components/ProductCreated/ProductCreated'
+
 
 export const AppRouters = () => {
     return (
@@ -12,9 +15,13 @@ export const AppRouters = () => {
             <>
 
                 <Switch>
-                    <Route exact path="/login" component={ } />
+                    
 
-                    <Route exact path="/" component={ } />
+                    <Route exact path="/createNewProduct" component={ FormCreateProduct } />
+
+                    <Route exact path="/productCreated" component={ ProductCreated } />
+
+                    
                 </Switch>
                 
             </>

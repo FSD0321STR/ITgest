@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import './App.css'
-import { FormCreateProduct } from './components/FormCreateProduct/FormCreateProduct'
+import { AppRouters } from './routers/AppRouters'
 
-// import MenuAppBar from './components/LogBar'
-// import SimpleTabs from './components/TagBar'
+import MenuAppBar from './components/LogBar'
+import SimpleTabs from './components/TagBar'
 
 
 
@@ -14,9 +14,8 @@ function App() {
 
     <div>
       <header>
-        {/* <MenuAppBar></MenuAppBar>
-        <SimpleTabs></SimpleTabs> */}
-        <FormCreateProduct />
+      <AppRouters />
+        
 
 
       </header>
