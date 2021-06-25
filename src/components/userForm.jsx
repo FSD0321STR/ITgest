@@ -7,7 +7,6 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import roles from "../contexts/roles";
-import UserList from "./userList";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 
@@ -87,7 +86,7 @@ function userForm() {
       <ErrorMessage
         errors={errors}
         name="email"
-        render={({ message }) => <p>{message}</p>}
+        render={({ message }) => <p color="red">{message}</p>}
       />
 
       <TextField
@@ -105,7 +104,7 @@ function userForm() {
       <ErrorMessage
         errors={errors}
         name="password"
-        render={({ message }) => <p>{message}</p>}
+        render={({ message }) => <p color="red">{message}</p>}
       />
 
       <Select
