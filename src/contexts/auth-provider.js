@@ -16,11 +16,11 @@ const reducer = (state, action) => {
                 ...state,
                 logged: true,
             };
-        case 'logout':
-            return {
-                ...state,
-                logged: false,
-            };
+        // case 'logout':
+        //     return {
+        //         ...state,
+        //         logged: false,
+        //     };
         case 'register':
             return {
                 ...state,
@@ -33,8 +33,8 @@ const reducer = (state, action) => {
 function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const register = async ({email, password}) => {
-    await api.register({email, password})
+  const registerUser = async ({email, password, name, surname, role}) => {
+    await api.register({email, password, name, surname, role})
     .then((token) => {
       dispatch({ type: 'register', token: token.token });
       localStorage.setItem('token', token.token);
@@ -63,7 +63,7 @@ function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ ...state, token, login, logout, register }}>
+    <AuthContext.Provider value={{ ...state, token, login, logout, registerUser }}>
       {children}
     </AuthContext.Provider>
   );

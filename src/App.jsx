@@ -3,9 +3,11 @@ import UserManager from "./pages/user-manager";
 import Login from "./pages/login";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+import AuthProvider from './contexts/auth-provider';
 
 function App() {
   return (
+    <AuthProvider>
     <Router>
       <Switch>
         <Route path="/userAdmin">
@@ -18,6 +20,7 @@ function App() {
         </Route>
       </Switch>
     </Router>
+    </AuthProvider>
   );
 }
 

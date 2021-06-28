@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { TextField, makeStyles, Button } from "@material-ui/core";
 import { useForm } from "react-hook-form";
+import useAuth from "../hooks/useAuth";
+
 
 function login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { register } = useForm();
+  const { login }  = useAuth();
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,9 +36,9 @@ function login() {
 
   const classes = useStyles();
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    const user = { email, password };
+    const user = await login({email, password});
     console.log(user);
   }
 

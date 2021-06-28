@@ -10,6 +10,7 @@ import roles from "../contexts/roles";
 import UserList from "./userList";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import useAuth from "../hooks/useAuth";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -24,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 function userForm() {
   const classes = useStyles();
+  const {registerUser} = useAuth();
   const [role, setRole] = useState(roles.R1);
   const {
     register,
@@ -35,7 +37,7 @@ function userForm() {
     setRole(event.target.value);
   };
 
-  const createUser = (data) => {
+  const createUser = async (data) => {
     const newUser = {
       email: data.email,
       password: data.password,
@@ -43,7 +45,8 @@ function userForm() {
       surname: data.surname,
       role: role,
     };
-    console.log(newUser);
+    const user = await registerUser(newUser);
+    console.log(user);
   };
 
   return (
