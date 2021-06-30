@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from "react";
-import { AuthContext } from "../contexts/auth-context";
+import  AuthContext from "./auth-context";
 import api from '../helpers/api';
 
 
@@ -16,11 +16,11 @@ const reducer = (state, action) => {
                 ...state,
                 logged: true,
             };
-        // case 'logout':
-        //     return {
-        //         ...state,
-        //         logged: false,
-        //     };
+        case 'logout':
+            return {
+                ...state,
+                logged: false,
+            };
         case 'register':
             return {
                 ...state,
@@ -34,10 +34,11 @@ function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const registerUser = async ({email, password, name, surname, role}) => {
-    await api.register({email, password, name, surname, role})
+    return await api.register({email, password, name, surname, role})
     .then((token) => {
       dispatch({ type: 'register', token: token.token });
       localStorage.setItem('token', token.token);
+      return token;
     })
     .catch((e) => {
       dispatch({ type: 'logout' });

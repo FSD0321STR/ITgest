@@ -1,4 +1,5 @@
 import axios from 'axios'
+const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 const api = axios.create({
     baseURL: "http://localhost:8000",
@@ -8,7 +9,7 @@ const api = axios.create({
 })
 
 const register = ({email, password}) => {
-    return fetch(`${API_URL}/register`, {
+    return fetch(`${VITE_API_URL}/api/register`, {
       method: 'POST',
       mode: 'cors',
       headers: { 
