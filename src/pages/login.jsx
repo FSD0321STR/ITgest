@@ -41,6 +41,7 @@ function login() {
 
   function getUser(data) {
     const user = { email: data.email, password: data.password };
+
     console.log(user);
   }
 

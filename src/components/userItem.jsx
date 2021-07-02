@@ -3,41 +3,52 @@ import { makeStyles, Grid, Box, Fab } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import DeleteIcon from "@material-ui/icons/Delete";
-import AddIcon from "@material-ui/icons/Add";
+import EditIcon from "@material-ui/icons/Edit";
+import { Height } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   options: {
+    background: "#fff",
+    border: "1px solid #e1e1e1",
+    filter: "drop-shadow(3px 3px 1px rgba(0,0,0,.08))",
+    padding: "12px",
     display: "flex",
-    marginRight: "20px",
+    marginBottom: "10px",
+    marginTop: "20px",
+    justifyContent: "space-between",
+  },
+  icon: {
+    width: "20px",
+    Height: "20px",
   },
 }));
 
-function UserItem(id, email, deleteUser, editUser) {
+function UserItem(id, email, onRemuve, onClick) {
   const classes = useStyles();
 
   return (
-    <div>
-      <Grid item xs={14} sm={10}>
-        <Box bgcolor="secondary.main" color="secondary.contrastText" p={2}>
-          {email}
-          <div>
-            <Tooltip title="Delete">
-              <IconButton
-                onClick={() => deleteUser(id)}
-                value={users.user1.id}
-                aria-label="delete"
-              >
-                <DeleteIcon />
-              </IconButton>
-            </Tooltip>
-            <Tooltip onClick={() => editUser(id)} title="Edit" aria-label="add">
-              <Fab color="primary">
-                <AddIcon />
-              </Fab>
-            </Tooltip>
-          </div>
-        </Box>
-      </Grid>
+    <div className={classes.options}>
+      Hola
+      <div>
+        <Tooltip title="Delete">
+          <IconButton
+            onClick={() => onRemuve()}
+            className={classes.icon}
+            aria-label="delete"
+          >
+            <DeleteIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Edit">
+          <IconButton
+            onClick={() => onClick()}
+            className={classes.icon}
+            aria-label="Edit"
+          >
+            <EditIcon />
+          </IconButton>
+        </Tooltip>
+      </div>
     </div>
   );
 }

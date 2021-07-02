@@ -9,6 +9,8 @@ import {
 import roles from "../contexts/roles";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import useAuth from "../hooks/useAuth";
+import { PinDropSharp } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -21,8 +23,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function userForm() {
+function userForm(user) {
   const classes = useStyles();
+  const { registerUser } = useAuth();
   const [role, setRole] = useState(roles.R1);
   const {
     register,
@@ -34,7 +37,7 @@ function userForm() {
     setRole(event.target.value);
   };
 
-  const createUser = (data) => {
+  const createUser = async (data) => {
     const newUser = {
       email: data.email,
       password: data.password,
@@ -42,7 +45,8 @@ function userForm() {
       surname: data.surname,
       role: role,
     };
-    console.log(newUser);
+    const user = await registerUser(newUser);
+    console.log(user);
   };
 
   return (
@@ -58,6 +62,7 @@ function userForm() {
         label="Nombre"
         type="text"
         name="name"
+        value={user.name}
         variant="outlined"
         error={errors.name}
       />
@@ -66,6 +71,7 @@ function userForm() {
         {...register("surname", { required: true })}
         label="Apellidos"
         type="text"
+        value={user.surname}
         name="surname"
         variant="outlined"
         error={errors.surname}
@@ -74,6 +80,7 @@ function userForm() {
         className={classes.item}
         id="emailImput"
         label="Email"
+        value={user.email}
         name="email"
         {...register("email", {
           required: "Email no valido",
@@ -96,6 +103,7 @@ function userForm() {
           minLength: 6,
         })}
         label="Contraseña"
+        value={user.password}
         type="password"
         name="password"
         variant="outlined"
@@ -114,7 +122,7 @@ function userForm() {
         name="role"
         variant="outlined"
         label="Rol"
-        value={role}
+        value={user.rol}
         onChange={handleChange}
       >
         {Object.values(roles).map((rol) => (
