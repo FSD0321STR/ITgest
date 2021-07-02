@@ -4,6 +4,7 @@ import { Button, TextField } from "@material-ui/core";
 import { generateId } from "../../utils/string";
 import Alert from '@material-ui/lab/Alert';
 import useLocalStorage from "../../hooks/use-local-storage";
+import getCategory  from '../../helpers/api';
 
 
 
@@ -65,6 +66,12 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
     const [supplier, setSupplier] = useState("");
     const [stock, setStock] = useState("");
     const [price, setPrice] = useState("");
+
+    // const [category, setCategory] = useState();
+
+    // const handleCategory = () => {
+    //   setCategory = api.getCategory()
+    // }
     
 
 
@@ -175,7 +182,7 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
             
             <TextField 
             id="nameProduct"
-            // select={ category }
+            select={ getCategory }
             value={ product }
             onChange={ handleProduct }
             className={ classes.root } 
