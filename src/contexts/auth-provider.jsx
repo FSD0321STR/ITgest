@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from "react";
-import { AuthContext } from "./auth-context";
+import AuthContext from "./auth-context";
 import api from "../helpers/api";
 
 const token = localStorage.getItem("token");
@@ -15,13 +15,11 @@ const reducer = (state, action) => {
         ...state,
         logged: true,
       };
-
     case "logout":
       return {
         ...state,
         logged: false,
       };
-
     case "register":
       return {
         ...state,
@@ -33,13 +31,13 @@ const reducer = (state, action) => {
 function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const register = async ({ email, password }) => {
-    await api
-      .register({ email, password })
-
+  const registerUser = async ({ email, password, name, surname, role }) => {
+    return await api
+      .register({ email, password, name, surname, role })
       .then((token) => {
         dispatch({ type: "register", token: token.token });
         localStorage.setItem("token", token.token);
+        return token;
       })
       .catch((e) => {
         dispatch({ type: "logout" });
@@ -66,7 +64,9 @@ function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ ...state, token, login, logout, register }}>
+    <AuthContext.Provider
+      value={{ ...state, token, login, logout, registerUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
