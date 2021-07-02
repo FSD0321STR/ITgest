@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from "react";
-import AuthContext from "./auth-context";
+import AuthContext from "../contexts/auth-context";
 import api from "../helpers/api";
 
 const token = localStorage.getItem("token");
