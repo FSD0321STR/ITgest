@@ -1,28 +1,55 @@
-import React, { useState } from 'react'
-import './App.css'
-import { AppRouters } from './routers/AppRouters'
+import React, { useState } from "react";
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+} from 'react-router-dom';
 
-import MenuAppBar from './components/LogBar'
-import SimpleTabs from './components/TagBar'
+import { NavBar } from "./pages/NavBar";
+import { FormCreateProduct } from "./components/FormCreateProduct/FormCreateProduct";
+import { ProductCreated } from "./components/ProductCreated/ProductCreated";
+
+
+// import "@fontsource/roboto";
+// import MenuAppBar from './components/LogBar'
+// import SimpleTabs from './components/TagBar'
+// import AppRouters from './routers/AppRouters'
+// import Footer from "./components/Footer";
+// import NestedGrid from "./components/Footer";
+
+// import Orders from "./components/dashboard";
 
 
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  
   return (
+      <div className="App">
+        <BrowserRouter>
+        <NavBar />
+        <hr />
 
-    <div>
-      <header>
-      <AppRouters />
-        
+        <Switch>
+                    
 
+          <Route exact path="/">
+            
+          </Route>
 
-      </header>
-    </div>
-    
-  )
+          <Route exact path="/product">
+            <FormCreateProduct />
+            <hr />
+            <ProductCreated />
+
+          </Route>
+
+                    
+        </Switch>
+
+        </BrowserRouter>
+                
+      </div>
+  );
 }
 
-export default App
-
+export default App;

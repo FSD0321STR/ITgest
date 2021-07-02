@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, TextField } from "@material-ui/core";
+import { generateId } from "../../utils/string";
 import Alert from '@material-ui/lab/Alert';
+import useLocalStorage from "../../hooks/use-local-storage";
 
 
 
@@ -53,17 +55,19 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
 
     const classes = useStyles();
     const [error, setError] = useState("");
-    // const [selected, setSelected] = useState("");
+    const [ text, setText] = useLocalStorage("Product", "");
+    
+    
     const [visible, setVisible] = useState(false);
     const [product, setProduct] = useState("");
     const [model, setModel] = useState("");
     const [brand, setBrand] = useState("");
     const [supplier, setSupplier] = useState("");
-    const [price, setPrice] = useState("");
     const [stock, setStock] = useState("");
-
-
+    const [price, setPrice] = useState("");
     
+
+
     const view = () => {
         setVisible(!visible);
     };
@@ -133,16 +137,12 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
 
       } else {
         onSubmit({
-          product,
-          board: selected.value,
+          id: generateId(),
+          text,
+          completed: false,
+          
         });
-        setProduct("");
-        setModel("");
-        setBrand("");
-        setSupplier("");
-        handlePrice("");
-        handleStock("");
-        setError("");
+        setText("");
 
         
       }
@@ -150,14 +150,11 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
       
     };
 
-    // const category = [
-      
-    // ]
+  
 
 
 
-
-    console.log({setProduct});
+    console.log({setText});
 
   return (
     <>
@@ -173,8 +170,8 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
       <br />
 
       {visible ? (
-        <form onSubmit={handleSubmit}>
-          <div className={classes.box}>
+        <form onSubmit={ handleSubmit }>
+          <div className={ classes.box }>
             
             <TextField 
             id="nameProduct"

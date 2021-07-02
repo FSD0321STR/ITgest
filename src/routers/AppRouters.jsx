@@ -9,7 +9,7 @@ import { FormCreateProduct } from '../components/FormCreateProduct/FormCreatePro
 import { ProductCreated } from '../components/ProductCreated/ProductCreated'
 
 
-export const AppRouters = () => {
+const AppRouters = () => {
     return (
         <Router>
             <>
@@ -28,3 +28,5 @@ export const AppRouters = () => {
       </Router>
     );
 }
+
+export default AppRouters;

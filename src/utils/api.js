@@ -16,7 +16,7 @@ api.defaults.headers.common['Authorization'] = token ? `Bearer ${token}` : '';
 const API_URL = 'http://localhost:8000';
 
 const postTask = (task) => {
-  return fetch(`${API_URL}/task`, {
+  return fetch(`${VITE_API_URL}/task`, {
     method: 'POST',
     mode: 'cors',
     headers: { 

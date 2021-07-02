@@ -8,8 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 // import MediaCard from './Product'
 import { Button } from '@material-ui/core';
-import MultilineTextFields from './FormCreateProduct'
-
+// import MultilineTextFields from './FormCreateProduct'
+// import AppRouters from '../routers/AppRouters'
 
 
 // import CollapsibleTable from 'TableStock';
@@ -104,7 +104,7 @@ export default function SimpleTabs() {
       <br />
 
       <div id="form">
-        <MultilineTextFields />
+        {/* <MultilineTextFields /> */}
         {/* <AppRouters /> */}
       </div>
 
