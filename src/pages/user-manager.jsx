@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core";
 import UserForm from "../components/userForm";
 import UserItem from "../components/userItem";
 import UserList from "../components/userList";
+import api from "../helpers/api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,24 +35,24 @@ const toediteduser = {
   surname: "Victor",
   email: "victor@victor.com",
   role: "ROLE_ADMIN",
-  password: "$2b$10$yxHfOny4sM1kvEd1jbp5UeNPTYmWf5eN8pT2AaVHob/7pHlyabLO6",
 };
 
 function userManager() {
   const classes = useStyles();
-  let editingUser = {
+  const [editingUser, setEditingUser] = useState({
+    id: "",
     name: "",
     surname: "",
     email: "",
     role: "",
     password: "",
+  });
+
+  const editUser = async (id) => {
+    await api.getUser().then((user) => setEditingUser(user));
   };
-  const editUser = async () => {
-    //  await // 1 llamada -> user
-    // editingUser = user
-  };
-  const deleteUser = () => {
-    // llamada de borrar
+  const deleteUser = async (id) => {
+    await api.deleteUser(id);
   };
 
   return (
@@ -59,7 +60,13 @@ function userManager() {
       <div>
         <UserList>
           {users.map((user) => (
-            <UserItem onClick={editUser} onRemuve={deleteUser} />
+            <UserItem
+              key={user._id}
+              id={user._id}
+              onClick={editUser}
+              onRemuve={deleteUser}
+              email={user.email}
+            />
           ))}
         </UserList>
       </div>

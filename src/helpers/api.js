@@ -18,8 +18,45 @@ const register = ({email, password}) => {
       body: JSON.stringify({email, password})
     }).then(res => res = res.json())
     .catch(error => console.error('Error:', error))
-}
+};
+
+const allUsers = () => {
+    return fetch(`${VITE_API_URL}/api/users`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+      },
+    }).then(res => res = res.json())
+};
+
+const getUser = (id) => {
+    return fetch(`${VITE_API_URL}/api/users/${id}`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+      },
+    }).then(res => res = res.json(user))
+};
+
+const deleteUser = (id) => {
+    return fetch(`${VITE_API_URL}/api/deleteUser/${id}`, {
+      method: 'DELETE',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+      },
+    }).then(res => res = res.json("Usuario borrado"))
+};
+
+
+
 
 export default {
     register,
+    allUsers,
+    getUser,
+    deleteUser,
+
 }

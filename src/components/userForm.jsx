@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import useAuth from "../hooks/useAuth";
 import { PinDropSharp } from "@material-ui/icons";
+import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -27,6 +28,18 @@ function userForm(user) {
   const classes = useStyles();
   const { registerUser } = useAuth();
   const [role, setRole] = useState(roles.R1);
+  const [editingUser, setEditingUser] = useState({
+    id: "",
+    name: "",
+    surname: "",
+    email: "",
+    role: "",
+    password: "",
+  });
+
+  useEffect(() => {
+    setEditingUser(user);
+  }, [user]);
   const {
     register,
     formState: { errors },
@@ -62,7 +75,7 @@ function userForm(user) {
         label="Nombre"
         type="text"
         name="name"
-        value={user.name}
+        value={editingUser.name}
         variant="outlined"
         error={errors.name}
       />
@@ -71,7 +84,7 @@ function userForm(user) {
         {...register("surname", { required: true })}
         label="Apellidos"
         type="text"
-        value={user.surname}
+        value={editingUser.surname}
         name="surname"
         variant="outlined"
         error={errors.surname}
@@ -80,7 +93,7 @@ function userForm(user) {
         className={classes.item}
         id="emailImput"
         label="Email"
-        value={user.email}
+        value={editingUser.email}
         name="email"
         {...register("email", {
           required: "Email no valido",
@@ -103,7 +116,7 @@ function userForm(user) {
           minLength: 6,
         })}
         label="Contraseña"
-        value={user.password}
+        value={editingUser.password}
         type="password"
         name="password"
         variant="outlined"
@@ -122,7 +135,7 @@ function userForm(user) {
         name="role"
         variant="outlined"
         label="Rol"
-        value={user.rol}
+        value={editingUser.rol}
         onChange={handleChange}
       >
         {Object.values(roles).map((rol) => (

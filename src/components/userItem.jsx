@@ -4,7 +4,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import { Height } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   options: {
@@ -23,12 +22,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function UserItem(id, email, onRemuve, onClick) {
+function UserItem({ id, email, onRemuve, onClick }) {
   const classes = useStyles();
 
   return (
     <div className={classes.options}>
-      Hola
+      {email}
       <div>
         <Tooltip title="Delete">
           <IconButton
