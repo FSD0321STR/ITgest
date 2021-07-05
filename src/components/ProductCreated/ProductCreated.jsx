@@ -1,114 +1,24 @@
 import React, { useMemo } from 'react'
-import { makeStyles } from "@material-ui/core/styles";
-import { useParams, Redirect } from 'react-router-dom';
-import { Button, TextField } from "@material-ui/core";
-import ProductList from './productList';
 import { ProductItem } from './ProductItem';
-// import { getProductById } from '../../selector/getProduct'
-// import { product } from '../../data/dbCreateProduct';
+import getCategory from '../../helpers/api';
 
 
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        margin: theme.spacing(1),
-        width: "100%",
-
-    },
-    box: {
-
-        backgroundColor: "#FAFBFC",
-        height: "300px",
-        width: "300px",
-        borderRadius: "5px",
-        boxShadow: "2px 2px 8px #6666",
-        margin: "50px",
-        position: "relative",
-    
-
-    },
-    btnPedir: {
-        position: "relative",
-        left: "1%",
-        margin: "5px",
-    },
-    btnAsignar: {
-        position: "relative",
-        left: "12%",
-        margin: "5px",
-        
-    },
-    Img: {
-        backgroundColor: "#E8E8E8",
-        height: "250px",
-        width: "300px",
-        position: "relative",
-        top:0,
-        left: "0%",
-        margin: "0px",
-        borderRadius: "5px",
-
-
-    },
-    txt: {
-        backgroundColor: "#F8FBFF",
-        height: "110px",
-        width: "300px",
-        position: "relative",
-        top: "50%",
-   
-        margin: "0px",
-        borderRadius: "5px",
-
-
-    },
-
-  }));
   
 
-
+console.log( getCategory )
 
 export const ProductCreated = () => {
 
-    // const { productId } = useParams();
-    // const product = useMemo (() => getProductById( productId ), [ productId ]);
-    const classes = useStyles();
 
-    const getProduct = {
-        product: { 
-            id: "00001", 
-            category: "Pantalla", 
-            model: "X1", 
-            brand: "HP", 
-            provedor: "HP S.L.", 
-            price: "500 euros", 
-            stock: "5 unid",  }
-    };
 
     return (
-        <div className={classes.box}>
+        <div>
 
-            <div className={classes.Img}>
-                <div className= {classes.txt}> 
-                    <p>Producto: </p>
-                    <p>Modelo: </p>
-                    <p>Stock: </p>
+           <ProductItem />
 
-                </div>                    
-            </div>
-            <ProductList>
-                {
-                    products.map((product) => (
-                        <ProductItem />
-                    ))
-                }
-            </ProductList>
+           
 
-
-            <div>
-                <Button className={classes.btnPedir} variant="contained"color="secondary">Pedir</Button>
-                <Button className={classes.btnAsignar} variant="contained" color="primary">Asignar Operario</Button>
-            </div>
         </div>
     )
 }
