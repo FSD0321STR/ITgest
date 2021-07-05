@@ -4,7 +4,7 @@ import { Button, TextField } from "@material-ui/core";
 import { generateId } from "../../utils/string";
 import Alert from '@material-ui/lab/Alert';
 import useLocalStorage from "../../hooks/use-local-storage";
-import getCategory  from '../../helpers/api';
+import getCategory from '../../helpers/api';
 
 
 
@@ -66,6 +66,9 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
     const [supplier, setSupplier] = useState("");
     const [stock, setStock] = useState("");
     const [price, setPrice] = useState("");
+    const [select, setSelect] = useState("");
+    const [options, setOptions ] = useState([]);
+
 
     // const [category, setCategory] = useState();
 
@@ -159,9 +162,20 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
 
   
 
+    useEffect(async () => {
+      await getCategory()
+        .then((names) => {
+          let transform = [];
+          names.forEach((name) => {
+            transform.push({ value: name.name });
+          });
+          setOptions(transform);
+        });
+    }, []);
+  
 
 
-    console.log({setText});
+
 
   return (
     <>
@@ -182,7 +196,7 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
             
             <TextField 
             id="nameProduct"
-            select={ getCategory }
+            // select={ }
             value={ product }
             onChange={ handleProduct }
             className={ classes.root } 
