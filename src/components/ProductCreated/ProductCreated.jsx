@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useParams, Redirect } from 'react-router-dom';
 import { Button, TextField } from "@material-ui/core";
 import ProductList from './productList';
-
+import { ProductItem } from './ProductItem';
 // import { getProductById } from '../../selector/getProduct'
 // import { product } from '../../data/dbCreateProduct';
 
@@ -75,7 +75,14 @@ export const ProductCreated = () => {
     const classes = useStyles();
 
     const getProduct = {
-        product: {}
+        product: { 
+            id: "00001", 
+            category: "Pantalla", 
+            model: "X1", 
+            brand: "HP", 
+            provedor: "HP S.L.", 
+            price: "500 euros", 
+            stock: "5 unid",  }
     };
 
     return (
@@ -84,12 +91,18 @@ export const ProductCreated = () => {
             <div className={classes.Img}>
                 <div className= {classes.txt}> 
                     <p>Producto: </p>
-                    <p>Modelo:</p>
-                    <p>Stock:</p>
+                    <p>Modelo: </p>
+                    <p>Stock: </p>
 
                 </div>                    
             </div>
-
+            <ProductList>
+                {
+                    products.map((product) => (
+                        <ProductItem />
+                    ))
+                }
+            </ProductList>
 
 
             <div>
