@@ -2,8 +2,10 @@ import React, { useMemo } from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import { useParams, Redirect } from 'react-router-dom';
 import { Button, TextField } from "@material-ui/core";
-import { getProductById } from '../../selector/getProduct'
-import { product } from '../../data/dbCreateProduct';
+import ProductList from './productList';
+
+// import { getProductById } from '../../selector/getProduct'
+// import { product } from '../../data/dbCreateProduct';
 
 
 
@@ -72,26 +74,18 @@ export const ProductCreated = () => {
     // const product = useMemo (() => getProductById( productId ), [ productId ]);
     const classes = useStyles();
 
-    const {
-        category,
-        name,
-        model,
-        provedor,
-        price,
-        stock,
-        
-
-    } = product;
-
+    const getProduct = {
+        product: {}
+    };
 
     return (
         <div className={classes.box}>
 
             <div className={classes.Img}>
                 <div className= {classes.txt}> 
-                    <p>Producto: {category}</p>
-                    <p>Modelo: {model}</p>
-                    <p>Stock: {stock}</p>
+                    <p>Producto: </p>
+                    <p>Modelo:</p>
+                    <p>Stock:</p>
 
                 </div>                    
             </div>
