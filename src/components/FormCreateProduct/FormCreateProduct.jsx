@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, TextField } from "@material-ui/core";
 import { generateId } from "../../utils/string";
 import Alert from '@material-ui/lab/Alert';
 import useLocalStorage from "../../hooks/use-local-storage";
-import getCategory from '../../helpers/api';
+// import getCategory  from '../../helpers/api';
 
 
 
@@ -67,7 +67,7 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
     const [stock, setStock] = useState("");
     const [price, setPrice] = useState("");
     const [select, setSelect] = useState("");
-    const [options, setOptions ] = useState([]);
+    const [options, setOptions ] = useState({select: []});
 
 
     // const [category, setCategory] = useState();
@@ -160,18 +160,32 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
       
     };
 
+
   
 
-    useEffect(async () => {
-      await getCategory()
-        .then((names) => {
-          let transform = [];
-          names.forEach((name) => {
-            transform.push({ value: name.name });
-          });
-          setOptions(transform);
-        });
-    }, []);
+// useEffect(async () => {
+//   effect
+//   return () => {
+//     cleanup
+//   }
+// }, [input])
+
+// useEffect(async () => {
+//   await getCategory()
+//     .then((category) => {
+//       let transform = [];
+//       category.forEach((name) => {
+//         transform.push({ value: category.name });
+//       });
+//       setOptions(transform);
+//     });
+// }, []);
+
+
+//     console.log(name);
+
+const listCategory = ["Pantalla" ,"Ordenador","Teléfonos"];
+
   
 
 
@@ -196,8 +210,9 @@ export const FormCreateProduct = ( { onSubmit, children } ) => {
             
             <TextField 
             id="nameProduct"
-            // select={ }
-            value={ product }
+            select={ listCategory }
+            autoComplete="off"
+            // value={ product }
             onChange={ handleProduct }
             className={ classes.root } 
             variant="outlined" 
