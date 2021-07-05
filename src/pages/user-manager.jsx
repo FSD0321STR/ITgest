@@ -3,6 +3,8 @@ import { makeStyles } from "@material-ui/core";
 import UserForm from "../components/userForm";
 import UserItem from "../components/userItem";
 import UserList from "../components/userList";
+import { use } from "../../../ITgest-api/src/controllers/userList";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,19 +41,33 @@ const toediteduser = {
 
 function userManager() {
   const classes = useStyles();
-  let editingUser = {
-    name: "",
-    surname: "",
-    email: "",
-    role: "",
-    password: "",
-  };
-  const editUser = async () => {
-    //  await // 1 llamada -> user
-    // editingUser = user
-  };
-  const deleteUser = () => {
-    // llamada de borrar
+  // let editingUser = {
+  //   name: "",
+  //   surname: "",
+  //   email: "",
+  //   role: "",
+  //   password: "",
+  // };
+  // const editUser = async () => {
+  //   //  await // 1 llamada -> user
+  //   // editingUser = user
+  // };
+  // const deleteUser = () => {
+  //   // llamada de borrar
+  // };
+  const [users, setUsers] = useState([]);
+  
+  useEffect(async () => {
+    await api.getAllUsers()
+      .then(setUsers);
+  }, []);
+
+
+  const removeUser = async (id) => {
+    const response = await api.deleteUser(id);
+    alert(response.message);
+    const tasks = await api.getAllUsers()
+    setUsers(users);
   };
 
   return (
@@ -59,7 +75,12 @@ function userManager() {
       <div>
         <UserList>
           {users.map((user) => (
-            <UserItem onClick={editUser} onRemuve={deleteUser} />
+            <UserItem             
+            email={user.email}
+            role={user.role}
+            onClick={editUser}
+            onRemove={removeUser}
+             />
           ))}
         </UserList>
       </div>
