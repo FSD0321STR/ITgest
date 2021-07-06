@@ -73,7 +73,7 @@ export const ProductItem = () => {
         const getProduct = {
 
             product: { 
-                id: "00001", 
+                // id: "00001", 
                 category: "Pantalla", 
                 model: "X1", 
                 brand: "HP", 
@@ -87,7 +87,7 @@ export const ProductItem = () => {
             <div className={classes.box}>
                 
                 <div className={classes.Img}>
-                    <img src={ `../../img/${ getProduct.product.id }.jpg` } className="card-img" alt={ getProduct.product.id } />
+                    {/* <img src={ `../../img/${ getProduct.product.id }.jpg` } className="card-img" alt={ getProduct.product.id } /> */}
 
                     <div className= {classes.txt}> 
                         
