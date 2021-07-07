@@ -115,8 +115,7 @@ export const FormCreateProduct = ( {onSubmit} ) => {
     const handleSubmit = (event) => {
       event.preventDefault();
       
-      axios.post('http://localhost:8000/formproduct', registered)
-          .then(res => console.log(res.data))
+      console.log(formValues)
    
     };
 
