@@ -8,6 +8,7 @@ import {
 import { NavBar } from "./pages/NavBar";
 import { FormCreateProduct } from "./components/FormCreateProduct/FormCreateProduct";
 import { ProductCreated } from "./components/ProductCreated/ProductCreated";
+import { OrderList } from "./components/OrderProduct/OrderList"
 
 
 // import "@fontsource/roboto";
@@ -42,6 +43,12 @@ function App() {
             <ProductCreated />
 
           </Route>
+
+          <Route exact path="/order">
+            <OrderList />
+
+          </Route>
+
 
                     
         </Switch>

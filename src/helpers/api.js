@@ -42,7 +42,7 @@ api.defaults.headers.common['Authorization'] = token ? `Bearer ${token}` : '';
 
 
 const postForm = ({category, model, brand, supplier, price, stock}) => {
-    return fetch(`${VITE_API_URL}/formproduct`, {
+    return fetch(`http://localhost:8000/formproduct`, {
       method: 'POST',
       mode: 'cors',
       headers: { 
@@ -54,14 +54,37 @@ const postForm = ({category, model, brand, supplier, price, stock}) => {
       
     }).then(res => res = res.json())
     .catch(error => console.error('Error:', error))
+
+
+    
     
 }
-
+const postFormAxios =() => {
+axios.post('http://localhost:8000/formproduct', {
+  data:{
+    category: formValues.category,
+    model: formValues.model,
+    brand: formValues.brand,
+    supplier: formValues.supplier,
+    price: formValues.price,
+    stock: formValues.stock
+  }  
+  
+  })
+  .then(response => {
+    console.log(response);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+ 
+}
 
 
 
 export default {
     // register,
     // getCategory,
-    postForm
+    postForm,
+    postFormAxios,
 }

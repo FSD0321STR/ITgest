@@ -8,7 +8,7 @@ import { Button, TextField } from "@material-ui/core";
 import axios from "axios";
 // import postForm from '../../helpers/api'
 import { useForm } from "../../hooks/useForm";
-import api from '../../helpers/api';
+import { postFormAxios } from '../../helpers/api';
 
 
 
@@ -71,6 +71,7 @@ const useStyles = makeStyles((theme) => ({
 export const FormCreateProduct = ( {onSubmit} ) => {
 
     const classes = useStyles();
+    const [inputValue, setInputValue] = useState("");
    
     const [error, setError] = useState("");
     const [options, setOptions ] = useState([]);
@@ -94,7 +95,7 @@ export const FormCreateProduct = ( {onSubmit} ) => {
 
     const { category, model, brand, supplier, price, stock } = formValues;
 
- 
+    
 
 
 
@@ -112,12 +113,36 @@ export const FormCreateProduct = ( {onSubmit} ) => {
 
  
 
-    const handleSubmit = (event) => {
-      event.preventDefault();
+    const handleSubmit = (e) => {
+      e.preventDefault();
       
-      console.log(formValues)
-   
+
+
     };
+
+
+    // const handleCategory =() => {
+    //   axios.get('http://localhost:8000/categories',{
+    //     data:{
+    //       name:"",
+    //     }
+    //   })
+    //     .then(response => {
+    //       console.log(response);
+    //     })
+    //     .catch(error => {
+    //       console.log(error);
+    //     });
+
+
+    // }
+    // console.log(handleCategory)
+
+
+
+
+
+
 
   return (
     <>
@@ -144,6 +169,7 @@ export const FormCreateProduct = ( {onSubmit} ) => {
             
             <TextField 
             // select={ listCategory }
+            
             type="text"
             name="category"
             autoComplete="off"
