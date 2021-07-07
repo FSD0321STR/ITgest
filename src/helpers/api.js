@@ -96,15 +96,12 @@ const getAllUsers = () => {
 
 export default {
     register,
-<<<<<<< HEAD
     allUsers,
     getUser,
     deleteUser,
     updateUser,
-
-=======
-    login,
     getAllUsers,
     removeUser,
->>>>>>> 9e5ffde867f5021768801f180b2704de79920aca
+
+
 }
