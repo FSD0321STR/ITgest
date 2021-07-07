@@ -3,7 +3,9 @@ import { makeStyles } from "@material-ui/core";
 import UserForm from "../components/userForm";
 import UserItem from "../components/userItem";
 import UserList from "../components/userList";
+import { use } from "../../../ITgest-api/src/controllers/userList";
 import api from "../helpers/api";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,6 +41,7 @@ const toediteduser = {
 
 function userManager() {
   const classes = useStyles();
+<<<<<<< HEAD
   const [editingUser, setEditingUser] = useState({
     id: "",
     name: "",
@@ -51,8 +54,19 @@ function userManager() {
   const editUser = async (id) => {
     await api.getUser().then((user) => setEditingUser(user));
   };
+
+  const [users, setUsers] = useState([]);
+  
+    useEffect(async () => {
+      await api.getAllUsers()
+        .then(setUsers);
+  }, []);
+
   const deleteUser = async (id) => {
-    await api.deleteUser(id);
+    const response = await api.deleteUser(id);
+    alert(response.message);
+    const tasks = await api.getAllUsers()
+    setUsers(users);
   };
 
   return (
