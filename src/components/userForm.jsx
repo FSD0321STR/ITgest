@@ -12,6 +12,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import useAuth from "../hooks/useAuth";
 import { PinDropSharp } from "@material-ui/icons";
 import { useEffect } from "react";
+import api from "../helpers/api";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -29,7 +30,6 @@ function userForm(user) {
   const { registerUser } = useAuth();
   const [role, setRole] = useState(roles.R1);
   const [editingUser, setEditingUser] = useState({
-    id: "",
     name: "",
     surname: "",
     email: "",
@@ -51,15 +51,19 @@ function userForm(user) {
   };
 
   const createUser = async (data) => {
-    const newUser = {
+    setEditingUser({
       email: data.email,
       password: data.password,
       name: data.name,
       surname: data.surname,
       role: role,
-    };
-    const user = await registerUser(newUser);
-    console.log(user);
+    });
+    if (!editingUser.id) {
+      await registerUser(editingUser);
+    } else {
+      await api.updateUser(editingUser);
+    }
+    console.log(editingUser);
   };
 
   return (
@@ -97,7 +101,7 @@ function userForm(user) {
         name="email"
         {...register("email", {
           required: "Email no valido",
-          pattern: /^[a-z0-9._%+-]+@[a-z0-9,-]+\.[a-z]{2,4}$/,
+          minLength: /^[a-z0-9._%+-]+@[a-z0-9,-]+\.[a-z]{2,4}$/,
         })}
         type="email"
         variant="outlined"
@@ -150,7 +154,7 @@ function userForm(user) {
         variant="contained"
         color="primary"
       >
-        Crear Usuario
+        Guardar Usuario
       </Button>
     </form>
   );

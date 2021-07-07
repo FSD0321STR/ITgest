@@ -6,7 +6,7 @@ const api = axios.create({
     headers: {
         "Content-Type": "application/json"
     }
-})
+});
 
 const register = ({email, password}) => {
     return fetch(`${VITE_API_URL}/api/register`, {
@@ -49,6 +49,17 @@ const deleteUser = (id) => {
       },
     }).then(res => res = res.json("Usuario borrado"))
 };
+const updateUser = (user) => {
+    return fetch(`${VITE_API_URL}/api/update-user/${id}`, {
+      method: 'PUT',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({})
+    }).then(res => res = res.json(user))
+    .catch(error => console.error('Error:', error))
+};
 
 
 
@@ -58,5 +69,6 @@ export default {
     allUsers,
     getUser,
     deleteUser,
+    updateUser,
 
 }
