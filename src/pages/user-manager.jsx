@@ -14,21 +14,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const users = [
-  {
-    email: "as.j@SpeechGram3@marList.com",
-    _id: "jasndj21jn3j12lk3lk",
-  },
-  {
-    email: "as.j@SpeechGramm2@arList.com",
-    _id: "jasndj21jn3j1aqwe2lk3lk",
-  },
-  {
-    email: "as.j@SpeechGrammar3@List.com",
-    _id: "jasndj21jn3sdsj12lk3lk",
-  },
-];
-
 const toediteduser = {
   _id: "60d379b8a46c433880a96b8a",
   name: "Victor2",
@@ -40,7 +25,6 @@ const toediteduser = {
 function userManager() {
   const classes = useStyles();
   const [editingUser, setEditingUser] = useState({
-    id: "",
     name: "",
     surname: "",
     email: "",
@@ -49,7 +33,8 @@ function userManager() {
   });
 
   const editUser = async (id) => {
-    await api.getUser().then((user) => setEditingUser(user));
+    console.log("editar usuario");
+    // await api.getUser().then((user) => setEditingUser(user));
   };
 
   const [users, setUsers] = useState([]);
@@ -59,23 +44,24 @@ function userManager() {
   }, []);
 
   const deleteUser = async (id) => {
-    const response = await api.deleteUser(id);
-    alert(response.message);
-    const tasks = await api.getAllUsers();
-    setUsers(users);
+    // const response = await api.deleteUser(id);
+    // alert(response.message);
+    // const tasks = await api.getAllUsers();
+    // setUsers(users);
+    console.log("borrar usuarios");
   };
 
   return (
     <div className={classes.root}>
       <div>
         <UserList>
-          {users.map((user) => (
+          {users.map((users) => (
             <UserItem
-              key={user._id}
-              id={user._id}
+              key={users.id}
+              id={users.id}
               onClick={editUser}
               onRemuve={deleteUser}
-              email={user.email}
+              email={users.email}
             />
           ))}
         </UserList>

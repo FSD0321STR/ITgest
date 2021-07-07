@@ -8,6 +8,10 @@ const api = axios.create({
     }
 });
 
+const token = localStorage.getItem('token');
+console.log(token);
+api.defaults.headers.common['Authorization'] = token ? `Bearer ${token}` : '';
+
 const register = ({email, password}) => {
     return fetch(`${VITE_API_URL}/api/register`, {
       method: 'POST',
@@ -77,7 +81,7 @@ const login = ({email, password}) => {
 }
 
 const getAllUsers = () => {
-    return fetch(`${API_URL}/api/userAdmin`, {
+    return fetch(`${VITE_API_URL}/api/users`, {
         method: 'GET',
         mode: 'cors',
         headers: {
