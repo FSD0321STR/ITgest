@@ -1,8 +1,10 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import { useParams, Redirect } from 'react-router-dom';
 import { Button, TextField } from "@material-ui/core";
 import ProductList from './productList';
+import { useForm } from "../../hooks/useForm";
+import axios from "axios";
 
 
 
@@ -12,8 +14,27 @@ import ProductList from './productList';
 const useStyles = makeStyles((theme) => ({
     root: {
         margin: theme.spacing(1),
-        width: "100%",
+        width: "55%",
 
+    },
+    boxOrder:{
+        borderRadius: "5px",
+        boxShadow: "2px 2px 10px #8888",
+        height: "70px",
+        width: "280px",
+        position: "relative",
+        left: "3%",
+        top:"52px"
+  
+    },
+    boxOrderAssign:{
+        borderRadius: "5px",
+        boxShadow: "2px 2px 10px #8888",
+        height: "143px",
+        width: "280px",
+        position: "relative",
+        left: "3%",
+        top:"52px"
     },
     box: {
 
@@ -21,9 +42,9 @@ const useStyles = makeStyles((theme) => ({
         height: "300px",
         width: "300px",
         borderRadius: "5px",
-        boxShadow: "2px 2px 8px #6666",
+        boxShadow: "2px 2px 8px #8888",
         margin: "50px",
-        position: "relative",
+        // position: "relative",
     
 
     },
@@ -35,33 +56,67 @@ const useStyles = makeStyles((theme) => ({
     btnAsignar: {
         position: "relative",
         left: "12%",
-        margin: "5px",
+        margin: "7px",
         
     },
     Img: {
         backgroundColor: "#E8E8E8",
-        height: "250px",
-        width: "300px",
+        height: "235px",
+        width: "288px",
         position: "relative",
-        top:0,
-        left: "0%",
-        margin: "0px",
+        top:"2%",
+        left: "2%",
+        paddingTop:"10px",
+        marginBlockEnd:"5px",
         borderRadius: "5px",
+        
 
 
     },
     txt: {
         backgroundColor: "#F8FBFF",
-        height: "110px",
-        width: "300px",
+        height: "auto",
+        width: "160px",
         position: "relative",
-        top: "50%",
-   
+        top: 130,
         margin: "0px",
+        left: "3%",
         borderRadius: "5px",
+        marginTop:"3px",
+        paddingLeft:"10px",
+        boxShadow: "2px 2px 8px #8888",
 
 
     },
+    btnBoxOrder:{
+        position: "relative",
+        left: "3%",
+        margin: "5px",
+        top:"6px",
+        height:"50px"
+    },
+    btnBoxOrderAssign:{
+        position: "relative",
+        left: "0%",
+        margin: "5px",
+        top:"-30px",
+        height:"50px",
+    },
+    btnBoxOrderCancel:{
+        position: "relative",
+        left: "30%",
+
+
+    },
+    genBox:{
+        borderRadius:"5px",
+        boxShadow: "2px 2px 8px #8888",
+        position:"relative",
+        margin:"35px",
+        padding:"20px",
+        paddingBlockEnd:"200px"
+        
+    }
 
   }));
   
@@ -69,50 +124,178 @@ const useStyles = makeStyles((theme) => ({
 export const ProductItem = () => {
     
         const classes = useStyles();
+        const [order, setOrder] = useState();
+        const [assign, setAssign] = useState();
 
-        const getProduct = {
+        const inputAsign = () =>{
+            setAssign(!assign);
+        }
 
-            product: { 
-                // id: "00001", 
-                category: "Pantalla", 
-                model: "X1", 
-                brand: "HP", 
-                provedor: "HP S.L.", 
-                price: "500 euros", 
-                stock: "5 unid.",  
-            }
-        };
+        const inputOrder = () =>{
+            setOrder(!order);
+        }
+
+
+
+
+        const [ formValues, handleInputChange ] = useForm({
+            category: '',
+            model: '',
+            brand: '',
+            supplier: '',
+            price: '',
+            stock: ''
+        });
+    
+    
+        const { category, model, brand, supplier, price, stock } = formValues;
+    
+        
+
+        const getAll =  axios.get('http://localhost:8000/formproduct', {
+
+            data:{
+              category: formValues.category,
+              model: formValues.model,
+              brand: formValues.brand,
+              supplier: formValues.supplier,
+              price: formValues.price,
+              stock: formValues.stock
+            },
+
+            })
+            .then(response => {
+              console.log(response);
+            })
+            .catch(error => {
+            //   console.log(error);
+            });
+
+        
+            console.log(getAll)
+        
+
+
+
     
         return (
-            <div className={classes.box}>
-                
-                <div className={classes.Img}>
-                    {/* <img src={ `../../img/${ getProduct.product.id }.jpg` } className="card-img" alt={ getProduct.product.id } /> */}
+           <div className={classes.genBox}>
+                <div className={classes.box}>
 
-                    <div className= {classes.txt}> 
-                        
-                        <p>Producto: {getProduct.product.category} </p>
-                        <p>Modelo: {getProduct.product.model} </p>
-                        <p>Stock: {getProduct.product.stock} </p>
-    
-                    </div>                    
-                </div>
-    
-                <div>
-                    <Button 
-                        className={classes.btnPedir} 
-                        variant="contained"
-                        color="secondary"
-                        >Pedir
-                    </Button>
+                    <div className={classes.Img}>
+                        {/* <img src={ `../../img/${ getProduct.product.id }.jpg` } className="card-img" alt={ getProduct.product.id } /> */}
 
-                    <Button 
-                        className={classes.btnAsignar} 
-                        variant="contained" 
-                        color="primary"
-                        >Asignar Operario
-                    </Button>
+                        <div > 
+
+                            <p className= {classes.txt}>Categoria:  <b>Teléfono</b> </p>
+                            <p className= {classes.txt}>Marca:      <b>Iphone</b></p>
+                            <p className= {classes.txt}>Modelo:     <b>12 Pro</b></p>
+                            <p  className= {classes.txt}>Stock:      <b style={{color: "#47A532"}}>5 Unid.</b></p>
+            
+                        </div>                    
+                    </div>
+            
+                    {!order && !assign ? (
+                        <div >
+                            <Button 
+
+                                className={classes.btnPedir} 
+                                variant="contained"
+                                color="secondary"
+                                onClick={inputOrder}
+                                >Pedir
+                            </Button>
+
+
+                            <Button 
+                                className={classes.btnAsignar} 
+                                variant="contained" 
+                                color="primary"
+                                onClick={inputAsign}
+                                >Asignar Operario 
+                            </Button>
+                        </div>
+                        ):null}
+
+
+                    {/* Solicitar un pedido por falta de Stock */}
+                    {order ?(
+                        <div className={classes.boxOrder}>
+                            <TextField 
+                                autoComplete="off"
+                                className={ classes.root }
+                                // value={ }
+                                name="stock"
+                                // onChange={}
+                                id="outlined-basic"
+                                label="Cantidad"
+                                type="number"
+                                variant="outlined"
+                                placeholder="5 Unid."
+                            />
+                            <Button 
+                            className={classes.btnBoxOrder} 
+                            variant="contained" 
+                            color="primary"
+                            >Pedir
+                            </Button>
+
+                            <Button 
+                            onClick={inputOrder}
+                            className={classes.btnBoxOrderCancel} 
+                            variant="contained" 
+                            color="secondary"
+                            >Cancelar
+                            </Button>
+
+                        </div>
+                    ):null}
+
+                    {/* Asignación de producto a un operario */}
+                    {assign ?(
+                        <div className={classes.boxOrderAssign}>
+                            <TextField 
+                                autoComplete="off"
+                                className={ classes.root }
+                                // value={ }
+                                name="name"
+                                // onChange={ }
+                                id="outlined-basic"
+                                label="Usuario"
+                                type="text"
+                                variant="outlined"
+                                placeholder="Soufian Y.A."
+                            />
+                            <TextField 
+                                autoComplete="off"
+                                className={ classes.root }
+                                // value={ }
+                                name="unit"
+                                // onChange={ }
+                                id="outlined-basic"
+                                label="Unidades"
+                                type="number"
+                                variant="outlined"
+                                placeholder="5 Unid."
+                            />
+                            <Button 
+                            className={classes.btnBoxOrderAssign} 
+                            variant="contained" 
+                            color="primary"
+                            >Asignar
+                            </Button>
+
+                            <Button 
+                            onClick={inputAsign}
+                            className={classes.btnBoxOrderCancel} 
+                            variant="contained" 
+                            color="secondary"
+                            >Cancelar
+                            </Button>
+
+                        </div>
+                    ):null}
                 </div>
-            </div>
+            </div> 
         )
     }

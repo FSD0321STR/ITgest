@@ -59,6 +59,8 @@ const postForm = ({category, model, brand, supplier, price, stock}) => {
     
     
 }
+
+
 const postFormAxios =() => {
 axios.post('http://localhost:8000/formproduct', {
   data:{
@@ -77,7 +79,7 @@ axios.post('http://localhost:8000/formproduct', {
   .catch(error => {
     console.log(error);
   });
- 
+  console.log(postFormAxios)
 }
 
 

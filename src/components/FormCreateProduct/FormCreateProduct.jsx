@@ -8,7 +8,7 @@ import { Button, TextField } from "@material-ui/core";
 import axios from "axios";
 // import postForm from '../../helpers/api'
 import { useForm } from "../../hooks/useForm";
-import { postFormAxios } from '../../helpers/api';
+
 
 
 
@@ -27,6 +27,15 @@ const useStyles = makeStyles((theme) => ({
 
 
     },
+    creatNewProd:{
+      borderRadius:"5px",
+      boxShadow: "2px 2px 8px #8888",
+      position:"relative",
+      margin:"35px",
+      
+
+    },
+
     box: {
       
       backgroundColor: "#FFFFFF",
@@ -35,8 +44,11 @@ const useStyles = makeStyles((theme) => ({
       margin: "30px",
       height: "100%",
       width: "30%",
-      position: "float",
+      position: "relative",
       boxShadow: "2px 2px 15px #8888",
+      top:"-40px",
+      left:"26%",
+      
   
 
 
@@ -57,10 +69,23 @@ const useStyles = makeStyles((theme) => ({
     btn:{
       margin: theme.spacing(1),
       width: "98%",
-      
+      height:"50px"
+ 
+    },
+    btnCreatNewProd:{
+      position:"relative",
+      margin:"10px",
+      height:"50px",
+      width:"90%",
+      left:"5%",
+      top:0,
 
-
-  },
+    },
+    h3:{
+      paddingLeft:"30px",
+      position:"relative",
+      top:-10,
+    }
   }));
   
   
@@ -102,67 +127,87 @@ export const FormCreateProduct = ( {onSubmit} ) => {
     const view = () => {
         setVisible(!visible);
     };
-    const registered = {
-      category,
-      model,
-      brand,
-      supplier,
-      price,
-      stock,
-    }
 
  
 
     const handleSubmit = (e) => {
       e.preventDefault();
       
+      
+
+
+
+      axios.post('http://localhost:8000/formproduct', {
+        data:{
+          category: formValues.category,
+          model: formValues.model,
+          brand: formValues.brand,
+          supplier: formValues.supplier,
+          price: formValues.price,
+          stock: formValues.stock
+        }  
+        
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
 
 
     };
 
+    axios.get('http://localhost:8000/formproduct', {
+        data:{
+          category: formValues.category,
+          model: formValues.model,
+          brand: formValues.brand,
+          supplier: formValues.supplier,
+          price: formValues.price,
+          stock: formValues.stock
+        }  
+        
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
 
-    // const handleCategory =() => {
-    //   axios.get('http://localhost:8000/categories',{
-    //     data:{
-    //       name:"",
-    //     }
-    //   })
-    //     .then(response => {
-    //       console.log(response);
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //     });
 
-
-    // }
-    // console.log(handleCategory)
-
-
+    
 
 
 
 
 
   return (
-    <>
-      <Button 
+    <div
+    className={ classes.creatNewProd } 
+    variant="outlined" 
+    >
+      {!visible? (<Button 
+      className={ classes.btnCreatNewProd } 
       variant="contained" 
       color="primary" 
       onClick={view}
       >
         Crear Nuevo Producto
-      </Button>
-
-      <br />
- 
+      </Button>): null
+      }
       
-      <br />
 
       {visible ? (
         <form 
         onSubmit={ handleSubmit }
         >
+          <br/>
+          <h3 className={ classes.h3 }>!Hola Soufian!, rellena el formulario para crear un nuevo producto</h3>
+          <hr/>
+          <br/>
           <div 
           className={ classes.box }
           >
@@ -181,8 +226,8 @@ export const FormCreateProduct = ( {onSubmit} ) => {
             placeholder="Teléfono"
             
             />
-            {/* {error && <Alert severity="error">{error}</Alert>}
-            {children} */}
+            {error && <Alert severity="error">{error}</Alert>}
+            {/* {children} */}
 
             <br />
 
@@ -282,9 +327,9 @@ export const FormCreateProduct = ( {onSubmit} ) => {
               // type="remove"
               variant="contained" 
               color="secondary"
-              // onClick={ handleRemove }
+              onClick={ view }
               > 
-              Borrar
+              Cancelar
             </Button>
             
 
@@ -298,7 +343,7 @@ export const FormCreateProduct = ( {onSubmit} ) => {
       
         
       
-    </>
+    </div>
   );
 };
 

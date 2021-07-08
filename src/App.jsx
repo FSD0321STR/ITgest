@@ -39,12 +39,14 @@ function App() {
 
           <Route exact path="/product">
             <FormCreateProduct />
-            <hr />
+            
             <ProductCreated />
+            
 
           </Route>
 
           <Route exact path="/order">
+            <OrderList />
             <OrderList />
 
           </Route>

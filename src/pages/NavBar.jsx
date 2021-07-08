@@ -10,11 +10,11 @@ export const NavBar = () => {
             variant="outlined" 
             color="primary"
             > 
-                <Link to="/product"> Producto </Link>
+                <Link style={{textDecoration:"none"}} to="/product"> Producto </Link>
             </Button>
 
             <Button variant="outlined" color="primary"> 
-                <Link to="/order"> Pedidos </Link>
+                <Link style={{textDecoration:"none"}}  to="/order"> Pedidos </Link>
             </Button>
         </div>
     )
