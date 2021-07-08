@@ -1,29 +1,27 @@
 import React, { useState } from "react";
-import "./App.css";
-import "@fontsource/roboto";
-import MenuAppBar from './components/LogBar'
-import SimpleTabs from './components/TagBar'
-import Footer from "./components/Footer";
-import NestedGrid from "./components/Footer";
-
-// import Orders from "./components/dashboard";
-
-
+import UserManager from "./pages/user-manager";
+import Login from "./pages/login";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import AuthProvider from "./contexts/auth-provider";
 
 function App() {
-  
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-      <body>
+    <AuthProvider>
 
-      <MenuAppBar />
-      <SimpleTabs />
-      <Footer />
+      <Router>
+        <Switch>
+          <Route path="/userAdmin">
+            <UserManager />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
+        </Switch>
+      </Router>
+    </AuthProvider>
 
-      </body>
-    </div>
   );
 }
 
