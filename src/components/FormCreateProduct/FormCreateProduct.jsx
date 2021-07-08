@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
       position: "relative",
       boxShadow: "2px 2px 15px #8888",
       top:"-40px",
-      left:"26%",
+      left:"28%",
       
   
 
@@ -108,7 +108,7 @@ export const FormCreateProduct = ( {onSubmit} ) => {
   
 
  
-    const [ formValues, handleInputChange ] = useForm({
+    const [  formValues, handleInputChange ] = useForm({
         category: '',
         model: '',
         brand: '',
@@ -135,8 +135,6 @@ export const FormCreateProduct = ( {onSubmit} ) => {
       
       
 
-
-
       axios.post('http://localhost:8000/formproduct', {
         data:{
           category: formValues.category,
@@ -156,8 +154,15 @@ export const FormCreateProduct = ( {onSubmit} ) => {
         });
 
 
+      
+        
 
     };
+
+const getAll = (category)  => {
+
+  const validatorCategory = [ 'Teléfono', 'Televisor'];
+  if (!validatorCategory.includes(category))
 
     axios.get('http://localhost:8000/formproduct', {
         data:{
@@ -176,9 +181,10 @@ export const FormCreateProduct = ( {onSubmit} ) => {
         .catch(error => {
           console.log(error);
         });
+        return category.filter( category === category)
 
+}
 
-    
 
 
 

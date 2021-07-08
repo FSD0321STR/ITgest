@@ -1,6 +1,13 @@
 import { useState } from 'react'
 
-export const useForm = ( initialState = {} ) => {
+export const useForm = ( initialState = {
+        category: '',
+        model: '',
+        brand: '',
+        supplier: '',
+        price: '',
+        stock: ''
+} ) => {
     
     const [ values, setValues ] = useState(initialState);
 

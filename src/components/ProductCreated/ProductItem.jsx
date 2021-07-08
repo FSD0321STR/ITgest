@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import { useParams, Redirect } from 'react-router-dom';
 import { Button, TextField } from "@material-ui/core";
@@ -173,6 +173,12 @@ export const ProductItem = () => {
 
         
             console.log(getAll)
+
+            useEffect(async () => {
+                await api.getAll()
+                  .then(formValues);
+              }, []);
+            
         
 
 
