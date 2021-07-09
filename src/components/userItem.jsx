@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function UserItem({ id, email, deleteUser, onClick }) {
+function UserItem({ userId, email, deleteUser, onClick }) {
   const classes = useStyles();
 
   return (
@@ -31,7 +31,7 @@ function UserItem({ id, email, deleteUser, onClick }) {
       <div>
         <Tooltip title="Delete">
           <IconButton
-            onClick={(id) => deleteUser(id)}
+            onClick={(userId) => deleteUser(userId)}
             className={classes.icon}
             aria-label="delete"
           >

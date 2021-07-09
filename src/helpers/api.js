@@ -25,7 +25,7 @@ const register = ({email, password}) => {
 };
 
 const allUsers = () => {
-    return fetch(`${VITE_API_URL}/api/users`, {
+    return fetch(`${VITE_API_URL}/user`, {
       method: 'GET',
       mode: 'cors',
       headers: { 
@@ -35,7 +35,7 @@ const allUsers = () => {
 };
 
 const getUser = (id) => {
-    return fetch(`${VITE_API_URL}/api/users/${id}`, {
+    return fetch(`${VITE_API_URL}/user/${id}`, {
       method: 'GET',
       mode: 'cors',
       headers: { 
@@ -45,7 +45,7 @@ const getUser = (id) => {
 };
 
 const deleteUser = (id) => {
-    return fetch(`${VITE_API_URL}/api/deleteUser/${id}`, {
+    return fetch(`${VITE_API_URL}/user/${id}`, {
       method: 'DELETE',
       mode: 'cors',
       headers: { 
@@ -54,7 +54,7 @@ const deleteUser = (id) => {
     }).then(res => res = res.json("Usuario borrado"))
 };
 const updateUser = (user) => {
-    return fetch(`${VITE_API_URL}/api/update-user/${id}`, {
+    return fetch(`${VITE_API_URL}/user/${id}`, {
       method: 'PUT',
       mode: 'cors',
       headers: { 
@@ -69,7 +69,7 @@ const updateUser = (user) => {
 
 
 const login = ({email, password}) => {
-    return fetch(`${VITE_API_URL}/api/login`, {
+    return fetch(`${VITE_API_URL}/login`, {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -81,7 +81,7 @@ const login = ({email, password}) => {
 }
 
 const getAllUsers = () => {
-    return fetch(`${VITE_API_URL}/api/users`, {
+    return fetch(`${VITE_API_URL}/user`, {
         method: 'GET',
         mode: 'cors',
         headers: {

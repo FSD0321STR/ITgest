@@ -43,12 +43,12 @@ function userManager() {
     await api.getAllUsers().then(setUsers);
   }, []);
 
-  const deleteUser = async (id) => {
-    // const response = await api.deleteUser(id);
-    // alert(response.message);
-    // const tasks = await api.getAllUsers();
-    // setUsers(users);
-    console.log("borrar usuarios");
+  const deleteUser = async (userId) => {
+    console.log(userId);
+    const response = await api.deleteUser(userId);
+    alert(response.message);
+    const users = await api.getAllUsers();
+    setUsers(users);
   };
 
   return (
@@ -58,9 +58,9 @@ function userManager() {
           {users.map((users) => (
             <UserItem
               key={users.id}
-              id={users.id}
+              userId={users.id}
               onClick={editUser}
-              onRemuve={deleteUser}
+              deleteUser={deleteUser}
               email={users.email}
             />
           ))}

@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "grid",
     gridTemplateColumns: "50% 50%",
-    marginTop: "20px",
     height: "100vh",
   },
   formwraper: {
@@ -26,8 +25,23 @@ const useStyles = makeStyles((theme) => ({
   button: {
     width: "25%",
   },
+  Login__info: {
+    width: "75%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    marginLeft: "60px",
+    pos,
+  },
+
+  Title: {
+    fontFamily: "inherit",
+    fontWeight: "700px",
+  },
+
   rightimage: {
-    backgroundImage: "url(https://source.unsplash.com/random)",
+    backgroundImage:
+      "url(https://wat-files.s3.amazonaws.com/00/108/1625850154608Disosinttul.png)",
   },
 }));
 
@@ -47,8 +61,14 @@ function login() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.backgroundImage}></div>
+      <div className={classes.rightimage}></div>
       <div className={classes.formwraper}>
+        <div className={classes.Login__info}>
+          <h1 className={classes.Title}>Bienvenido a</h1>
+          <h2>WAT Lab</h2>
+          <div></div>
+        </div>
+        <br />
         <form onSubmit={handleSubmit(getUser)} className={classes.form}>
           <TextField
             className={classes.item}
