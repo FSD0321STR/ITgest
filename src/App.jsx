@@ -30,25 +30,16 @@ function App() {
         <NavBar />
         <hr />
 
-        <Switch>
-                    
-
+        <Switch>    
           <Route exact path="/">
-            
           </Route>
-
           <Route exact path="/product">
             <FormCreateProduct />
-            
             <ProductCreated />
-            
-
           </Route>
-
           <Route exact path="/order">
             <OrderList />
             <OrderList />
-
           </Route>
 
 
