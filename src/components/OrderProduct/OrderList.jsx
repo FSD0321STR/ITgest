@@ -18,20 +18,12 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(1.5),
         width: "180px",
         height: "50px",
-
-
-        
-
-
     },
     btn: {
         margin: theme.spacing(0.8),
         marginTop: theme.spacing(1.5),
         height: "55px",
-
-        
     },
-
     gen:{
         margin: theme.spacing(0.8),
         left:"70%",
@@ -39,19 +31,15 @@ const useStyles = makeStyles((theme) => ({
         height: "55px",
         position: 'relative'
         
-
     },
     tblTh:{
         paddingLeft:"50px",
         margin:"10px",
-
     },
     tblTd:{
         paddingLeft:"50px",
         margin:"10px",
         color:"#283747",
-
-
     },
     genTbl:{
         position: 'relative',

@@ -10,11 +10,15 @@ const useStyles = makeStyles(() => ({
         backgroundColor: "#3f51b5",
         color: 'white',
         height: 60,
+        display: "flex",
+        justifyContent: "center",
+
         
     },
     btn: {
-        position: "relative",
-        marginTop:"12px",
+        display: "flex",
+        justifyContent: "center",
+        padding:"20px",
         
     
         
@@ -42,7 +46,6 @@ export const NavBar = () => {
                 > Stock 
                 </Link>
             </Button>
-
             <Button 
                 className={classes.btn} 
                 color="primary"
@@ -53,7 +56,6 @@ export const NavBar = () => {
                     > Pedidos 
                 </Link>
             </Button>
-
             <Button 
                 className={classes.btn} 
                 color="primary"
