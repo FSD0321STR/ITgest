@@ -11,13 +11,6 @@ import { useForm } from "../../hooks/useForm";
 
 
 
-
-
-
-
-
-
-
 const useStyles = makeStyles((theme) => ({
     root: {
         
@@ -232,8 +225,8 @@ const getAll = (category)  => {
             placeholder="Teléfono"
             
             />
-            {error && <Alert severity="error">{error}</Alert>}
-            {/* {children} */}
+            {/* {error && <Alert severity="error">{error}</Alert>}
+            {children} */}
 
             <br />
 

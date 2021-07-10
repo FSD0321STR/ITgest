@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { Button, TextField } from "@material-ui/core"
@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     inp: {
         
         margin: theme.spacing(0.8),
+        marginTop: theme.spacing(1.5),
         width: "180px",
         height: "50px",
 
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     },
     btn: {
         margin: theme.spacing(0.8),
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(1.5),
         height: "55px",
 
         
@@ -62,6 +63,12 @@ const useStyles = makeStyles((theme) => ({
 
 export const OrderList = () => {
     const classes = useStyles();
+    const [noCompletOrder, setNoCompletOrder] = useState('');
+
+    const handleIncompletOrder = () =>{
+        setNoCompletOrder(!noCompletOrder);
+    }
+
     return (
         <div className={classes.root}>
             
@@ -88,22 +95,50 @@ export const OrderList = () => {
                     
                 </div>
                 
-
+                {!noCompletOrder ?(
                 <div className={classes.gen} >
+                    <Button
+                        className={classes.btn}
+                        variant="contained"
+                        color="secondary"
+                        onClick={handleIncompletOrder}
+                    >Pedido Incompleto
+                    </Button>
+                    
+                    <Button
+                        className={classes.btn}
+                        variant="contained"
+                        color="primary"
+                    >Pedido Completo
+                    </Button>
+                    </div>
+                ): null }
+                {noCompletOrder ?(
+                    <div className={classes.gen}>
                     <TextField
                         type="number"
                         label="Cantidad Recibida" 
                         className={classes.inp}
                         variant="outlined"
-                    />
+                    />    
                     <Button
                         className={classes.btn}
                         variant="contained"
                         color="primary"
                     >Recibido
                     </Button>
+                    <Button
+                        className={classes.btn}
+                        variant="contained"
+                        color="secondary"
+                        onClick={handleIncompletOrder}
+                    >Cancelar
+                    </Button>
+
+                    
 
                 </div>
+            ):null}
             
             
         </div>
