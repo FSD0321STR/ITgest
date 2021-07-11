@@ -7,45 +7,43 @@ const useStyles = makeStyles((theme) => ({
     root: {
         borderRadius:"5px",
         boxShadow: "2px 2px 15px #8888",
-        width: "100%",
         height: "80px",
         margin:"15px",
+        display: "flex",
 
     },
     inp: {
         
-        margin: theme.spacing(0.8),
-        marginTop: theme.spacing(1.5),
-        width: "180px",
-        height: "50px",
+        margin: theme.spacing(0.9),
+        width: "40%",
     },
     btn: {
         margin: theme.spacing(0.8),
-        marginTop: theme.spacing(1.5),
         height: "55px",
+        
     },
     gen:{
-        margin: theme.spacing(0.8),
-        left:"70%",
-        top: "-52px",
-        height: "55px",
-        position: 'relative'
+        display: "flex",
+        justifyContent:"flex-end",
+        alignItems:"center",
+
         
     },
     tblTh:{
         paddingLeft:"50px",
         margin:"10px",
+        display:"flex",
     },
     tblTd:{
         paddingLeft:"50px",
         margin:"10px",
         color:"#283747",
+        display:"flex",
+        
     },
     genTbl:{
-        position: 'relative',
-        top: "15px",
-
-        
+        display:"flex",
+   
     }
   }));
 
@@ -102,7 +100,7 @@ export const OrderList = () => {
                     </div>
                 ): null }
                 {noCompletOrder ?(
-                    <div className={classes.gen}>
+                <div className={classes.gen}>
                     <TextField
                         type="number"
                         label="Cantidad Recibida" 
