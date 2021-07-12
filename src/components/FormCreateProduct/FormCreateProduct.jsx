@@ -6,7 +6,7 @@ import { Button, TextField } from "@material-ui/core";
 // import useLocalStorage from "../../hooks/use-local-storage";
 // import getCategory  from '../../helpers/api';
 import axios from "axios";
-// import postForm from '../../helpers/api'
+import  getForm  from '../../helpers/api';
 import { useForm } from "../../hooks/useForm";
 
 
@@ -32,8 +32,6 @@ const useStyles = makeStyles((theme) => ({
       alignItems:"center",
       // height: "100%",
       padding: "20px",
-      
-      
 
     },
 
@@ -47,11 +45,6 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       justifyContent: "center",
       flexDirection: "column"
-      
-      
-      
-  
-
 
     },
     // inpt: {
@@ -143,58 +136,31 @@ export const FormCreateProduct = ( {onSubmit} ) => {
       
       
 
-      axios.post('http://localhost:8000/formproduct', {
-        data:{
-          category: formValues.category,
-          model: formValues.model,
-          brand: formValues.brand,
-          supplier: formValues.supplier,
-          price: formValues.price,
-          stock: formValues.stock
-        }  
+      useEffect(async () => {
+        await api.getForm().then(formValues);
+      }, []);
+
+      console.log(getForm)
+
+
+      // axios.post('http://localhost:8000/formproduct', {
+      //   data:{
+      //     category: formValues.category,
+      //     model: formValues.model,
+      //     brand: formValues.brand,
+      //     supplier: formValues.supplier,
+      //     price: formValues.price,
+      //     stock: formValues.stock
+      //   }  
         
-        })
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-
-
-      
-        
-
+      //   })
+      //   .then(response => {
+      //     console.log(response);
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //   });
     };
-
-const getAll = (category)  => {
-
-  const validatorCategory = [ 'Teléfono', 'Televisor'];
-  if (!validatorCategory.includes(category))
-
-    axios.get('http://localhost:8000/formproduct', {
-        data:{
-          category: formValues.category,
-          model: formValues.model,
-          brand: formValues.brand,
-          supplier: formValues.supplier,
-          price: formValues.price,
-          stock: formValues.stock
-        }  
-        
-        })
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-        return category.filter( category === category)
-
-}
-
-
-
 
 
 

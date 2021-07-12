@@ -47,7 +47,7 @@ const postForm = ({category, model, brand, supplier, price, stock}) => {
       mode: 'cors',
       headers: { 
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        // 'Authorization': `Bearer ${token}`
       },
       
       body: JSON.stringify({category, model, brand, supplier, price, stock})
@@ -60,27 +60,48 @@ const postForm = ({category, model, brand, supplier, price, stock}) => {
     
 }
 
+const getForm = ({category, model, brand, supplier, price, stock}) => {
+  return fetch(`http://localhost:8000/formproduct`, {
+    method: 'GET',
+    mode: 'cors',
+    headers: { 
+      'Content-Type': 'application/json',
+      // 'Authorization': `Bearer ${token}`
+    },
+    
+    body: JSON.stringify({category, model, brand, supplier, price, stock})
 
-const postFormAxios =() => {
-axios.post('http://localhost:8000/formproduct', {
-  data:{
-    category: formValues.category,
-    model: formValues.model,
-    brand: formValues.brand,
-    supplier: formValues.supplier,
-    price: formValues.price,
-    stock: formValues.stock
-  }  
+
+    
+  }).then(res => res = res.json())
+  .catch(error => console.error('Error:', error))
+
+
   
-  })
-  .then(response => {
-    console.log(response);
-  })
-  .catch(error => {
-    console.log(error);
-  });
-  console.log(postFormAxios)
+  
 }
+
+
+// const postFormAxios =() => {
+// axios.post('http://localhost:8000/formproduct', {
+//   data:{
+//     category: formValues.category,
+//     model: formValues.model,
+//     brand: formValues.brand,
+//     supplier: formValues.supplier,
+//     price: formValues.price,
+//     stock: formValues.stock
+//   }  
+  
+//   })
+//   .then(response => {
+//     console.log(response);
+//   })
+//   .catch(error => {
+//     console.log(error);
+//   });
+//   console.log(postFormAxios)
+// }
 
 
 
@@ -88,5 +109,6 @@ export default {
     // register,
     // getCategory,
     postForm,
-    postFormAxios,
+    // postFormAxios,
+    getForm,
 }
