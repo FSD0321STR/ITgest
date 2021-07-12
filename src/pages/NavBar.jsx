@@ -15,15 +15,32 @@ const useStyles = makeStyles(() => ({
 
         
     },
+    navLog: {
+        backgroundColor: "#FFFFF",
+        color: 'white',
+        height: 30,
+        display: "flex",
+        justifyContent: "flex-end",
+        padding:"5px",
+        boxShadow: "2px 2px 8px #8888",
+        marginBlockEnd:"20px"
+    
+
+        
+        
+    },
     btn: {
         display: "flex",
         justifyContent: "center",
         padding:"20px",
-        
-    
-        
-        // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        
+
+    },
+    btnUserAdmin:{
+        display: "flex",
+        justifyContent: "center",
+        marginLeft:"5px",
+
+
     },
     link: {
         textDecoration:"none",
@@ -34,6 +51,8 @@ const useStyles = makeStyles(() => ({
 export const NavBar = () => {
     const classes = useStyles();
     return (
+    <div>
+        
         <div 
             className={classes.navBar}>
             <Button 
@@ -66,5 +85,32 @@ export const NavBar = () => {
                 > Producto </Link>
             </Button>
         </div>
+        <div className={classes.navLog}>
+            <div className={classes.btnUserAdmin} >
+                <Button 
+                    color="primary"
+                    variant="outlined"
+                > 
+                    <Link 
+                        style={{textDecoration:"none", color:"#3f51b5"}}  
+                        to="/userAdmin"
+                    > Administrador de usuario
+                    </Link>
+                </Button>
+            </div>
+            <div className={classes.btnUserAdmin} >
+                <Button 
+                    color="secondary"
+                    variant="outlined"
+                > 
+                    <Link 
+                        style={{textDecoration:"none", color:"#f50057"}}  
+                        to="/logout"
+                    > LogOut
+                    </Link>
+                </Button>
+            </div>
+        </div>
+    </div>
     )
 }

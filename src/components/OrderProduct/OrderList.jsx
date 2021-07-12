@@ -16,10 +16,14 @@ const useStyles = makeStyles((theme) => ({
         
         margin: theme.spacing(0.9),
         width: "40%",
+        display: "flex",
+        justifyContent:"flex-end",
     },
     btn: {
         margin: theme.spacing(0.8),
         height: "55px",
+        display: "flex",
+        justifyContent:"flex-end",
         
     },
     gen:{
@@ -30,19 +34,23 @@ const useStyles = makeStyles((theme) => ({
         
     },
     tblTh:{
-        paddingLeft:"50px",
-        margin:"10px",
-        display:"flex",
+
+  
+        
     },
     tblTd:{
-        paddingLeft:"50px",
-        margin:"10px",
-        color:"#283747",
-        display:"flex",
+        
+
+
+        
+        
         
     },
     genTbl:{
+        paddingLeft: "10px",
         display:"flex",
+        justifyContent: "center",
+        flexDirection: "column-reverse"
    
     }
   }));

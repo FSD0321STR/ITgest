@@ -9,7 +9,7 @@ import { NavBar } from "./pages/NavBar";
 import { FormCreateProduct } from "./components/FormCreateProduct/FormCreateProduct";
 import { ProductCreated } from "./components/ProductCreated/ProductCreated";
 import { OrderList } from "./components/OrderProduct/OrderList";
-import StickyHeadTable from "./components/dashboard"
+import StickyHeadTable from "./components/TableStock"
 
 
 
