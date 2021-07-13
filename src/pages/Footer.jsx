@@ -24,7 +24,12 @@ const useStyles = makeStyles((theme) => ({
     },
     link: {
         textAlign: 'float',
-    }
+
+    },
+    boxLink: {
+        paddingTop: "5px",
+
+    },
   }));
 
 export default function Footer(){
@@ -36,52 +41,54 @@ export default function Footer(){
                     <Grid container spacing ={5}>
                         <Grid item xs={12} sm={4}>
                             <Box><strong>Ayuda</strong></Box>
-                            <Box>
-                                <Link href="/" color="inherit">
-                                    Contacto
+                            <hr/>
+                            <Box className={classes.boxLink}>
+                                <Link 
+                                style={{textDecoration:"none", color:"white"}}
+                                href="/contact" 
+                                >
+                                    Contacto & Soporte
                                 </Link>
                             </Box>
-                            <Box>
-                                <Link href="/" color="inherit">
-                                    Soporte
-                                </Link>
-                            </Box>
-                            <Box>
-                                <Link href="/" color="inherit">
+                            <Box className={classes.boxLink}>
+                                <Link 
+                                    style={{textDecoration:"none", color:"white"}}
+                                    href="/privacy"
+                                >
                                     Privacidad
                                 </Link>
                             </Box>
                         </Grid>
                         <Grid item xs={12} sm={4}>
                             <Box borderBotton={1} borderColor="text.primary"><strong>Usuario</strong></Box>
-                            <Box>
-                                <Link href="/" color="inherit">
-                                    Logueo
-                                </Link>
-                            </Box>
-                            <Box>
-                                <Link href="/" color="inherit">
+                            <hr/>
+                            <Box className={classes.boxLink}>
+                                <Link 
+                                    style={{textDecoration:"none", color:"white"}}
+                                    href="/userAdmin" 
+                                >
                                     Registro
                                 </Link>
                             </Box>                            
                         </Grid>
                         <Grid item xs={12} sm={4}>
                             <Box borderBotton={1}><strong>App</strong></Box>
-                            <Box>
+                            <hr/>
+                            <Box className={classes.boxLink}>
                                 <Link 
                                     style={{textDecoration:"none", color:"white"}}  
                                     href="/stock"
                                 > Stock
                                 </Link>
                             </Box>
-                            <Box>
+                            <Box className={classes.boxLink}>
                                 <Link   
                                     style={{textDecoration:"none", color:"white"}}  
                                     href="/order"
                                     > Pedidos
                                 </Link>
                             </Box>
-                            <Box>
+                            <Box className={classes.boxLink}>
                                 <Link 
                                     style={{textDecoration:"none", color:"white"}}  
                                     href="/product"

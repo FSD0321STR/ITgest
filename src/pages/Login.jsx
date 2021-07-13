@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
   rightimage: {
     backgroundImage:
-      "url(https://wat-files.s3.amazonaws.com/00/108/1625850154608Disosinttul.png)",
+      "url(https://arandasoft.com/wp-content/uploads/2016/02/soporte1.png)",
   },
 }));
 

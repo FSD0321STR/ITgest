@@ -55,7 +55,8 @@ function createData(id, category, brand, model, supplier, price, stock) {
 }
 
 const rows = [
-  createData(123123, 'Televisor', 'Samsung', 'S52p', 'Samsung S.L.', 50, 2),
+  createData(123123, 'Televisor', 'Samsung', 'S52p', 'Samsung S.L.', 500, 2),
+  createData(827371, 'Teléfono', 'Iphone', '12 Pro', 'Apple S.L.', 1200, 7),
 
 
 ];

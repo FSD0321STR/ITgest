@@ -11,7 +11,9 @@ import { OrderList } from "./components/OrderProduct/OrderList";
 import StickyHeadTable from "./components/TableStock";
 import  Footer  from "./pages/Footer";
 import UserManager from "./pages/user-manager";
-import Login from "./pages/Login"
+import Login from "./pages/Login";
+import {Contact} from "./pages/Contact"
+import { Privacy } from "./pages/Privacy";
 
 
 
@@ -40,8 +42,15 @@ function App() {
                 <StickyHeadTable />
               </Route>
               <Route exact path="/userAdmin">
-              <UserManager />
+                <UserManager />
               </Route>  
+              <Route exact path="/contact">
+                <Contact />
+              </Route>  
+              <Route exact path="/privacy">
+                <Privacy />
+              </Route>  
+
             </Switch>
        
           <Footer />
