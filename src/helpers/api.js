@@ -81,7 +81,7 @@ const login = (user) => {
 }
 
 const getAllUsers = () => {
-    return fetch(`${VITE_API_URL}/user`, {
+    return fetch('${VITE_API_URL}/user', {
         method: 'GET',
         mode: 'cors',
         headers: {
