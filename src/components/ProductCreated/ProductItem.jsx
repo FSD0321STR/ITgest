@@ -152,32 +152,32 @@ export const ProductItem = () => {
     
         
 
-        const getAll =  axios.get('http://localhost:8000/formproduct', {
+        // const getAll =  axios.get('http://localhost:8000/formproduct', {
 
-            data:{
-              category: formValues.category,
-              model: formValues.model,
-              brand: formValues.brand,
-              supplier: formValues.supplier,
-              price: formValues.price,
-              stock: formValues.stock
-            },
+        //     data:{
+        //       category: formValues.category,
+        //       model: formValues.model,
+        //       brand: formValues.brand,
+        //       supplier: formValues.supplier,
+        //       price: formValues.price,
+        //       stock: formValues.stock
+        //     },
 
-            })
-            .then(response => {
-              console.log(response);
-            })
-            .catch(error => {
-            //   console.log(error);
-            });
+        //     })
+        //     .then(response => {
+        //       console.log(response);
+        //     })
+        //     .catch(error => {
+        //     //   console.log(error);
+        //     });
 
         
-            console.log(getAll)
+        //     console.log(getAll)
 
-            useEffect(async () => {
-                await api.getAll()
-                  .then(formValues);
-              }, []);
+        //     useEffect(async () => {
+        //         await api.getAll()
+        //           .then(formValues);
+        //       }, []);
             
         
 

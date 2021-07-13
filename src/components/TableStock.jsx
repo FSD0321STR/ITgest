@@ -1,152 +1,163 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
+import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
+import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
-const useRowStyles = makeStyles({
-  root: {
-    '& > *': {
-      borderBottom: 'unset',
-    },
+const columns = [
+  { id: 'id', 
+    label: 'Id', 
+    minWidth: 100
   },
-});
-
-function createData(reference, name, brand, suplier, description, price, stock, securitystock) {
-  return {
-    reference,
-    name,
-    brand,
-    suplier,
-    description,
-    price,
-    stock,
-    securitystock,
-    history: [
-      { date: '2020-01-05', customerId: '11091700', amount: 3 },
-      { date: '2020-01-02', customerId: 'Anonymous', amount: 1 },
-    ],
-  };
-}
-
-function Row(props) {
-  const { row } = props;
-  const [open, setOpen] = React.useState(false);
-  const classes = useRowStyles();
-
-  return (
-    <React.Fragment>
-      <TableRow className={classes.root}>
-        <TableCell>
-          <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
-        <TableCell component="th" scope="row">
-          {row.name}
-        </TableCell>
-        <TableCell align="right">{row.reference}</TableCell>
-        <TableCell align="right">{row.name}</TableCell>
-        <TableCell align="right">{row.brand}</TableCell>
-        <TableCell align="right">{row.suplier}</TableCell>
-        <TableCell align="right">{row.description}</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box margin={1}>
-              <Typography variant="h6" gutterBottom component="div">
-                Historial
-              </Typography>
-              <Table size="small" aria-label="purchases">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Fecha</TableCell>
-                    <TableCell>Proveedor</TableCell>
-                    <TableCell align="right">Stock</TableCell>
-                    <TableCell align="right">Total price ($)</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.date}>
-                      <TableCell component="th" scope="row">
-                        {historyRow.date}
-                      </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align="right">{historyRow.amount}</TableCell>
-                      <TableCell align="right">
-                        {Math.round(historyRow.amount * row.price * 100) / 100}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </Box>
-          </Collapse>
-        </TableCell>
-      </TableRow>
-    </React.Fragment>
-  );
-}
-
-Row.propTypes = {
-  row: PropTypes.shape({
-    calories: PropTypes.number.isRequired,
-    carbs: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
-    history: PropTypes.arrayOf(
-      PropTypes.shape({
-        amount: PropTypes.number.isRequired,
-        customerId: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-      }),
-    ).isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    protein: PropTypes.number.isRequired,
-  }).isRequired,
-};
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-  createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-  createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-  createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
+  { id: 'category', 
+    label: 'Categoria', 
+    minWidth: 100
+  },
+  {
+    id: 'brand',
+    label: 'Marca',
+    minWidth: 100,
+  },
+  {
+    id: 'model',
+    label: 'Modelo',
+    minWidth: 100,
+  },
+  {
+    id: 'supplier',
+    label: 'Proveedor',
+    minWidth: 100,
+  },
+  {
+    id: 'price',
+    label: 'Precio EURO',
+    minWidth: 100,
+    align: 'right',
+    format: (value) => value.toLocaleString('en-EU'),
+  },
+  {
+    id: 'stock',
+    label: 'Stock',
+    minWidth: 100,
+    align: 'right',
+    format: (value) => value.toLocaleString('en-EU'),
+  },
 ];
 
-export default function CollapsibleTable() {
+function createData(id, category, brand, model, supplier, price, stock) {
+
+  return { id, category, brand, model, supplier, price, stock };
+}
+
+const rows = [
+  createData(123123, 'Televisor', 'Samsung', 'S52p', 'Samsung S.L.', 500, 2),
+  createData(827371, 'Teléfono', 'Iphone', '12 Pro', 'Apple S.L.', 1200, 7),
+
+
+];
+
+const useStyles = makeStyles({
+  screen: {
+    minHeight: "80vh",
+
+  },
+  root: {
+      width: '100%',
+      margin: "10px"
+
+    
+  },
+  container: {
+    maxHeight: "700px",
+    display: "flex",
+    justifyContent: "center",
+   
+  },
+  headTab: {
+    backgroundColor: "#3f51b5",
+
+
+  },
+  boxTable: {
+    borderRadius:"5px",
+    boxShadow: "2px 2px 15px #8888",
+    backgroundColor: "#FFFFF",
+    display: "flex",
+    justifyContent: "center",
+    margin: "20px"
+    
+
+  },
+
+});
+
+export default function StickyHeadTable() {
+  const classes = useStyles();
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell>Referencia</TableCell>
-            <TableCell align="right">Nombre</TableCell>
-            <TableCell align="right">Marca</TableCell>
-            <TableCell align="right">Descripción</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <Row key={row.name} row={row} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div className={classes.screen}>
+    <div className={classes.boxTable}>
+      <Paper className={classes.root}>
+        <TableContainer className={classes.container}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead className={classes.headTab}>
+              <TableRow >
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}
+                  >
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                return (
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {column.format && typeof value === 'number' ? column.format(value) : value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
+    </div>
+    </div>
   );
 }

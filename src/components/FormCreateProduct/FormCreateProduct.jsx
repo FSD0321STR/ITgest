@@ -6,15 +6,8 @@ import { Button, TextField } from "@material-ui/core";
 // import useLocalStorage from "../../hooks/use-local-storage";
 // import getCategory  from '../../helpers/api';
 import axios from "axios";
-// import postForm from '../../helpers/api'
+import  getForm  from '../../helpers/api';
 import { useForm } from "../../hooks/useForm";
-
-
-
-
-
-
-
 
 
 
@@ -22,42 +15,45 @@ const useStyles = makeStyles((theme) => ({
     root: {
         
         margin: theme.spacing(0.8),
-        width: "98%",
+        width: "70%",
+        display: "flex",
+        justifyContent: "center",
+
         
 
 
     },
-    creatNewProd:{
+    boxCreatNewProd:{
       borderRadius:"5px",
       boxShadow: "2px 2px 8px #8888",
-      position:"relative",
       margin:"35px",
-      
+      display: "flex",
+      justifyContent: "center",
+      alignItems:"center",
+      // height: "100%",
+      padding: "20px",
 
     },
 
-    box: {
+    boxForm: {
       
       backgroundColor: "#FFFFFF",
-      padding: "30px",
+      padding: "20px",
       borderRadius: "10px",
       margin: "30px",
-      height: "100%",
-      width: "30%",
-      position: "relative",
       boxShadow: "2px 2px 15px #8888",
-      top:"-40px",
-      left:"28%",
-      
-  
-
+      display: "flex",
+      justifyContent: "center",
+      flexDirection: "column"
 
     },
-    inpt: {
-      margin: theme.spacing(1),
-      width: "100%",
+    // inpt: {
+    //   margin: theme.spacing(1),
+    //   width: "100%",
+    //   display: "flex",
+    //   justifyContent: "center",
         
-    },
+    // },
     alert: {
       width: '90%',
       '& > * + *': {
@@ -69,22 +65,27 @@ const useStyles = makeStyles((theme) => ({
     btn:{
       margin: theme.spacing(1),
       width: "98%",
-      height:"50px"
+      height:"50px",
+      display: "flex",
+      justifyContent: "center",
+
  
     },
     btnCreatNewProd:{
-      position:"relative",
-      margin:"10px",
+      display: "flex",
+      justifyContent: "center",
       height:"50px",
       width:"90%",
-      left:"5%",
-      top:0,
+
+
+
 
     },
     h3:{
-      paddingLeft:"30px",
-      position:"relative",
-      top:-10,
+      display: "flex",
+      justifyContent: "center",
+      justifyItems: "center",
+ 
     }
   }));
   
@@ -135,64 +136,37 @@ export const FormCreateProduct = ( {onSubmit} ) => {
       
       
 
-      axios.post('http://localhost:8000/formproduct', {
-        data:{
-          category: formValues.category,
-          model: formValues.model,
-          brand: formValues.brand,
-          supplier: formValues.supplier,
-          price: formValues.price,
-          stock: formValues.stock
-        }  
+      useEffect(async () => {
+        await api.getForm().then(formValues);
+      }, []);
+
+      console.log(getForm)
+
+
+      // axios.post('http://localhost:8000/formproduct', {
+      //   data:{
+      //     category: formValues.category,
+      //     model: formValues.model,
+      //     brand: formValues.brand,
+      //     supplier: formValues.supplier,
+      //     price: formValues.price,
+      //     stock: formValues.stock
+      //   }  
         
-        })
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-
-
-      
-        
-
+      //   })
+      //   .then(response => {
+      //     console.log(response);
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //   });
     };
-
-const getAll = (category)  => {
-
-  const validatorCategory = [ 'Teléfono', 'Televisor'];
-  if (!validatorCategory.includes(category))
-
-    axios.get('http://localhost:8000/formproduct', {
-        data:{
-          category: formValues.category,
-          model: formValues.model,
-          brand: formValues.brand,
-          supplier: formValues.supplier,
-          price: formValues.price,
-          stock: formValues.stock
-        }  
-        
-        })
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-        return category.filter( category === category)
-
-}
-
-
-
 
 
 
   return (
     <div
-    className={ classes.creatNewProd } 
+    className={ classes.boxCreatNewProd } 
     variant="outlined" 
     >
       {!visible? (<Button 
@@ -213,9 +187,9 @@ const getAll = (category)  => {
           <br/>
           <h3 className={ classes.h3 }>!Hola Soufian!, rellena el formulario para crear un nuevo producto</h3>
           <hr/>
-          <br/>
+
           <div 
-          className={ classes.box }
+          className={ classes.boxForm }
           >
             
             <TextField 
@@ -225,15 +199,15 @@ const getAll = (category)  => {
             name="category"
             autoComplete="off"
             onChange={ handleInputChange }
-            className={ classes.root } 
+            // className={ classes.root } 
             variant="outlined" 
             label="Categorias" 
             value={ category }
             placeholder="Teléfono"
             
             />
-            {error && <Alert severity="error">{error}</Alert>}
-            {/* {children} */}
+            {/* {error && <Alert severity="error">{error}</Alert>}
+            {children} */}
 
             <br />
 
@@ -244,7 +218,7 @@ const getAll = (category)  => {
             name="brand"
             value={ brand }
             onChange= { handleInputChange }
-            className={classes.root} 
+            // className={classes.root} 
             label="Marca" 
             variant="outlined" 
             placeholder="Iphone"
@@ -261,7 +235,7 @@ const getAll = (category)  => {
             name="model"
             value={ model }
             onChange= { handleInputChange  }
-            className={ classes.root } 
+            // className={ classes.root } 
             label="Modelo" 
             variant="outlined" 
             placeholder="12 Pro"
@@ -276,7 +250,7 @@ const getAll = (category)  => {
             value={ supplier }
             name="supplier"
             onChange= { handleInputChange }
-            className={classes.root} 
+            // className={classes.root} 
             label="Proveedor" 
             variant="outlined" 
             placeholder="Apple S.L."
@@ -291,7 +265,7 @@ const getAll = (category)  => {
               value={ price }
               name="price"
               onChange={ handleInputChange }
-              className={classes.root}
+              // className={classes.root}
               id="outlined-basic"
               label="Precio"
               type="number"
@@ -304,7 +278,7 @@ const getAll = (category)  => {
 
             <TextField 
               autoComplete="off"
-              className={ classes.root }
+              // className={ classes.root }
               value={ stock }
               name="stock"
               onChange={ handleInputChange }
