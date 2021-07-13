@@ -9,106 +9,103 @@ const api = axios.create({
 });
 
 const token = localStorage.getItem('token');
-
+console.log(token);
 api.defaults.headers.common['Authorization'] = token ? `Bearer ${token}` : '';
 
-// const register = ({email, password}) => {
-//     return fetch(`${VITE_API_URL}/api/register`, {
-//       method: 'POST',
-//       mode: 'cors',
-//       headers: { 
-//           'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({email, password})
-//     }).then(res => res = res.json())
-//     .catch(error => console.error('Error:', error))
-// }
-
-
-// const getCategory = ({name}) => {
-//     return fetch(`${VITE_API_URL}/categories`, {
-//       method: 'GET',
-//       mode: 'cors',
-//       headers: { 
-//           'Content-Type': 'application/json',
-//       },
-      
-//       body: JSON.stringify({name})
-      
-//     }).then(res => res = res.json())
-//     .catch(error => console.error('Error:', error))
-    
-// }
-
-
-const postForm = ({category, model, brand, supplier, price, stock}) => {
-    return fetch(`http://localhost:8000/formproduct`, {
+const register = ({email, password}) => {
+    return fetch(`${VITE_API_URL}/api/register`, {
       method: 'POST',
       mode: 'cors',
       headers: { 
-        'Content-Type': 'application/json',
-        // 'Authorization': `Bearer ${token}`
+          'Content-Type': 'application/json',
       },
-      
-      body: JSON.stringify({category, model, brand, supplier, price, stock})
-      
+      body: JSON.stringify({email, password})
     }).then(res => res = res.json())
     .catch(error => console.error('Error:', error))
+};
+
+const allUsers = () => {
+    return fetch(`${VITE_API_URL}/user`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+      },
+    }).then(res => res = res.json())
+};
+
+const getUser = (id) => {
+    return fetch(`${VITE_API_URL}/user/${id}`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+      },
+    }).then(res => res = res.json(user))
+};
+
+const deleteUser = (id) => {
+    return fetch(`${VITE_API_URL}/user/${id}`, {
+      method: 'DELETE',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+      },
+    }).then(res => res = res.json("Usuario borrado"))
+};
+const updateUser = (user) => {
+    return fetch(`${VITE_API_URL}/user/${id}`, {
+      method: 'PUT',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({})
+    }).then(res => res = res.json(user))
+    .catch(error => console.error('Error:', error))
+};
 
 
-    
-    
+
+
+const login = ({email, password}) => {
+    return fetch(`${VITE_API_URL}/login`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Conten-Type': 'application/json',  
+        },
+        body: JSON.stringify({email, password})
+    }).then(res => res = res.json())
+    .catch(error => console.error('Error:', error))
 }
 
-const getForm = ({category, model, brand, supplier, price, stock}) => {
-  return fetch(`http://localhost:8000/formproduct`, {
-    method: 'GET',
-    mode: 'cors',
-    headers: { 
-      'Content-Type': 'application/json',
-      // 'Authorization': `Bearer ${token}`
-    },
-    
-    body: JSON.stringify({category, model, brand, supplier, price, stock})
+const getAllUsers = () => {
+    return fetch(`${VITE_API_URL}/user`, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+    }).then(res => res = res.json());
+  }
 
-
-    
-  }).then(res => res = res.json())
-  .catch(error => console.error('Error:', error))
-
-
-  
-  
-}
-
-
-// const postFormAxios =() => {
-// axios.post('http://localhost:8000/formproduct', {
-//   data:{
-//     category: formValues.category,
-//     model: formValues.model,
-//     brand: formValues.brand,
-//     supplier: formValues.supplier,
-//     price: formValues.price,
-//     stock: formValues.stock
-//   }  
-  
-//   })
-//   .then(response => {
-//     console.log(response);
-//   })
-//   .catch(error => {
-//     console.log(error);
-//   });
-//   console.log(postFormAxios)
-// }
-
+  const removeUser = async (id) => {
+    const response = await api.deleteUser(id);
+    alert(response.message);
+    const users = await api.getAllUsers()
+    //setUsers(users);
+  };
 
 
 export default {
-    // register,
-    // getCategory,
-    postForm,
-    // postFormAxios,
-    getForm,
+    register,
+    allUsers,
+    getUser,
+    deleteUser,
+    updateUser,
+    getAllUsers,
+    removeUser,
+
+
 }
