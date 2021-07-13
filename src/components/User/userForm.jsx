@@ -6,13 +6,13 @@ import {
   MenuItem,
   makeStyles,
 } from "@material-ui/core";
-import roles from "../contexts/roles";
+import roles from "../../contexts/roles";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import { PinDropSharp } from "@material-ui/icons";
 import { useEffect } from "react";
-import api from "../helpers/api";
+import api from "../../helpers/api";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -25,9 +25,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function userForm(user) {
+function UserForm(user) {
   const classes = useStyles();
-  const { registerUser } = useAuth();
+  // const { registerUser } = useAuth();
   const [role, setRole] = useState(roles.R1);
   const [editingUser, setEditingUser] = useState({
     name: "",
@@ -160,4 +160,4 @@ function userForm(user) {
   );
 }
 
-export default userForm;
+export default UserForm;

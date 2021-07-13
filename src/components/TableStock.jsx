@@ -61,6 +61,10 @@ const rows = [
 ];
 
 const useStyles = makeStyles({
+  screen: {
+    minHeight: "80vh",
+
+  },
   root: {
       width: '100%',
       margin: "10px"
@@ -106,6 +110,7 @@ export default function StickyHeadTable() {
   };
 
   return (
+    <div className={classes.screen}>
     <div className={classes.boxTable}>
       <Paper className={classes.root}>
         <TableContainer className={classes.container}>
@@ -151,6 +156,7 @@ export default function StickyHeadTable() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
+    </div>
     </div>
   );
 }

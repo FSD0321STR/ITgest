@@ -7,10 +7,10 @@ import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-    //   flexGrow: 1,
       display:"flex",
       alignContent: "flex-end",
       justifyContent: "center",
+      
 
     },
     footer: {
@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'left',
       background: '#3f51b5',
       color: 'white',
-    //   display:"flex",
+      width: "100%",
+      display:"flex",
 
     },
     link: {

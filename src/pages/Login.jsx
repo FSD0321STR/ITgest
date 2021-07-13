@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function login() {
+function Login() {
   const classes = useStyles();
   const {
     register,
@@ -120,4 +120,4 @@ function login() {
     </div>
   );
 }
-export default login;
+export default Login;

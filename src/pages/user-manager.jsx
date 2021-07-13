@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
-import UserForm from "../components/userForm";
-import UserItem from "../components/userItem";
-import UserList from "../components/userList";
+import UserForm from "../components/User/userForm";
+import UserItem from "../components/User/userItem";
+import UserList from "../components/User/userList";
 import api from "../helpers/api";
 
 const useStyles = makeStyles((theme) => ({
@@ -11,6 +11,8 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "50% 50%",
     margin: "20px",
     gridGap: "20px",
+    minHeight: "80vh",
+
   },
 }));
 
@@ -22,7 +24,7 @@ const toediteduser = {
   role: "ROLE_ADMIN",
 };
 
-function userManager() {
+function UserManager() {
   const classes = useStyles();
   const [editingUser, setEditingUser] = useState({
     name: "",
@@ -71,4 +73,4 @@ function userManager() {
   );
 }
 
-export default userManager;
+export default UserManager;

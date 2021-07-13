@@ -105,7 +105,7 @@ export const NavBar = () => {
                 > 
                     <Link 
                         style={{textDecoration:"none", color:"#f50057"}}  
-                        to="/logout"
+                        to="/login"
                     > LogOut
                     </Link>
                 </Button>
