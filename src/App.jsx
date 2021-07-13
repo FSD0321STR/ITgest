@@ -9,7 +9,8 @@ import { NavBar } from "./pages/NavBar";
 import { FormCreateProduct } from "./components/FormCreateProduct/FormCreateProduct";
 import { ProductCreated } from "./components/ProductCreated/ProductCreated";
 import { OrderList } from "./components/OrderProduct/OrderList";
-import StickyHeadTable from "./components/TableStock"
+import StickyHeadTable from "./components/TableStock";
+import Footer from "./components/Footer";
 
 
 
@@ -36,6 +37,8 @@ function App() {
                 <StickyHeadTable />
               </Route>          
             </Switch>
+       
+          <Footer />
         </BrowserRouter>
                 
       </div>
