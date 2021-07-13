@@ -13,7 +13,7 @@ console.log(token);
 api.defaults.headers.common['Authorization'] = token ? `Bearer ${token}` : '';
 
 const register = (user) => {
-    return fetch(`${VITE_API_URL}/register`, {
+    return fetch(`http://localhost:8000/register`, {
       method: 'POST',
       mode: 'cors',
       headers: { 
@@ -25,7 +25,7 @@ const register = (user) => {
 };
 
 const allUsers = () => {
-    return fetch(`${VITE_API_URL}/user`, {
+    return fetch(`http://localhost:8000/user`, {
       method: 'GET',
       mode: 'cors',
       headers: { 
@@ -35,7 +35,7 @@ const allUsers = () => {
 };
 
 const getUser = (id) => {
-    return fetch(`${VITE_API_URL}/user/${id}`, {
+    return fetch(`http://localhost:8000/user/${id}`, {
       method: 'GET',
       mode: 'cors',
       headers: { 
@@ -45,7 +45,7 @@ const getUser = (id) => {
 };
 
 const deleteUser = (id) => {
-    return fetch(`${VITE_API_URL}/user/${id}`, {
+    return fetch(`http://localhost:8000/user/${id}`, {
       method: 'DELETE',
       mode: 'cors',
       headers: { 
@@ -54,7 +54,7 @@ const deleteUser = (id) => {
     }).then(res => res = res.json("Usuario borrado"))
 };
 const updateUser = (user) => {
-    return fetch(`${VITE_API_URL}/user/${id}`, {
+    return fetch(`http://localhost:8000/user/${id}`, {
       method: 'PUT',
       mode: 'cors',
       headers: { 
@@ -69,7 +69,7 @@ const updateUser = (user) => {
 
 
 const login = (user) => {
-    return fetch(`${VITE_API_URL}/login`, {
+    return fetch(`http://localhost:8000/login`, {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -81,7 +81,7 @@ const login = (user) => {
 }
 
 const getAllUsers = () => {
-    return fetch(`${VITE_API_URL}/user`, {
+    return fetch(`http://localhost:8000/user`, {
         method: 'GET',
         mode: 'cors',
         headers: {
