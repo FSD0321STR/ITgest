@@ -12,15 +12,15 @@ const token = localStorage.getItem('token');
 console.log(token);
 api.defaults.headers.common['Authorization'] = token ? `Bearer ${token}` : '';
 
-const register = ({email, password}) => {
-    return fetch(`${VITE_API_URL}/api/register`, {
+const register = (user) => {
+    return fetch(`${VITE_API_URL}/register`, {
       method: 'POST',
       mode: 'cors',
       headers: { 
           'Content-Type': 'application/json',
       },
-      body: JSON.stringify({email, password})
-    }).then(res => res = res.json())
+      body: JSON.stringify(user)
+    }).then(res => res = res.json(user))
     .catch(error => console.error('Error:', error))
 };
 
@@ -60,7 +60,7 @@ const updateUser = (user) => {
       headers: { 
           'Content-Type': 'application/json',
       },
-      body: JSON.stringify({})
+      body: JSON.stringify(user)
     }).then(res => res = res.json(user))
     .catch(error => console.error('Error:', error))
 };
@@ -68,14 +68,14 @@ const updateUser = (user) => {
 
 
 
-const login = ({email, password}) => {
+const login = (user) => {
     return fetch(`${VITE_API_URL}/login`, {
         method: 'POST',
         mode: 'cors',
         headers: {
             'Conten-Type': 'application/json',  
         },
-        body: JSON.stringify({email, password})
+        body: JSON.stringify(user)
     }).then(res => res = res.json())
     .catch(error => console.error('Error:', error))
 }
@@ -106,6 +106,7 @@ export default {
     updateUser,
     getAllUsers,
     removeUser,
+    login,
 
 
 }

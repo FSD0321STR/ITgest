@@ -7,7 +7,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import roles from "../contexts/roles";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import useAuth from "../hooks/useAuth";
 import { PinDropSharp } from "@material-ui/icons";
@@ -29,43 +29,46 @@ function userForm(user) {
   const classes = useStyles();
   const { registerUser } = useAuth();
   const [role, setRole] = useState(roles.R1);
-  const [editingUser, setEditingUser] = useState({
-    name: "",
-    surname: "",
-    email: "",
-    role: "",
-    password: "",
+
+  const {
+    register,
+    control,
+    reset,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    defaultValues: {
+      name: "",
+      surname: "",
+      email: "",
+      role: "",
+      password: "",
+    },
   });
 
   useEffect(() => {
-    setEditingUser(user);
+    reset(user);
   }, [user]);
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
 
   const handleChange = (event) => {
     setRole(event.target.value);
   };
 
   const createUser = async (data) => {
-    setEditingUser({
+    const editingUser = {
       email: data.email,
       password: data.password,
       name: data.name,
       surname: data.surname,
       role: role,
-    });
+      id: data.id,
+    };
     if (!editingUser.id) {
-      await registerUser(editingUser);
+      await api.register(editingUser);
     } else {
       await api.updateUser(editingUser);
     }
-    console.log(editingUser);
   };
-
   return (
     <form
       onSubmit={handleSubmit(createUser)}
@@ -73,81 +76,118 @@ function userForm(user) {
       noValidate
       autoComplete="off"
     >
-      <TextField
-        className={classes.item}
-        {...register("name", { required: true })}
-        label="Nombre"
-        type="text"
+      <Controller
         name="name"
-        value={editingUser.name}
-        variant="outlined"
-        error={errors.name}
+        control={control}
+        rules={{
+          required: true,
+        }}
+        defaultValue=""
+        render={({ field }) => (
+          <TextField
+            {...field}
+            className={classes.item}
+            label="Nombre"
+            type="text"
+            variant="outlined"
+            error={errors.name}
+          />
+        )}
       />
-      <TextField
-        className={classes.item}
-        {...register("surname", { required: true })}
-        label="Apellidos"
-        type="text"
-        value={editingUser.surname}
+      <Controller
         name="surname"
-        variant="outlined"
-        error={errors.surname}
+        control={control}
+        rules={{
+          required: true,
+        }}
+        defaultValue=""
+        render={({ field }) => (
+          <TextField
+            {...field}
+            className={classes.item}
+            label="Apellidos"
+            type="text"
+            variant="outlined"
+            error={errors.surname}
+          />
+        )}
       />
-      <TextField
-        className={classes.item}
-        id="emailImput"
-        label="Email"
-        value={editingUser.email}
+
+      <Controller
         name="email"
-        {...register("email", {
+        control={control}
+        rules={{
           required: "Email no valido",
-          minLength: /^[a-z0-9._%+-]+@[a-z0-9,-]+\.[a-z]{2,4}$/,
-        })}
-        type="email"
-        variant="outlined"
-        error={errors.email}
+          pattern: /^\S+@\S+$/i,
+        }}
+        defaultValue=""
+        render={({ field }) => (
+          <TextField
+            {...field}
+            className={classes.item}
+            label="Email"
+            type="email"
+            variant="outlined"
+            error={errors.email}
+          />
+        )}
       />
+
       <ErrorMessage
         errors={errors}
         name="email"
         render={({ message }) => <p color="red">{message}</p>}
       />
 
-      <TextField
-        className={classes.item}
-        {...register("password", {
+      <Controller
+        name="password"
+        control={control}
+        rules={{
           required: "La contraseña debe terner al menos 6 caracteres",
           minLength: 6,
-        })}
-        label="Contraseña"
-        value={editingUser.password}
-        type="password"
-        name="password"
-        variant="outlined"
-        error={errors.password}
+        }}
+        defaultValue=""
+        render={({ field }) => (
+          <TextField
+            {...field}
+            label="Contraseña"
+            type="password"
+            name="password"
+            variant="outlined"
+            className={classes.item}
+            error={errors.password}
+          />
+        )}
       />
       <ErrorMessage
         errors={errors}
         name="password"
         render={({ message }) => <p color="red">{message}</p>}
       />
-
-      <Select
-        className={classes.item}
-        labelId="demo-simple-select-label"
-        id="roleImput"
+      <Controller
         name="role"
-        variant="outlined"
-        label="Rol"
-        value={editingUser.rol}
-        onChange={handleChange}
-      >
-        {Object.values(roles).map((rol) => (
-          <MenuItem key={rol} value={rol}>
-            {rol}
-          </MenuItem>
-        ))}
-      </Select>
+        control={control}
+        rules={{
+          required: true,
+        }}
+        defaultValue="Administrador"
+        render={({ field }) => (
+          <Select
+            className={classes.item}
+            labelId="demo-simple-select-label"
+            id="roleImput"
+            variant="outlined"
+            label="Rol"
+            onChange={handleChange}
+          >
+            {Object.values(roles).map((rol) => (
+              <MenuItem key={rol} value={rol}>
+                {rol}
+              </MenuItem>
+            ))}
+          </Select>
+        )}
+      ></Controller>
       <Button
         type="submit"
         className={classes.item}

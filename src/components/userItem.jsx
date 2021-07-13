@@ -31,7 +31,7 @@ function UserItem({ userId, email, deleteUser, onClick }) {
       <div>
         <Tooltip title="Delete">
           <IconButton
-            onClick={(userId) => deleteUser(userId)}
+            onClick={() => deleteUser(userId)}
             className={classes.icon}
             aria-label="delete"
           >
@@ -40,7 +40,7 @@ function UserItem({ userId, email, deleteUser, onClick }) {
         </Tooltip>
         <Tooltip title="Edit">
           <IconButton
-            onClick={(id) => onClick(id)}
+            onClick={() => onClick(userId)}
             className={classes.icon}
             aria-label="Edit"
           >

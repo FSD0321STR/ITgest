@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { TextField, makeStyles, Button } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import api from "../helpers/api";
+import Alert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -9,14 +11,29 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "50% 50%",
     height: "100vh",
   },
+  alert: {
+    display: "flex",
+    flexDirection: "colum",
+    color: "red",
+  },
   formwraper: {
     display: "flex",
     height: "100vh",
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: "column",
   },
   form: {
     display: "flex",
+    margin: "5%",
+  },
+  boxForm: {
+    backgroundColor: "#FFFFF",
+    borderRadius: "5px",
+    width: "90%",
+    boxShadow: "2px 2px 15px #8888",
+    display: "flex",
+    // flexDirection: "colum-reverse",
   },
   item: {
     width: "40%",
@@ -26,12 +43,10 @@ const useStyles = makeStyles((theme) => ({
     width: "25%",
   },
   Login__info: {
-    width: "75%",
+    width: "90%",
     display: "flex",
-    flexDirection: "column",
     alignItems: "flex-start",
-    marginLeft: "60px",
-    pos,
+    flexDirection: "column",
   },
 
   Title: {
@@ -53,11 +68,11 @@ function login() {
     handleSubmit,
   } = useForm();
 
-  function getUser(data) {
+  const loginUser = async (data) => {
     const user = { email: data.email, password: data.password };
-
     console.log(user);
-  }
+    await api.login(user);
+  };
 
   return (
     <div className={classes.root}>
@@ -65,57 +80,61 @@ function login() {
       <div className={classes.formwraper}>
         <div className={classes.Login__info}>
           <h1 className={classes.Title}>Bienvenido a</h1>
-          <h2>WAT Lab</h2>
+          <h2>IT Gest</h2>
           <div></div>
         </div>
         <br />
-        <form onSubmit={handleSubmit(getUser)} className={classes.form}>
-          <TextField
-            className={classes.item}
-            id="emailImput"
-            label="Email"
-            name="email"
-            {...register("email", {
-              required: "Email no valido",
-              pattern: /^[a-z0-9._%+-]+@[a-z0-9,-]+\.[a-z]{2,4}$/,
-            })}
-            type="email"
-            variant="outlined"
-            error={errors.email}
-          />
-
-          <ErrorMessage
-            errors={errors}
-            name="email"
-            render={({ message }) => <p color="red">{message}</p>}
-          />
-
-          <TextField
-            className={classes.item}
-            {...register("password", {
-              required: "La contraseña debe terner al menos 6 caracteres",
-              minLength: 6,
-            })}
-            label="Contraseña"
-            type="password"
-            name="password"
-            variant="outlined"
-            error={errors.password}
-          />
-          <ErrorMessage
-            errors={errors}
-            name="password"
-            render={({ message }) => <p color="red">{message}</p>}
-          />
-          <Button
-            type="submit"
-            className={classes.button}
-            variant="contained"
-            color="primary"
-          >
-            Acceder
-          </Button>
-        </form>
+        <div className={classes.boxForm}>
+          <form onSubmit={handleSubmit(loginUser)} className={classes.form}>
+            <div className={classes.alert}>
+              <TextField
+                className={classes.item}
+                id="emailImput"
+                label="Email"
+                name="email"
+                {...register("email", {
+                  required: "Introduce un email",
+                  pattern: /^[a-z0-9._%+-]+@[a-z0-9,-]+\.[a-z]{2,4}$/,
+                })}
+                type="email"
+                variant="outlined"
+                error={errors.email}
+              />
+              <ErrorMessage
+                errors={errors}
+                name="email"
+                render={({ message }) => <p>{message}</p>}
+              />
+            </div>
+            <div className={classes.alert}>
+              <TextField
+                className={classes.item}
+                {...register("password", {
+                  required: "La contraseña debe terner al menos 6 caracteres",
+                  minLength: 6,
+                })}
+                label="Contraseña"
+                type="password"
+                name="password"
+                variant="outlined"
+                error={errors.password}
+              />
+              <ErrorMessage
+                errors={errors}
+                name="password"
+                render={({ message }) => <p>{message}</p>}
+              />
+            </div>
+            <Button
+              type="submit"
+              className={classes.button}
+              variant="contained"
+              color="primary"
+            >
+              Acceder
+            </Button>
+          </form>
+        </div>
       </div>
     </div>
   );

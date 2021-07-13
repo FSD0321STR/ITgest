@@ -14,14 +14,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const toediteduser = {
-  _id: "60d379b8a46c433880a96b8a",
-  name: "Victor2",
-  surname: "Victor",
-  email: "victor@victor.com",
-  role: "ROLE_ADMIN",
-};
-
 function userManager() {
   const classes = useStyles();
   const [editingUser, setEditingUser] = useState({
@@ -33,8 +25,8 @@ function userManager() {
   });
 
   const editUser = async (id) => {
-    console.log("editar usuario");
-    // await api.getUser().then((user) => setEditingUser(user));
+    console.log(id);
+    await api.getUser(id).then((user) => setEditingUser(user));
   };
 
   const [users, setUsers] = useState([]);
@@ -50,18 +42,18 @@ function userManager() {
     const users = await api.getAllUsers();
     setUsers(users);
   };
-
+  console.log(users);
   return (
     <div className={classes.root}>
       <div>
         <UserList>
-          {users.map((users) => (
+          {users.map((user) => (
             <UserItem
-              key={users.id}
-              userId={users.id}
+              key={user._id}
+              userId={user._id}
               onClick={editUser}
               deleteUser={deleteUser}
-              email={users.email}
+              email={user.email}
             />
           ))}
         </UserList>
