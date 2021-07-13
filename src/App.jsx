@@ -17,12 +17,16 @@ function App() {
     <div className="App">
       <AuthProvider>
         <BrowserRouter>
-          <NavBar />
           <Switch>
             <Route exact path="/"></Route>
             <Route exact path="/login">
               <Login />
             </Route>
+          </Switch>
+        </BrowserRouter>
+        <BrowserRouter>
+          <NavBar />
+          <Switch>
             <Route exact path="/product">
               <FormCreateProduct />
               <ProductItem />
