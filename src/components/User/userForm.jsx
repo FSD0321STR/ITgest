@@ -14,6 +14,7 @@ import { PinDropSharp } from "@material-ui/icons";
 import { useEffect } from "react";
 import api from "../../helpers/api";
 import "./styles.css";
+import { red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -29,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "20px",
     borderRadius: "10px",
     margin: "30px",
+    maxHeight: "600px",
     boxShadow: "2px 2px 15px #8888",
     display: "flex",
     justifyContent: "center",
@@ -40,6 +42,14 @@ const useStyles = makeStyles((theme) => ({
     height: "50px",
     display: "flex",
     justifyContent: "center",
+  },
+  resetBtn: {
+    margin: theme.spacing(1),
+    width: "98%",
+    height: "50px",
+    display: "flex",
+    justifyContent: "center",
+    backgroundColor: "#F75A6D",
   },
 
   alert: {
@@ -63,10 +73,18 @@ function UserForm(user) {
       name: "",
       surname: "",
       email: "",
-      role: "",
+      role: "Administrador",
       password: "",
     },
   });
+
+  let editableUser = {
+    name: "",
+    surname: "",
+    email: "",
+    role: "Administrador",
+    password: "",
+  };
 
   useEffect(() => {
     reset(user);
@@ -76,15 +94,17 @@ function UserForm(user) {
     setRole(event.target.value);
   };
 
-  const createUser = async (data) => {
+  const onSubmit = async (data) => {
+    console.log(data);
     const editingUser = {
       email: data.email,
       password: data.password,
       name: data.name,
       surname: data.surname,
-      role: role,
+      role: data.role,
       id: data.id,
     };
+    console.log(editingUser);
     if (!editingUser.id) {
       await api.register(editingUser);
     } else {
@@ -93,25 +113,19 @@ function UserForm(user) {
   };
   return (
     <div className={classes.boxForm}>
-      <form
-        onSubmit={handleSubmit(createUser)}
-        className={classes.form}
-        noValidate
-        autoComplete="off"
-      >
+      <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
         <Controller
           name="name"
           control={control}
+          defaultValue=""
           rules={{
             required: true,
           }}
-          defaultValue=""
           render={({ field }) => (
             <TextField
               {...field}
-              className={classes.item}
               label="Nombre"
-              type="text"
+              className={classes.item}
               variant="outlined"
               error={errors.name}
             />
@@ -120,22 +134,20 @@ function UserForm(user) {
         <Controller
           name="surname"
           control={control}
+          defaultValue=""
           rules={{
             required: true,
           }}
-          defaultValue=""
           render={({ field }) => (
             <TextField
               {...field}
+              label="Apellido"
               className={classes.item}
-              label="Apellidos"
-              type="text"
               variant="outlined"
               error={errors.surname}
             />
           )}
         />
-
         <Controller
           name="email"
           control={control}
@@ -147,21 +159,19 @@ function UserForm(user) {
           render={({ field }) => (
             <TextField
               {...field}
-              className={classes.item}
               label="Email"
-              type="email"
+              className={classes.item}
               variant="outlined"
               error={errors.email}
+              type="email"
             />
           )}
         />
-
         <ErrorMessage
           errors={errors}
           name="email"
           render={({ message }) => <p>{message}</p>}
         />
-
         <Controller
           name="password"
           control={control}
@@ -174,11 +184,10 @@ function UserForm(user) {
             <TextField
               {...field}
               label="Contraseña"
-              type="password"
-              name="password"
-              variant="outlined"
+              variant="filled"
               className={classes.item}
               error={errors.password}
+              type="password"
             />
           )}
         />
@@ -188,37 +197,45 @@ function UserForm(user) {
           render={({ message }) => <p>{message}</p>}
         />
         <Controller
-          name="role"
-          control={control}
           rules={{
             required: true,
           }}
-          defaultValue="Administrador"
           render={({ field }) => (
-            <Select
-              className={classes.item}
-              labelId="demo-simple-select-label"
-              id="roleImput"
-              variant="outlined"
-              label="Rol"
-              onChange={handleChange}
-            >
-              {Object.values(roles).map((rol) => (
-                <MenuItem key={rol} value={rol}>
-                  {rol}
-                </MenuItem>
-              ))}
+            <Select {...field} className={classes.item}>
+              <MenuItem value={"Administrador"}>Administrador</MenuItem>
+              <MenuItem value={"Usuario"}>Usuario</MenuItem>
             </Select>
           )}
-        ></Controller>
-        <Button
-          type="submit"
-          className={classes.btn}
-          variant="contained"
-          color="primary"
-        >
-          Guardar Usuario
-        </Button>
+          name="role"
+          control={control}
+        />
+
+        <div>
+          <Button
+            type="submit"
+            className={classes.btn}
+            variant="contained"
+            color="primary"
+          >
+            Guardar Usuario
+          </Button>
+          <Button
+            onClick={() => {
+              reset({
+                name: "",
+                surname: "",
+                email: "",
+                password: "",
+                role: "",
+              });
+            }}
+            className={classes.resetBtn}
+            variant="contained"
+            color="primary"
+          >
+            Cancelar
+          </Button>
+        </div>
       </form>
     </div>
   );
