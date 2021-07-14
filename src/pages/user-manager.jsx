@@ -27,7 +27,12 @@ function userManager() {
 
   const editUser = async (id) => {
     console.log(id);
-    await api.getUser(id).then((user) => setEditingUser(user));
+    const toeditUser = users.filter((user, id) => {
+      return user._id === id;
+    });
+    console.log(toeditUser);
+    setEditingUser(toeditUser);
+    // await api.getUser(id).then((user) => setEditingUser(user));
   };
 
   const [users, setUsers] = useState([]);
