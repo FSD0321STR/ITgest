@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function UserForm(user) {
+function UserForm(user, formSubmit) {
   const classes = useStyles();
   const { registerUser } = useAuth();
   const [role, setRole] = useState(roles.R1);
@@ -105,12 +105,14 @@ function UserForm(user) {
       id: data.id,
     };
     console.log(editingUser);
-    if (!editingUser.id) {
-      await api.register(editingUser);
+    if (!editingUser._id) {
+      await api.register(editingUser).then();
     } else {
       await api.updateUser(editingUser);
     }
+    window.location.reload(false);
   };
+
   return (
     <div className={classes.boxForm}>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>

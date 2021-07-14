@@ -13,6 +13,17 @@ const useStyles = makeStyles((theme) => ({
     margin: "20px",
     gridGap: "20px",
   },
+  userItems: {
+    borderRadius: "10px",
+    marginTop: "30px",
+    margin: "10px",
+    padding: "10px",
+    boxShadow: "2px 2px 15px #8888",
+    display: "flex",
+  },
+  screen: {
+    minHeight: "80vh",
+  },
 }));
 
 function userManager() {
@@ -44,27 +55,28 @@ function userManager() {
   const deleteUser = async (userId) => {
     console.log(userId);
     const response = await api.deleteUser(userId);
-    alert(response.message);
     const users = await api.getAllUsers();
     setUsers(users);
   };
   console.log(users);
   return (
-    <div className={classes.root}>
-      <div>
-        <UserList>
-          {users.map((user) => (
-            <UserItem
-              key={user._id}
-              userId={user._id}
-              onClick={editUser}
-              deleteUser={deleteUser}
-              email={user.email}
-            />
-          ))}
-        </UserList>
+    <div className={classes.screen}>
+      <div className={classes.root}>
+        <div className={classes.userItems}>
+          <UserList>
+            {users.map((user) => (
+              <UserItem
+                key={user._id}
+                userId={user._id}
+                onClick={editUser}
+                deleteUser={deleteUser}
+                email={user.email}
+              />
+            ))}
+          </UserList>
+        </div>
+        <UserForm user={editingUser} />
       </div>
-      <UserForm user={editingUser} />
     </div>
   );
 }
