@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   alert: {
     display: "flex",
-    flexDirection: "colum",
+    flexDirection: "column",
     color: "red",
   },
   formwraper: {
@@ -33,11 +33,11 @@ const useStyles = makeStyles((theme) => ({
     width: "90%",
     boxShadow: "2px 2px 15px #8888",
     display: "flex",
-    // flexDirection: "colum-reverse",
+    // flexDirection: "column",
   },
   item: {
-    margin: theme.spacing(0.8),
-    width: "80%",
+  
+    width: "90%",
     marginRight: "10px",
   },
   button: {
