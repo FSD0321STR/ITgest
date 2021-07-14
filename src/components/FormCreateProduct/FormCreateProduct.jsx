@@ -8,6 +8,7 @@ import { Button, TextField } from "@material-ui/core";
 import axios from "axios";
 import  getForm  from '../../helpers/api';
 import { useForm } from "../../hooks/useForm";
+import api from "../../helpers/api";
 
 
 
@@ -19,9 +20,6 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
 
-        
-
-
     },
     boxCreatNewProd:{
       borderRadius:"5px",
@@ -30,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       justifyContent: "center",
       alignItems:"center",
-      // height: "100%",
+      
       padding: "20px",
 
     },
@@ -86,6 +84,9 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
       justifyItems: "center",
  
+    },
+    screen: {
+      minHeight: "80vh",
     }
   }));
   
@@ -122,7 +123,7 @@ export const FormCreateProduct = ( {onSubmit} ) => {
     const { category, model, brand, supplier, price, stock } = formValues;
 
     
-
+console.log(formValues);
 
 
     const view = () => {
@@ -143,28 +144,28 @@ export const FormCreateProduct = ( {onSubmit} ) => {
       console.log(getForm)
 
 
-      // axios.post('http://localhost:8000/formproduct', {
-      //   data:{
-      //     category: formValues.category,
-      //     model: formValues.model,
-      //     brand: formValues.brand,
-      //     supplier: formValues.supplier,
-      //     price: formValues.price,
-      //     stock: formValues.stock
-      //   }  
+      api.post('http://localhost:8000/item', 
+      {
+          category: formValues.category,
+          model: formValues.model,
+          brand: formValues.brand,
+          provider: formValues.supplier,
+          price: formValues.price,
+          minStock: formValues.stock
+        }  
         
-      //   })
-      //   .then(response => {
-      //     console.log(response);
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   });
+        ).then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     };
 
 
 
   return (
+    <div className={classes.screen} >
     <div
     className={ classes.boxCreatNewProd } 
     variant="outlined" 
@@ -323,6 +324,7 @@ export const FormCreateProduct = ( {onSubmit} ) => {
       
         
       
+    </div>
     </div>
   );
 };

@@ -12,6 +12,21 @@ const token = localStorage.getItem('token');
 console.log(token);
 api.defaults.headers.common['Authorization'] = token ? `Bearer ${token}` : '';
 
+
+const postItem = (item) => {
+    return fetch(`http://localhost:8000/item`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(item),
+  }).then(res => res = res.json())
+  .catch(error => console.error('Error:', error))
+  }
+
+
 const register = (user) => {
     return fetch(`http://localhost:8000/register`, {
       method: 'POST',
@@ -98,6 +113,7 @@ const getAllUsers = () => {
   };
 
 
+
 export default {
     register,
     allUsers,
@@ -107,6 +123,5 @@ export default {
     getAllUsers,
     removeUser,
     login,
-
-
+    postItem,
 }

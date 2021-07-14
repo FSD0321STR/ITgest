@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   alert: {
     display: "flex",
-    flexDirection: "colum",
+    flexDirection: "column",
     color: "red",
   },
   formwraper: {
@@ -33,14 +33,18 @@ const useStyles = makeStyles((theme) => ({
     width: "90%",
     boxShadow: "2px 2px 15px #8888",
     display: "flex",
-    // flexDirection: "colum-reverse",
+    // flexDirection: "column",
   },
   item: {
-    width: "40%",
+  
+    width: "90%",
     marginRight: "10px",
   },
   button: {
     width: "25%",
+    height:"55px",
+    display: "flex",
+    alignContent: "center",
   },
   Login__info: {
     width: "90%",
@@ -60,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function login() {
+function Login() {
   const classes = useStyles();
   const {
     register,
@@ -73,6 +77,7 @@ function login() {
     console.log(user);
     await api.login(user);
   };
+
 
   return (
     <div className={classes.root}>
@@ -139,4 +144,4 @@ function login() {
     </div>
   );
 }
-export default login;
+export default Login;
