@@ -7,24 +7,12 @@ import api from "../helpers/api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-
+    minHeight: "80vh",
     display: "grid",
     gridTemplateColumns: "50% 50%",
     margin: "20px",
     gridGap: "20px",
   },
-  userItems: {
-    borderRadius: "10px",
-    marginTop: "30px",
-    margin:"10px",
-    padding: "10px",
-    boxShadow: "2px 2px 15px #8888",
-    display: "flex",
-    
-  },
-  screen: {
-    minHeight: "80vh",
-  }
 }));
 
 function userManager() {
@@ -39,12 +27,7 @@ function userManager() {
 
   const editUser = async (id) => {
     console.log(id);
-    const toeditUser = users.filter((user, id) => {
-      return user._id === id;
-    });
-    console.log(toeditUser);
-    setEditingUser(toeditUser);
-    // await api.getUser(id).then((user) => setEditingUser(user));
+    await api.getUser(id).then((user) => setEditingUser(user));
   };
 
   const [users, setUsers] = useState([]);
@@ -62,9 +45,8 @@ function userManager() {
   };
   console.log(users);
   return (
-    <div className={classes.screen}>
     <div className={classes.root}>
-      <div className={classes.userItems}>
+      <div>
         <UserList>
           {users.map((user) => (
             <UserItem
@@ -78,7 +60,6 @@ function userManager() {
         </UserList>
       </div>
       <UserForm user={editingUser} />
-    </div>
     </div>
   );
 }

@@ -105,7 +105,6 @@ function UserForm(user, formSubmit) {
       id: data.id,
     };
     console.log(editingUser);
-
     if (!editingUser._id) {
       await api.register(editingUser).then();
     } else {
