@@ -24,7 +24,7 @@ export const DashboardRoutes = () => {
             <div>
                 <AuthProvider>
                         <Switch>
-                            <Route exact path="/product"    component={ FormCreateProduct } />
+                            <Route exact path="/product"    component={ FormCreateProduct }  />
                             <Route exact path="/product"    component={ ProductItem } />
                             <Route exact path="/order"      component={ OrderList } />
                             <Route exact path="/stock"      component={ StickyHeadTable } />
