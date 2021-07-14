@@ -12,20 +12,33 @@ const token = localStorage.getItem('token');
 console.log(token);
 api.defaults.headers.common['Authorization'] = token ? `Bearer ${token}` : '';
 
-const register = ({email, password}) => {
-    return fetch(`${VITE_API_URL}/api/register`, {
+
+const registerNewProduct = (form) => {
+    return fetch(`http://localhost:8000/formproducts`, {
       method: 'POST',
       mode: 'cors',
       headers: { 
           'Content-Type': 'application/json',
       },
-      body: JSON.stringify({email, password})
-    }).then(res => res = res.json())
+      body: JSON.stringify(form)
+    }).then(res => res = res.json(form))
+    .catch(error => console.error('Error:', error))
+};
+
+const register = (user) => {
+    return fetch(`http://localhost:8000/register`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user)
+    }).then(res => res = res.json(user))
     .catch(error => console.error('Error:', error))
 };
 
 const allUsers = () => {
-    return fetch(`${VITE_API_URL}/user`, {
+    return fetch(`http://localhost:8000/user`, {
       method: 'GET',
       mode: 'cors',
       headers: { 
@@ -34,8 +47,19 @@ const allUsers = () => {
     }).then(res => res = res.json())
 };
 
+const getAllProduct = () => {
+    return fetch(`http://localhost:8000/formproducts`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+      },
+    }).then(res => res = res.json())
+};
+
+
 const getUser = (id) => {
-    return fetch(`${VITE_API_URL}/user/${id}`, {
+    return fetch(`http://localhost:8000/user/${id}`, {
       method: 'GET',
       mode: 'cors',
       headers: { 
@@ -45,7 +69,7 @@ const getUser = (id) => {
 };
 
 const deleteUser = (id) => {
-    return fetch(`${VITE_API_URL}/user/${id}`, {
+    return fetch(`http://localhost:8000/user/${id}`, {
       method: 'DELETE',
       mode: 'cors',
       headers: { 
@@ -54,13 +78,13 @@ const deleteUser = (id) => {
     }).then(res => res = res.json("Usuario borrado"))
 };
 const updateUser = (user) => {
-    return fetch(`${VITE_API_URL}/user/${id}`, {
+    return fetch(`http://localhost:8000/user/${id}`, {
       method: 'PUT',
       mode: 'cors',
       headers: { 
           'Content-Type': 'application/json',
       },
-      body: JSON.stringify({})
+      body: JSON.stringify(user)
     }).then(res => res = res.json(user))
     .catch(error => console.error('Error:', error))
 };
@@ -68,20 +92,20 @@ const updateUser = (user) => {
 
 
 
-const login = ({email, password}) => {
-    return fetch(`${VITE_API_URL}/login`, {
+const login = (user) => {
+    return fetch(`http://localhost:8000/login`, {
         method: 'POST',
         mode: 'cors',
         headers: {
             'Conten-Type': 'application/json',  
         },
-        body: JSON.stringify({email, password})
+        body: JSON.stringify(user)
     }).then(res => res = res.json())
     .catch(error => console.error('Error:', error))
 }
 
 const getAllUsers = () => {
-    return fetch(`${VITE_API_URL}/user`, {
+    return fetch(`http://localhost:8000/user`, {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -106,6 +130,9 @@ export default {
     updateUser,
     getAllUsers,
     removeUser,
+    login,
+    registerNewProduct,
+    getAllProduct,
 
 
 }

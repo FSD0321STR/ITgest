@@ -5,8 +5,7 @@ import { Button, TextField } from "@material-ui/core";
 // import Alert from '@material-ui/lab/Alert';
 // import useLocalStorage from "../../hooks/use-local-storage";
 // import getCategory  from '../../helpers/api';
-import axios from "axios";
-import  getForm  from '../../helpers/api';
+import  api from '../../helpers/api';
 import { useForm } from "../../hooks/useForm";
 
 
@@ -106,7 +105,9 @@ export const FormCreateProduct = ( {onSubmit} ) => {
     
     const ref = useRef();
 
-  
+    useEffect(async () => {
+      await api.registerNewProduct().then(formValues);
+    }, []);
 
  
     const [  formValues, handleInputChange ] = useForm({
@@ -117,6 +118,7 @@ export const FormCreateProduct = ( {onSubmit} ) => {
         price: '',
         stock: ''
     });
+    
 
 
     const { category, model, brand, supplier, price, stock } = formValues;
@@ -144,14 +146,14 @@ export const FormCreateProduct = ( {onSubmit} ) => {
 
 
       // axios.post('http://localhost:8000/formproduct', {
-      //   data:{
-      //     category: formValues.category,
-      //     model: formValues.model,
-      //     brand: formValues.brand,
-      //     supplier: formValues.supplier,
-      //     price: formValues.price,
-      //     stock: formValues.stock
-      //   }  
+        // data:{
+        //   category: formValues.category,
+        //   model: formValues.model,
+        //   brand: formValues.brand,
+        //   supplier: formValues.supplier,
+        //   price: formValues.price,
+        //   stock: formValues.stock
+        // }  
         
       //   })
       //   .then(response => {

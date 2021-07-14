@@ -2,9 +2,7 @@ import React, { useMemo, useState, useEffect } from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import { useParams, Redirect } from 'react-router-dom';
 import { Button, TextField } from "@material-ui/core";
-import ProductList from './productList';
 import { useForm } from "../../hooks/useForm";
-import axios from "axios";
 
 
 
@@ -138,6 +136,8 @@ export const ProductItem = () => {
 
 
 
+
+
         const [ formValues, handleInputChange ] = useForm({
             category: '',
             model: '',
@@ -150,39 +150,6 @@ export const ProductItem = () => {
     
         const { category, model, brand, supplier, price, stock } = formValues;
     
-        
-
-        // const getAll =  axios.get('http://localhost:8000/formproduct', {
-
-        //     data:{
-        //       category: formValues.category,
-        //       model: formValues.model,
-        //       brand: formValues.brand,
-        //       supplier: formValues.supplier,
-        //       price: formValues.price,
-        //       stock: formValues.stock
-        //     },
-
-        //     })
-        //     .then(response => {
-        //       console.log(response);
-        //     })
-        //     .catch(error => {
-        //     //   console.log(error);
-        //     });
-
-        
-        //     console.log(getAll)
-
-        //     useEffect(async () => {
-        //         await api.getAll()
-        //           .then(formValues);
-        //       }, []);
-            
-        
-
-
-
     
         return (
            <div className={classes.genBox}>
@@ -193,10 +160,10 @@ export const ProductItem = () => {
 
                         <div > 
 
-                            <p className= {classes.txt}>Categoria:  <b>Teléfono</b> </p>
-                            <p className= {classes.txt}>Marca:      <b>Iphone</b></p>
-                            <p className= {classes.txt}>Modelo:     <b>12 Pro</b></p>
-                            <p  className= {classes.txt}>Stock:      <b style={{color: "#47A532"}}>5 Unid.</b></p>
+                            <p className= {classes.txt}>Categoria:  <b>{category}</b> </p>
+                            <p className= {classes.txt}>Marca:      <b>{brand}</b></p>
+                            <p className= {classes.txt}>Modelo:     <b>{model}</b></p>
+                            <p  className= {classes.txt}>Stock:      <b style={{color: "#47A532"}}>{stock}</b></p>
             
                         </div>                    
                     </div>
@@ -204,7 +171,6 @@ export const ProductItem = () => {
                     {!order && !assign ? (
                         <div >
                             <Button 
-
                                 className={classes.btnPedir} 
                                 variant="contained"
                                 color="secondary"
