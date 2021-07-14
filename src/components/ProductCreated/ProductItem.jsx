@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { useParams, Redirect } from "react-router-dom";
+import { useParams, Redirect, Link } from "react-router-dom";
 import { Button, TextField } from "@material-ui/core";
 // import ProductList from './productList';
 import { useForm } from "../../hooks/useForm";
@@ -91,6 +91,7 @@ const useStyles = makeStyles((theme) => ({
     left: "30%",
   },
   genBox: {
+    minHeight: "80vh",
     borderRadius: "5px",
     boxShadow: "2px 2px 8px #8888",
     position: "relative",
@@ -152,6 +153,10 @@ export const ProductItem = () => {
 
   return (
     <div className={classes.genBox}>
+      <p>Si no tienes productos en la APP, create uno <b><Link to="/formproduct">Aquí</Link></b></p>
+      <hr />
+      <h2>Productos de la APP</h2>
+
       <div className={classes.box}>
         <div className={classes.Img}>
           {/* <img src={ `../../img/${ getProduct.product.id }.jpg` } className="card-img" alt={ getProduct.product.id } /> */}

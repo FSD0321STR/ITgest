@@ -20,9 +20,6 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
 
-        
-
-
     },
     boxCreatNewProd:{
       borderRadius:"5px",
@@ -31,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       justifyContent: "center",
       alignItems:"center",
-      // height: "100%",
+      
       padding: "20px",
 
     },
@@ -87,6 +84,9 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
       justifyItems: "center",
  
+    },
+    screen: {
+      minHeight: "80vh",
     }
   }));
   
@@ -165,6 +165,7 @@ console.log(formValues);
 
 
   return (
+    <div className={classes.screen} >
     <div
     className={ classes.boxCreatNewProd } 
     variant="outlined" 
@@ -323,6 +324,7 @@ console.log(formValues);
       
         
       
+    </div>
     </div>
   );
 };
