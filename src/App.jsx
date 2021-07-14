@@ -18,7 +18,7 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/"></Route>
+            {/* <Route exact path="/"></Route> */}
             <Route exact path="/login">
               <Login />
             </Route>
