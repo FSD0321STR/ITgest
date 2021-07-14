@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "flex-start",
     marginLeft: "60px",
-    pos,
+
   },
 
   Title: {

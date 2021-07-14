@@ -5,26 +5,19 @@ import {
     Route,
 } from 'react-router-dom';
 
-import { FormCreateProduct } from '../components/FormCreateProduct/FormCreateProduct'
-import { ProductCreated } from '../components/ProductCreated/ProductCreated'
+import  Login  from '../pages/Login';
+import { DashboardRoutes } from '../routers/DashboardRoutes';
 
 
 const AppRouters = () => {
     return (
         <Router>
-            <>
-
+            <div>
                 <Switch>
-                    
-
-                    <Route exact path="/createNewProduct" component={ FormCreateProduct } />
-
-                    <Route exact path="/productCreated" component={ ProductCreated } />
-
-                    
+                    <Route exact path="/login"  component={ Login } />
+                    <Route path="/"             component={ DashboardRoutes } />                    
                 </Switch>
-                
-            </>
+            </div>
       </Router>
     );
 }
