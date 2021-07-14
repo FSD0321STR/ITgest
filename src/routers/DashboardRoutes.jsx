@@ -15,7 +15,7 @@ import { Contact } from "../pages/Contact";
 import { Privacy } from "../pages/Privacy";
 import { NavBar } from "../pages/NavBar";
 import Footer from "../pages/Footer";
-import AuthProvider from "../contexts/auth-provider";
+import  AuthProvider  from "../contexts/auth-provider";
 
 export const DashboardRoutes = () => {
     return (
