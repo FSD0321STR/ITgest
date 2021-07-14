@@ -13,19 +13,51 @@ import useAuth from "../../hooks/useAuth";
 import { PinDropSharp } from "@material-ui/icons";
 import { useEffect } from "react";
 import api from "../../helpers/api";
+import "./styles.css";
+import { red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   form: {
     display: "flex",
     flexDirection: "column",
-    marginRight: "20px",
   },
   item: {
-    marginTop: "20px",
+    margin: "10px",
+  },
+
+  boxForm: {
+    backgroundColor: "#FFFFFF",
+    padding: "20px",
+    borderRadius: "10px",
+    margin: "30px",
+    maxHeight: "600px",
+    boxShadow: "2px 2px 15px #8888",
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+  },
+  btn: {
+    margin: theme.spacing(1),
+    width: "98%",
+    height: "50px",
+    display: "flex",
+    justifyContent: "center",
+  },
+  resetBtn: {
+    margin: theme.spacing(1),
+    width: "98%",
+    height: "50px",
+    display: "flex",
+    justifyContent: "center",
+    backgroundColor: "#F75A6D",
+  },
+
+  alert: {
+    marginLeft: "10px",
   },
 }));
 
-function userForm(user) {
+function UserForm(user) {
   const classes = useStyles();
   const { registerUser } = useAuth();
   const [role, setRole] = useState(roles.R1);
@@ -41,10 +73,18 @@ function userForm(user) {
       name: "",
       surname: "",
       email: "",
-      role: "",
+      role: "Administrador",
       password: "",
     },
   });
+
+  let editableUser = {
+    name: "",
+    surname: "",
+    email: "",
+    role: "Administrador",
+    password: "",
+  };
 
   useEffect(() => {
     reset(user);
@@ -54,15 +94,17 @@ function userForm(user) {
     setRole(event.target.value);
   };
 
-  const createUser = async (data) => {
+  const onSubmit = async (data) => {
+    console.log(data);
     const editingUser = {
       email: data.email,
       password: data.password,
       name: data.name,
       surname: data.surname,
-      role: role,
+      role: data.role,
       id: data.id,
     };
+    console.log(editingUser);
     if (!editingUser.id) {
       await api.register(editingUser);
     } else {
@@ -70,134 +112,133 @@ function userForm(user) {
     }
   };
   return (
-    <form
-      onSubmit={handleSubmit(createUser)}
-      className={classes.form}
-      noValidate
-      autoComplete="off"
-    >
-      <Controller
-        name="name"
-        control={control}
-        rules={{
-          required: true,
-        }}
-        defaultValue=""
-        render={({ field }) => (
-          <TextField
-            {...field}
-            className={classes.item}
-            label="Nombre"
-            type="text"
-            variant="outlined"
-            error={errors.name}
-          />
-        )}
-      />
-      <Controller
-        name="surname"
-        control={control}
-        rules={{
-          required: true,
-        }}
-        defaultValue=""
-        render={({ field }) => (
-          <TextField
-            {...field}
-            className={classes.item}
-            label="Apellidos"
-            type="text"
-            variant="outlined"
-            error={errors.surname}
-          />
-        )}
-      />
+    <div className={classes.boxForm}>
+      <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+        <Controller
+          name="name"
+          control={control}
+          defaultValue=""
+          rules={{
+            required: true,
+          }}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              label="Nombre"
+              className={classes.item}
+              variant="outlined"
+              error={errors.name}
+            />
+          )}
+        />
+        <Controller
+          name="surname"
+          control={control}
+          defaultValue=""
+          rules={{
+            required: true,
+          }}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              label="Apellido"
+              className={classes.item}
+              variant="outlined"
+              error={errors.surname}
+            />
+          )}
+        />
+        <Controller
+          name="email"
+          control={control}
+          rules={{
+            required: "Email no valido",
+            pattern: /^\S+@\S+$/i,
+          }}
+          defaultValue=""
+          render={({ field }) => (
+            <TextField
+              {...field}
+              label="Email"
+              className={classes.item}
+              variant="outlined"
+              error={errors.email}
+              type="email"
+            />
+          )}
+        />
+        <ErrorMessage
+          errors={errors}
+          name="email"
+          render={({ message }) => <p>{message}</p>}
+        />
+        <Controller
+          name="password"
+          control={control}
+          rules={{
+            required: "La contraseña debe terner al menos 6 caracteres",
+            minLength: 6,
+          }}
+          defaultValue=""
+          render={({ field }) => (
+            <TextField
+              {...field}
+              label="Contraseña"
+              variant="filled"
+              className={classes.item}
+              error={errors.password}
+              type="password"
+            />
+          )}
+        />
+        <ErrorMessage
+          errors={errors}
+          name="password"
+          render={({ message }) => <p>{message}</p>}
+        />
+        <Controller
+          rules={{
+            required: true,
+          }}
+          render={({ field }) => (
+            <Select {...field} className={classes.item}>
+              <MenuItem value={"Administrador"}>Administrador</MenuItem>
+              <MenuItem value={"Usuario"}>Usuario</MenuItem>
+            </Select>
+          )}
+          name="role"
+          control={control}
+        />
 
-      <Controller
-        name="email"
-        control={control}
-        rules={{
-          required: "Email no valido",
-          pattern: /^\S+@\S+$/i,
-        }}
-        defaultValue=""
-        render={({ field }) => (
-          <TextField
-            {...field}
-            className={classes.item}
-            label="Email"
-            type="email"
-            variant="outlined"
-            error={errors.email}
-          />
-        )}
-      />
-
-      <ErrorMessage
-        errors={errors}
-        name="email"
-        render={({ message }) => <p color="red">{message}</p>}
-      />
-
-      <Controller
-        name="password"
-        control={control}
-        rules={{
-          required: "La contraseña debe terner al menos 6 caracteres",
-          minLength: 6,
-        }}
-        defaultValue=""
-        render={({ field }) => (
-          <TextField
-            {...field}
-            label="Contraseña"
-            type="password"
-            name="password"
-            variant="outlined"
-            className={classes.item}
-            error={errors.password}
-          />
-        )}
-      />
-      <ErrorMessage
-        errors={errors}
-        name="password"
-        render={({ message }) => <p color="red">{message}</p>}
-      />
-      <Controller
-        name="role"
-        control={control}
-        rules={{
-          required: true,
-        }}
-        defaultValue="Administrador"
-        render={({ field }) => (
-          <Select
-            className={classes.item}
-            labelId="demo-simple-select-label"
-            id="roleImput"
-            variant="outlined"
-            label="Rol"
-            onChange={handleChange}
+        <div>
+          <Button
+            type="submit"
+            className={classes.btn}
+            variant="contained"
+            color="primary"
           >
-            {Object.values(roles).map((rol) => (
-              <MenuItem key={rol} value={rol}>
-                {rol}
-              </MenuItem>
-            ))}
-          </Select>
-        )}
-      ></Controller>
-      <Button
-        type="submit"
-        className={classes.item}
-        variant="contained"
-        color="primary"
-      >
-        Guardar Usuario
-      </Button>
-    </form>
+            Guardar Usuario
+          </Button>
+          <Button
+            onClick={() => {
+              reset({
+                name: "",
+                surname: "",
+                email: "",
+                password: "",
+                role: "",
+              });
+            }}
+            className={classes.resetBtn}
+            variant="contained"
+            color="primary"
+          >
+            Cancelar
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 }
 
-export default userForm;
+export default UserForm;
