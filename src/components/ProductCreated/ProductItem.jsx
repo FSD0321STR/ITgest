@@ -107,13 +107,17 @@ export const ProductItem = () => {
   const [assign, setAssign] = useState();
 
   const inputAsign = (data) => {
-    console.log(data)
+    console.log(data);
     setAssign(!assign);
   };
 
   const inputOrder = () => {
     setOrder(!order);
   };
+
+  useEffect(async () => {
+    await api.allProducts().then(setOrder);
+  }, []);
 
   const [formValues, handleInputChange] = useForm({
     category: "",
@@ -126,35 +130,14 @@ export const ProductItem = () => {
 
   const { category, model, brand, supplier, price, stock } = formValues;
 
-  // const getAll =  axios.get('http://localhost:8000/formproduct', {
-
-  //     data:{
-  //       category: formValues.category,
-  //       model: formValues.model,
-  //       brand: formValues.brand,
-  //       supplier: formValues.supplier,
-  //       price: formValues.price,
-  //       stock: formValues.stock
-  //     },
-
-  //     })
-  //     .then(response => {
-  //       console.log(response);
-  //     })
-  //     .catch(error => {
-  //     //   console.log(error);
-  //     });
-
-  //     console.log(getAll)
-
-  //     useEffect(async () => {
-  //         await api.getAll()
-  //           .then(formValues);
-  //       }, []);
-
   return (
     <div className={classes.genBox}>
-      <p>Si no tienes productos en la APP, create uno <b><Link to="/formproduct">Aquí</Link></b></p>
+      <p>
+        Si no tienes productos en la APP, create uno{" "}
+        <b>
+          <Link to="/formproduct">Aquí</Link>
+        </b>
+      </p>
       <hr />
       <h2>Productos de la APP</h2>
 
