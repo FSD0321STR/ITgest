@@ -7,6 +7,7 @@ import {
 
 import  Login  from '../pages/Login';
 import { DashboardRoutes } from '../routers/DashboardRoutes';
+import PrivateRoute from "../components/User/PrivateRoute"
 
 
 const AppRouters = () => {
@@ -15,7 +16,7 @@ const AppRouters = () => {
             <div>
                 <Switch>
                     <Route exact path="/login"  component={ Login } />
-                    <Route path="/"             component={ DashboardRoutes } />                    
+                    <PrivateRoute path="/"             component={ DashboardRoutes } />                    
                 </Switch>
             </div>
       </Router>
