@@ -13,7 +13,7 @@ console.log(token);
 api.defaults.headers.common['Authorization'] = token ? `Bearer ${token}` : '';
 
 
-const postItem = (item) => {
+const postItem = (data) => {
     return fetch(`http://localhost:8000/item`, {
       method: 'POST',
       mode: 'cors',
@@ -21,8 +21,8 @@ const postItem = (item) => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify(item),
-  }).then(res => res = res.json())
+      body: JSON.stringify(data),
+  }).then(res => res = res.json(data))
   .catch(error => console.error('Error:', error))
   }
 
@@ -112,6 +112,7 @@ const getAllUsers = () => {
     const users = await api.getAllUsers()
     //setUsers(users);
   };
+
 
 
 

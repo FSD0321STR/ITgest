@@ -21,13 +21,15 @@ function userManager() {
     name: "",
     surname: "",
     email: "",
-    role: "",
+    role: "Administrador",
     password: "",
   });
 
-  const editUser = async (id) => {
+  const editUser = (id) => {
     console.log(id);
-    await api.getUser(id).then((user) => setEditingUser(user));
+    const user = users.filter((user) => user._id === id);
+    setEditingUser(user);
+    console.log(editingUser);
   };
 
   const [users, setUsers] = useState([]);

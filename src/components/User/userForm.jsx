@@ -14,7 +14,6 @@ import { PinDropSharp } from "@material-ui/icons";
 import { useEffect } from "react";
 import api from "../../helpers/api";
 import "./styles.css";
-import { red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -57,10 +56,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function UserForm(user, formSubmit) {
+function UserForm(user) {
   const classes = useStyles();
   const { registerUser } = useAuth();
-  const [role, setRole] = useState(roles.R1);
 
   const {
     register,
@@ -111,6 +109,18 @@ function UserForm(user, formSubmit) {
       await api.updateUser(editingUser);
     }
     window.location.reload(false);
+  };
+
+  const printUser = (user) => {
+    console.log(user);
+    reset({
+      name: user.name,
+      surname: user.surname,
+      email: user.email,
+      password: "",
+      role: user.role,
+      _id: user._id,
+    });
   };
 
   return (
@@ -228,7 +238,7 @@ function UserForm(user, formSubmit) {
                 surname: "",
                 email: "",
                 password: "",
-                role: "",
+                role: "Administrador",
               });
             }}
             className={classes.resetBtn}
