@@ -23,13 +23,16 @@ function userManager() {
     email: "",
     role: "Administrador",
     password: "",
+    _id: "",
   });
 
   const editUser = (id) => {
     console.log(id);
     const user = users.filter((user) => user._id === id);
-    setEditingUser(user);
-    console.log(editingUser);
+    const userNoPassword = user[0];
+    userNoPassword.password = "";
+    setEditingUser(userNoPassword);
+    console.log(userNoPassword);
   };
 
   const [users, setUsers] = useState([]);
@@ -61,7 +64,7 @@ function userManager() {
           ))}
         </UserList>
       </div>
-      <UserForm user={editingUser} />
+      <UserForm user={editingUser} setUser={setEditingUser} />
     </div>
   );
 }
