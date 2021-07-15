@@ -25,18 +25,11 @@ function userManager() {
     password: "",
   });
 
-  const editUser = async (id) => {
+  const editUser = (id) => {
     console.log(id);
     const user = users.filter((user) => user._id === id);
+    setEditingUser(user);
     console.log(editingUser);
-    setEditingUser({
-      name: user.name,
-      surname: user.surname,
-      email: user.email,
-      password: "",
-      role: user.role,
-      _id: user._id,
-    });
   };
 
   const [users, setUsers] = useState([]);

@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from "react";
 import AuthContext from "./auth-context";
 import api from "../helpers/api";
+import { Redirect } from "react-router-dom";
 
 const token = localStorage.getItem("token");
 
