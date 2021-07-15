@@ -111,6 +111,18 @@ function UserForm(user) {
     window.location.reload(false);
   };
 
+  const printUser = (user) => {
+    console.log(user);
+    reset({
+      name: user.name,
+      surname: user.surname,
+      email: user.email,
+      password: "",
+      role: user.role,
+      _id: user._id,
+    });
+  };
+
   return (
     <div className={classes.boxForm}>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
