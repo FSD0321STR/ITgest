@@ -101,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ProductItem = () => {
+export const ProductItem = ({ category, model, brand, supplier, price, stock}) => {
   const classes = useStyles();
   const [order, setOrder] = useState();
   const [assign, setAssign] = useState();
@@ -113,17 +113,6 @@ export const ProductItem = () => {
   const inputOrder = () => {
     setOrder(!order);
   };
-
-  const [formValues, handleInputChange] = useForm({
-    category: "",
-    model: "",
-    brand: "",
-    supplier: "",
-    price: "",
-    stock: "",
-  });
-
-  const { category, model, brand, supplier, price, stock } = formValues;
 
   // const getAll =  axios.get('http://localhost:8000/formproduct', {
 
@@ -163,16 +152,16 @@ export const ProductItem = () => {
 
           <div>
             <p className={classes.txt}>
-              Categoria: <b>Teléfono</b>{" "}
+              Categoria: <b>{category}</b>{" "}
             </p>
             <p className={classes.txt}>
-              Marca: <b>Iphone</b>
+              Marca: <b>{brand}</b>
             </p>
             <p className={classes.txt}>
-              Modelo: <b>12 Pro</b>
+              Modelo: <b>{model}</b>
             </p>
             <p className={classes.txt}>
-              Stock: <b style={{ color: "#47A532" }}>5 Unid.</b>
+              Stock: <b style={{ color: "#47A532" }}>{stock}</b>
             </p>
           </div>
         </div>

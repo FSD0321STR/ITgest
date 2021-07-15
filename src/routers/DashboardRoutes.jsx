@@ -16,6 +16,7 @@ import { Privacy } from "../pages/Privacy";
 import { NavBar } from "../pages/NavBar";
 import Footer from "../pages/Footer";
 import  AuthProvider  from "../contexts/auth-provider";
+import {ProductListPage} from "../pages/ProductListPage"
 
 export const DashboardRoutes = () => {
     return (
@@ -31,6 +32,7 @@ export const DashboardRoutes = () => {
                             <Route exact path="/userAdmin"  component={ UserManager } />
                             <Route exact path="/contact"    component={ Contact } />
                             <Route exact path="/privacy"    component={ Privacy  } />
+                            <Route exact path="/prueba"    component={ ProductListPage } />
 
                             <Redirect to="/stock" />
                         </Switch>

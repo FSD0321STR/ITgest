@@ -14,17 +14,28 @@ api.defaults.headers.common['Authorization'] = token ? `Bearer ${token}` : '';
 
 
 const postItem = (item) => {
-    return fetch(`http://localhost:8000/item`, {
+    return fetch(`http://localhost:8000/formproduct`, {
       method: 'POST',
       mode: 'cors',
       headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+        //   'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify(item),
+      body: JSON.stringify(item.properties),
   }).then(res => res = res.json())
   .catch(error => console.error('Error:', error))
-  }
+  };
+
+  const getAllItem = () => {
+    return fetch(`http://localhost:8000/item`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+        // 'Authorization': `Bearer ${token}`
+      },
+    }).then(res => res = res.json())
+};
 
 
 const register = (user) => {
@@ -124,4 +135,5 @@ export default {
     removeUser,
     login,
     postItem,
+    getAllItem,
 }

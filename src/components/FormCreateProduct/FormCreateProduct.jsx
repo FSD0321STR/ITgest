@@ -101,15 +101,11 @@ export const FormCreateProduct = ( {onSubmit} ) => {
     const [inputValue, setInputValue] = useState("");
    
     const [error, setError] = useState("");
-    const [options, setOptions ] = useState([]);
+    const [items, setItems ] = useState([]);
     // const [selected, setSelected] = useState("");
     const [visible, setVisible] = useState(false);
-    
     const ref = useRef();
 
-  
-
- 
     const [  formValues, handleInputChange ] = useForm({
         category: '',
         model: '',
@@ -123,7 +119,7 @@ export const FormCreateProduct = ( {onSubmit} ) => {
     const { category, model, brand, supplier, price, stock } = formValues;
 
     
-console.log(formValues);
+// console.log(formValues);
 
 
     const view = () => {
@@ -135,32 +131,46 @@ console.log(formValues);
     const handleSubmit = (e) => {
       e.preventDefault();
       
-      
-
-      useEffect(async () => {
-        await api.getForm().then(formValues);
-      }, []);
-
-      console.log(getForm)
-
-
-      api.post('http://localhost:8000/item', 
-      {
-          category: formValues.category,
-          model: formValues.model,
-          brand: formValues.brand,
-          provider: formValues.supplier,
-          price: formValues.price,
-          minStock: formValues.stock
-        }  
-        
-        ).then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
     };
+
+      // useEffect(async () => {
+      //   await api.getForm().then(formValues);
+      // }, []);
+
+      // console.log(getForm)
+
+
+    //   api.post('http://localhost:8000/item', 
+    //   {
+    //       category: formValues.category,
+    //       model: formValues.model,
+    //       brand: formValues.brand,
+    //       provider: formValues.supplier,
+    //       price: formValues.price,
+    //       minStock: formValues.stock
+    //     }  
+        
+    //     ).then(response => {
+    //       console.log(response);
+    //     })
+    //     .catch(error => {
+    //       console.log(error);
+    //     });
+    // };
+    const createItem = async (item) => {
+      const items = formValues();
+
+      try {
+        const response = await api.postItem(item);
+        if (response.status < 400 && response.status < 500) {
+          handleInputChange ([...items, item]);
+        }
+      } catch {
+        handleInputChange (items);
+        // createNotification("Could not create task");
+      }
+    };
+ 
 
 
 
@@ -183,7 +193,7 @@ console.log(formValues);
 
       {visible ? (
         <form 
-        onSubmit={ handleSubmit }
+        onSubmit={createItem}
         >
           <br/>
           <h3 className={ classes.h3 }>!Hola Soufian!, rellena el formulario para crear un nuevo producto</h3>
@@ -328,4 +338,5 @@ console.log(formValues);
     </div>
   );
 };
+
 
