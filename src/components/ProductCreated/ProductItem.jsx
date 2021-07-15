@@ -107,7 +107,7 @@ export const ProductItem = () => {
   const [assign, setAssign] = useState();
 
   const inputAsign = (data) => {
-    console.log(data);
+    console.log(data)
     setAssign(!assign);
   };
 
@@ -154,12 +154,7 @@ export const ProductItem = () => {
 
   return (
     <div className={classes.genBox}>
-      <p>
-        Si no tienes productos en la APP, create uno{" "}
-        <b>
-          <Link to="/formproduct">Aquí</Link>
-        </b>
-      </p>
+      <p>Si no tienes productos en la APP, create uno <b><Link to="/formproduct">Aquí</Link></b></p>
       <hr />
       <h2>Productos de la APP</h2>
 

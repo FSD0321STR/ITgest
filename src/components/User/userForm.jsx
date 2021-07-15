@@ -10,7 +10,7 @@ import roles from "../../contexts/roles";
 import { useForm, Controller } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import useAuth from "../../hooks/useAuth";
-import { PinDropSharp } from "@material-ui/icons";
+import { ContactSupportOutlined, PinDropSharp } from "@material-ui/icons";
 import { useEffect } from "react";
 import api from "../../helpers/api";
 import "./styles.css";
@@ -57,8 +57,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+<<<<<<< HEAD
 function UserForm(user) {
 
+=======
+function UserForm({ user, setUser }) {
+>>>>>>> f4ce3c775172d3c63a91c55f0e5d17f82ea1f802
   const classes = useStyles();
   const { registerUser } = useAuth();
 
@@ -80,18 +84,10 @@ function UserForm(user) {
     },
   });
 
-  let editableUser = {
-    name: "",
-    surname: "",
-    email: "",
-    role: "Administrador",
-    password: "",
-  };
-
   useEffect(() => {
     reset(user);
   }, [user]);
-
+  console.log(user);
   const handleChange = (event) => {
     setRole(event.target.value);
   };
@@ -104,27 +100,14 @@ function UserForm(user) {
       name: data.name,
       surname: data.surname,
       role: data.role,
-      id: data.id,
     };
     console.log(editingUser);
     if (!editingUser._id) {
       await api.register(editingUser).then();
     } else {
-      await api.updateUser(editingUser);
+      await api.updateUser(editingUser).then();
     }
     window.location.reload(false);
-  };
-
-  const printUser = (user) => {
-    console.log(user);
-    reset({
-      name: user.name,
-      surname: user.surname,
-      email: user.email,
-      password: "",
-      role: user.role,
-      _id: user._id,
-    });
   };
 
   return (
