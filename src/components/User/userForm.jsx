@@ -57,12 +57,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-<<<<<<< HEAD
-function UserForm(user) {
 
-=======
 function UserForm({ user, setUser }) {
->>>>>>> f4ce3c775172d3c63a91c55f0e5d17f82ea1f802
   const classes = useStyles();
   const { registerUser } = useAuth();
 
