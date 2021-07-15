@@ -88,7 +88,7 @@ const login = (user) => {
         method: 'POST',
         mode: 'cors',
         headers: {
-            'Conten-Type': 'application/json',  
+            'Content-Type': 'application/json',  
         },
         body: JSON.stringify(user)
     }).then(res => res = res.json())
