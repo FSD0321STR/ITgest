@@ -50,14 +50,33 @@ const columns = [
 ];
 
 function createData(id, category, brand, model, supplier, price, stock) {
+  
+  const getItem = async (data) => {
+    const item = { 
+      id: data.id, 
+      category: data.category,
+      brand: data.brand,
+      model: data.model,
+      supplier: data.provider,
+      price: data.price,
+      stock: data.minStock,
+  
+    };
+    console.log(item);
+    await api.allItem(item);
+    // history.push('/stock');
+    console.log(item)
+  };
 
   return { id, category, brand, model, supplier, price, stock };
 }
 
-const rows = [
-  createData(123123, 'Televisor', 'Samsung', 'S52p', 'Samsung S.L.', 500, 2),
-  createData(827371, 'Teléfono', 'Iphone', '12 Pro', 'Apple S.L.', 1200, 7),
 
+
+
+
+const rows = [
+  createData( )
 
 ];
 

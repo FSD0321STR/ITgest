@@ -24,7 +24,20 @@ const postItem = (data) => {
       body: JSON.stringify(data),
   }).then(res => res = res.json(data))
   .catch(error => console.error('Error:', error))
+
+  };
+
+  const allItem = () => {
+    return fetch(`http://localhost:8000/item`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+        //   'Authorization': `Bearer ${token}`
+      },
+    }).then(res => res = res.json())
 };
+
 
 
 const register = (user) => {
@@ -143,5 +156,6 @@ export default {
     getAllUsers,
     login,
     postItem,
-    allProducts,
+    allItem,
+
 }
