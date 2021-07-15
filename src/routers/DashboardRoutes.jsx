@@ -15,31 +15,33 @@ import { Contact } from "../pages/Contact";
 import { Privacy } from "../pages/Privacy";
 import { NavBar } from "../pages/NavBar";
 import Footer from "../pages/Footer";
-import AuthProvider from "../contexts/auth-provider";
+import AuthProvider  from "../contexts/auth-provider";
 import PrivateRoute from "../components/User/PrivateRoute"
 
 export const DashboardRoutes = () => {
     return (
         <>
+        {/* <AuthProvider> */}
             <NavBar />
             <div>
-                <AuthProvider>
+                
                         <Switch>
                             
-                                <PrivateRoute exact path="/product"    component={ ProductItem } />
-                                <PrivateRoute exact path="/formproduct"component={ FormCreateProduct } />
-                                <PrivateRoute exact path="/order"      component={ OrderList } />
-                                <PrivateRoute exact path="/stock"      component={ StickyHeadTable } />
-                                <PrivateRoute exact path="/userAdmin"  component={ UserManager } />
-                                <PrivateRoute exact path="/contact"    component={ Contact } />
-                                <PrivateRoute exact path="/privacy"    component={ Privacy  } />
+                                <Route exact path="/product"    component={ ProductItem } />
+                                <Route exact path="/formproduct"component={ FormCreateProduct } />
+                                <Route exact path="/order"      component={ OrderList } />
+                                <Route exact path="/stock"      component={ StickyHeadTable } />
+                                <Route exact path="/userAdmin"  component={ UserManager } />
+                                <Route exact path="/contact"    component={ Contact } />
+                                <Route exact path="/privacy"    component={ Privacy  } />
                             
 
-                            <Redirect to="/stock" />
+                                <Redirect to="/stock" /> 
                         </Switch>
-                </AuthProvider>
+                
             </div>
             <Footer />    
+            {/* </AuthProvider> */}
         </>
     )
 }

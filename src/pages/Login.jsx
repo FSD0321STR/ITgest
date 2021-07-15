@@ -4,6 +4,10 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import api from "../helpers/api";
 import Alert from "@material-ui/lab/Alert";
+import useLocalStorage from "../hooks/use-local-storage";
+import { useHistory } from "react-router-dom";
+import useAuth from '../hooks/useAuth'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,19 +68,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 function Login() {
   const classes = useStyles();
+  // const [user, setUser] = useLocalStorage("storedUser", []);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
+  const history = useHistory();
+  const auth = useAuth();
+  
   const loginUser = async (data) => {
     const user = { email: data.email, password: data.password };
     console.log(user);
-    await api.login(user);
+    await auth.login(user);
+    history.push('/stock');
   };
+
+
 
 
   return (

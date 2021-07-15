@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import api from "../../helpers/api";
 import "./styles.css";
 
+
 const useStyles = makeStyles((theme) => ({
   form: {
     display: "flex",
@@ -57,8 +58,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function UserForm(user) {
+
   const classes = useStyles();
   const { registerUser } = useAuth();
+
+
 
   const {
     register,

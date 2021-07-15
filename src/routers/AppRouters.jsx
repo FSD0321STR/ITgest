@@ -7,19 +7,22 @@ import {
 
 import  Login  from '../pages/Login';
 import { DashboardRoutes } from '../routers/DashboardRoutes';
-import PrivateRoute from "../components/User/PrivateRoute"
+import PrivateRoute from "../components/User/PrivateRoute";
+import AuthProvider  from "../contexts/auth-provider";
 
 
 const AppRouters = () => {
     return (
+        <AuthProvider>
         <Router>
             <div>
                 <Switch>
-                    <Route exact path="/login"  component={ Login } />
-                    <PrivateRoute path="/"             component={ DashboardRoutes } />                    
+                    <Route exact path="/login"      component={ Login } />
+                    <PrivateRoute path="/"          component={ DashboardRoutes } />                    
                 </Switch>
             </div>
       </Router>
+      </AuthProvider> 
     );
 }
 
