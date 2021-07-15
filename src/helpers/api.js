@@ -141,7 +141,6 @@ export default {
     deleteUser,
     updateUser,
     getAllUsers,
-    removeUser,
     login,
     postItem,
     allProducts,
