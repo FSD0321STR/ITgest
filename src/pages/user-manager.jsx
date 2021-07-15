@@ -44,7 +44,6 @@ function userManager() {
   const deleteUser = async (userId) => {
     console.log(userId);
     const response = await api.deleteUser(userId);
-    alert(response.message);
     const users = await api.getAllUsers();
     setUsers(users);
   };
