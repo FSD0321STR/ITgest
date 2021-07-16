@@ -15,7 +15,6 @@ import { useEffect } from "react";
 import api from "../../helpers/api";
 import "./styles.css";
 
-
 const useStyles = makeStyles((theme) => ({
   form: {
     display: "flex",
@@ -57,12 +56,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 function UserForm({ user, setUser }) {
   const classes = useStyles();
   const { registerUser } = useAuth();
-
-
 
   const {
     register,
@@ -108,6 +104,9 @@ function UserForm({ user, setUser }) {
 
   return (
     <div className={classes.boxForm}>
+      <h2>
+        Formulario de <strong>usuario</strong>
+      </h2>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
         <Controller
           name="name"
