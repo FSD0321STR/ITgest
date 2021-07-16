@@ -26,6 +26,17 @@ const postItem = (data) => {
   .catch(error => console.error('Error:', error))
   }
 
+  const readAllItems = () => {
+    return fetch(`http://localhost:8000/item`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      },
+    }).then(res => res = res.json())
+};
+
 
 const register = (user) => {
     return fetch(`http://localhost:8000/register`, {
@@ -126,4 +137,5 @@ export default {
     removeUser,
     login,
     postItem,
+    readAllItems,
 }

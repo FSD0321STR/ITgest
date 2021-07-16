@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import api from '../helpers/api';
 
 const columns = [
   { id: 'id', 
@@ -54,12 +55,11 @@ function createData(id, category, brand, model, supplier, price, stock) {
   return { id, category, brand, model, supplier, price, stock };
 }
 
+
 const rows = [
-  createData(123123, 'Televisor', 'Samsung', 'S52p', 'Samsung S.L.', 500, 2),
-  createData(827371, 'Teléfono', 'Iphone', '12 Pro', 'Apple S.L.', 1200, 7),
-
-
+  createData(),
 ];
+
 
 const useStyles = makeStyles({
   screen: {
@@ -96,21 +96,49 @@ const useStyles = makeStyles({
 
   //kjkasdjk
 
+  
+
 });
 
 export default function StickyHeadTable() {
   const classes = useStyles();
+ 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
+  // const [selected, setSelected] = useState("");
+  // const [options, setOptions ] = useState([]);
+
+  // useEffect(async () => {
+  //   await api.readAllItems()
+  //     .then((rows) => {
+  //       let transform = [];
+  //       rows.forEach((row) => {
+  //         transform.push({ value: row._id, label: row.id });
+  //       });
+  //       setOptions(transform);
+  //     });
+  //  }, []);
+
+  // useEffect(async () => {
+  //   await api.readAllItems().then(data)
+  //   .then(data => setData(data)
+    
+  // )}, [data]);
+
+  
+  
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
+
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+
 
   return (
     <div className={classes.screen}>
@@ -137,6 +165,7 @@ export default function StickyHeadTable() {
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                     {columns.map((column) => {
                       const value = row[column.id];
+                      
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {column.format && typeof value === 'number' ? column.format(value) : value}
