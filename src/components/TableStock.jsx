@@ -13,7 +13,7 @@ import api from '../helpers/api';
 const columns = [
   { id: 'id', 
     label: 'Id', 
-    minWidth: 100
+    minWidth: 100,
   },
   { id: 'category', 
     label: 'Categoria', 
@@ -52,22 +52,22 @@ const columns = [
 
 function createData(id, category, brand, model, supplier, price, stock) {
   
-  const getItem = async (data) => {
-    const item = { 
-      id: data.id, 
-      category: data.category,
-      brand: data.brand,
-      model: data.model,
-      supplier: data.provider,
-      price: data.price,
-      stock: data.minStock,
+  // const getItem = async (data) => {
+  //   const item = { 
+  //     id: data.id, 
+  //     category: data.category,
+  //     brand: data.brand,
+  //     model: data.model,
+  //     supplier: data.provider,
+  //     price: data.price,
+  //     stock: data.minStock,
   
-    };
-    console.log(item);
-    await api.allItem(item);
-    // history.push('/stock');
-    console.log(item)
-  };
+  //   };
+  //   console.log(item);
+  //   await api.allItem(item);
+  //   // history.push('/stock');
+  //   console.log(item)
+  // };
 
   return { id, category, brand, model, supplier, price, stock };
 }
@@ -78,7 +78,18 @@ function createData(id, category, brand, model, supplier, price, stock) {
 
 
 const rows = [
-  createData( )
+  createData("000001" , "Teléfono", "Apple", "Iphone 12 Pro", "Apple S.L.", 1280, 12 ),
+  createData("000002" , "Teléfono", "Samsung", "S21", "Samsung S.L.", 1020, 9 ),
+  createData("000004" , "Teléfono", "Huawei", "P40", "Huawei S.L.", 950, 4 ),
+  createData("000005" , "Ordenador", "Apple", "MacBook Pro", "Apple S.L.", 2100, 7 ),
+  createData("000006" , "Ordenador", "Razer", "Razer 500", "Razer S.L.", 1800, 3 ),
+  createData("000007" , "Cámara", "Sony", "Alpha III", "Sony S.L.", 2800, 2),
+  createData("000008" , "Reloj", "Apple", "AppleWatch", "Apple S.L.", 580, 6 ),
+  createData("000009" , "SmartTV", "LG", "MS62", "LG S.L.", 730, 2 ),
+  createData("000010" , "SmartTV", "Sony", "Bravia", "Sony S.L.", 3000, 2 ),
+  createData("000011" , "Auriculares", "Apple", "Airpod", "Apple S.L.", 178, 20 ),
+  createData("000012" , "Cargador", "Apple", "MacBook Pro", "Apple S.L.", 70, 8 ),
+  createData("000013" , "Auriculares", "Samsung", "S121", "Samsung S.L.", 40, 11 ),
 
 ];
 
