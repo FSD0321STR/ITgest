@@ -12,6 +12,8 @@ const useStyles = makeStyles((theme) => ({
     padding: "20px",
     overflowY: "scroll",
     scrollBehavior: "smooth",
+    display:"flex",
+    flexDirection: "column-reverse"
     
     
   },
