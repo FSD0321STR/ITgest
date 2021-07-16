@@ -27,7 +27,7 @@ const postItem = (data) => {
 
   };
 
-  const allItem = () => {
+const allItem = () => {
     return fetch(`http://localhost:8000/item`, {
       method: 'GET',
       mode: 'cors',
