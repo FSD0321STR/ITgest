@@ -110,7 +110,7 @@ const updateUser = (user) => {
 };
 
 const allOrders = () => {
-    return fetch(`http://localhost:8000/user`, {
+    return fetch(`http://localhost:8000/order`, {
       method: 'GET',
       mode: 'cors',
       headers: { 
@@ -168,5 +168,6 @@ export default {
     login,
     postItem,
     readAllItems,
+    allOrders,
 
 }
