@@ -121,27 +121,28 @@ export const FormCreateProduct = () => {
     setVisible(!visible);
   };
 
-  const onSubmit = async (data) => {
-    console.log(data);
+  const onSubmit = async (item) => {
+    console.log(item);
     const newProduct = {
-      category: data.category,
-      model: data.model,
-      brand: data.brand,
-      supplier: data.supplier,
-      price: data.price,
-      stock: data.stock,
+      category: item.category,
+      model: item.model,
+      brand: item.brand,
+      provider: item.provider,
+      price: item.price,
+      minStock: item.minStock,
     };
     console.log(newProduct);
-    await api.postItem(newProduct).then();
+    await api.postItem(newProduct).then(item);
     reset({
       category: "",
       model: "",
       brand: "",
-      supplier: "",
+      provider: "",
       price: "",
-      stock: "",
+      minStock: "",
     });
   };
+
 
   // useEffect(async () => {
   //   await api.getForm().then(formValues);
