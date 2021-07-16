@@ -114,7 +114,6 @@ export const ProductItem = () => {
     setOrder(!order);
   };
 
-<<<<<<< Updated upstream
   const [formValues, handleInputChange] = useForm({
     category: "",
     model: "",
@@ -127,24 +126,14 @@ export const ProductItem = () => {
   const { category, model, brand, supplier, price, stock } = formValues;
 
   // const getAll =  axios.get('http://localhost:8000/formproduct', {
-=======
-  const getAll =  axios.get('http://localhost:8000/item', {
-        category: category,
-        model: model,
-        brand: brand,
-        supplier: supplier,
-        price: price,
-        stock: stock
-      },
->>>>>>> Stashed changes
 
-      )
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  // )
+  // .then(response => {
+  //   console.log(response);
+  // })
+  // .catch(error => {
+  //   console.log(error);
+  // });
 
   //     console.log(getAll)
 
@@ -152,8 +141,6 @@ export const ProductItem = () => {
   //         await api.getAll()
   //           .then(formValues);
   //       }, []);
-
-  console.log(getAll)
 
   return (
     <div className={classes.genBox}>
