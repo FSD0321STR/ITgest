@@ -51,13 +51,35 @@ const columns = [
 ];
 
 function createData(id, category, brand, model, supplier, price, stock) {
+  
+  const getItem = async (data) => {
+    const item = { 
+      id: data.id, 
+      category: data.category,
+      brand: data.brand,
+      model: data.model,
+      supplier: data.provider,
+      price: data.price,
+      stock: data.minStock,
+  
+    };
+    console.log(item);
+    await api.allItem(item);
+    // history.push('/stock');
+    console.log(item)
+  };
 
   return { id, category, brand, model, supplier, price, stock };
 }
 
 
+
+
+
+
 const rows = [
-  createData(),
+  createData( )
+
 ];
 
 

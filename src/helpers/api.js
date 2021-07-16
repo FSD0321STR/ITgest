@@ -24,7 +24,20 @@ const postItem = (data) => {
       body: JSON.stringify(data),
   }).then(res => res = res.json(data))
   .catch(error => console.error('Error:', error))
-  }
+
+  };
+
+const allItem = () => {
+    return fetch(`http://localhost:8000/item`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+        //   'Authorization': `Bearer ${token}`
+      },
+    }).then(res => res = res.json())
+};
+
 
   const readAllItems = () => {
     return fetch(`http://localhost:8000/item`, {
@@ -44,6 +57,7 @@ const register = (user) => {
       mode: 'cors',
       headers: { 
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify(user)
     }).then(res => res = res.json(user))
@@ -90,6 +104,20 @@ const updateUser = (user) => {
       body: JSON.stringify(user)
     }).then(res => res = res.json(user))
     .catch(error => console.error('Error:', error))
+
+
+
+};
+
+const allOrders = () => {
+    return fetch(`http://localhost:8000/user`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      },
+    }).then(res => res = res.json())
 };
 
 
@@ -115,15 +143,18 @@ const getAllUsers = () => {
           'Authorization': `Bearer ${token}`
         }
     }).then(res => res = res.json());
-  }
+}
 
-  const removeUser = async (id) => {
-    const response = await api.deleteUser(id);
-    alert(response.message);
-    const users = await api.getAllUsers()
-    //setUsers(users);
-  };
-
+const allProducts = () => {
+    return fetch(`http://localhost:8000/item`, {
+      method: 'GET',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      },
+    }).then(res => res = res.json())
+};
 
 
 
@@ -134,8 +165,8 @@ export default {
     deleteUser,
     updateUser,
     getAllUsers,
-    removeUser,
     login,
     postItem,
     readAllItems,
+
 }
